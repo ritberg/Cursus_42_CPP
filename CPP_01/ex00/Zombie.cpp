@@ -15,26 +15,19 @@
 #include "Zombie.hpp"
 
 
-Zombie::Zombie(void)
+Zombie::Zombie(std::string name) : _name(name)
 {
-    std::cout << "Give a name to the zombie: ";
-    std::cin >> name;
-    std::cout << "Constructor " << this->getName() << " called" << std::endl;
+    std::cout << "Constructor " << this->_name << " called" << std::endl;
     return;
 }
 
 Zombie::~Zombie(void)
 {
-    std::cout << "Destructor " << this->getName() << " called" << std::endl;
+    std::cout << "Destructor " << this->_name << " called" << std::endl;
     return;
-}
-
-std::string Zombie::getName(void) const
-{
-    return (this->name);
 }
 
 void    Zombie::announce(void)
 {
-    std::cout << this->getName() << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << this->_name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
 }

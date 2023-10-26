@@ -4,6 +4,8 @@ RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
 		Zombie.cpp\
+		newZombie.cpp\
+		randomChump.cpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 

@@ -15,8 +15,11 @@
 
 int main()
 {
-    Zombie  zombie;
-    zombie.announce();
-    
+    Zombie  zombie = Zombie("Foo");
+    Zombie* newZombie = zombie.newZombie("Foo");
+    newZombie->randomChump("Foo");
+   
+    delete newZombie;
+
     return (0);
 }

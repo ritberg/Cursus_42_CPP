@@ -13,9 +13,8 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-
 Zombie* Zombie::newZombie(std::string name)
 {
-    Zombie  z = new(name);
-   return (z);
+    Zombie* newZombie = new Zombie(name);
+    return (newZombie);
 }
