@@ -13,6 +13,8 @@
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
 
+# include <string>
+
 class Zombie {
 
 public:
@@ -23,7 +25,7 @@ public:
 	void randomChump(std::string name);
 	void announce(void);
 
-	std::string	getName(void);
+	std::string	getName(void) const;
 	
 private:
 

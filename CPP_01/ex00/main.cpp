@@ -16,7 +16,6 @@
 int main()
 {
     Zombie  zombie;
-
     zombie.announce();
     
     return (0);

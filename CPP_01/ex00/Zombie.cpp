@@ -11,28 +11,30 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 #include "Zombie.hpp"
+
 
 Zombie::Zombie(void)
 {
-    std::cout << "Constructor" << name << "called" << std::endl;
+    std::cout << "Give a name to the zombie: ";
+    std::cin >> name;
+    std::cout << "Constructor " << this->getName() << " called" << std::endl;
     return;
 }
 
 Zombie::~Zombie(void)
 {
-    std::cout << "Destructor" << name << "called" << std::endl;
+    std::cout << "Destructor " << this->getName() << " called" << std::endl;
     return;
 }
 
-std::string Zombie::getName(void)
+std::string Zombie::getName(void) const
 {
-    return (Zombie::name);
+    return (this->name);
 }
 
 void    Zombie::announce(void)
 {
-    std::string name;
-    std::cin >> name;
-    std::cout << name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << this->getName() << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
 }
