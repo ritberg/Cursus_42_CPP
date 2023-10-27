@@ -26,7 +26,7 @@ Zombie::~Zombie(void)
     return;
 }
 
-std::string Zombie::getName(void)
+std::string Zombie::getName(void) const
 {
     return (this->_name);
 }
