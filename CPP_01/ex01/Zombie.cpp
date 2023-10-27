@@ -14,19 +14,29 @@
 #include <string>
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) : _name(name)
+Zombie::Zombie(void)
 {
-    std::cout << "A zombie named " << this->_name << " is born" << std::endl;
+    std::cout << "A zombie" << this->getName() << " is born!" << std::endl;
     return;
 }
 
 Zombie::~Zombie(void)
 {
-    std::cout << "Oh no! The zombie " << this->_name << " died" << std::endl;
+    std::cout << "Oh no! The zombie " << this->getName() << " died" << std::endl;
     return;
+}
+
+std::string Zombie::getName(void)
+{
+    return (this->_name);
+}
+
+void    Zombie::setName(std::string name)
+{
+    this->_name = name;
 }
 
 void    Zombie::announce(void)
 {
-    std::cout << this->_name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << this->getName() << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
 }

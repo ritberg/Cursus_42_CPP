@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 19:02:49 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/10/25 19:02:51 by mmakarov         ###   ########.fr       */
+/*   Created: 2023/10/25 19:02:29 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/10/25 19:02:30 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
 #include "Zombie.hpp"
+#include <string>
+#include <iostream>
 
-Zombie::Zombie(std::string name) : _name(name)
+int main()
 {
-    std::cout << "A zombie named " << this->_name << " is born" << std::endl;
-    return;
-}
+    int N;
+    std::string horde_name;
 
-Zombie::~Zombie(void)
-{
-    std::cout << "Oh no! The zombie " << this->_name << " died" << std::endl;
-    return;
-}
+    std::cout << "Choose a number of zombies: ";
+    std::cin >> N;
 
-void    Zombie::announce(void)
-{
-    std::cout << this->_name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << "Choose a name of the horde: ";
+    std::cin >> horde_name;
+
+    Zombie *zombie1 = zombieHorde(N, horde_name);
+   
+    delete [] zombie1;
+
+    return (0);
 }

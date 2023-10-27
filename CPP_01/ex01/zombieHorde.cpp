@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 19:02:49 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/10/25 19:02:51 by mmakarov         ###   ########.fr       */
+/*   Created: 2023/10/27 11:22:24 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/10/27 11:22:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
 #include "Zombie.hpp"
+#include <iostream>
 
-Zombie::Zombie(std::string name) : _name(name)
+Zombie* zombieHorde(int N, std::string name)
 {
-    std::cout << "A zombie named " << this->_name << " is born" << std::endl;
-    return;
-}
-
-Zombie::~Zombie(void)
-{
-    std::cout << "Oh no! The zombie " << this->_name << " died" << std::endl;
-    return;
-}
-
-void    Zombie::announce(void)
-{
-    std::cout << this->_name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+    Zombie *zombie2 = new Zombie[N];
+    {
+        for (int i = 0; i < N; ++i)
+        {
+            zombie2[i].setName(name);
+            zombie2[i].announce();
+        }
+    }
+    return (zombie2);
 }
