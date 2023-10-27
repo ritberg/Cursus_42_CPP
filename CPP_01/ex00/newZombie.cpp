@@ -13,8 +13,10 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-Zombie* Zombie::newZombie(std::string name)
+/*  Heap allocation using dynamic memory allocation
+    with 'new' operator. Free with 'delete' in main */
+Zombie *newZombie(std::string name)
 {
-    Zombie* newZombie = new Zombie(name);
-    return (newZombie);
+    Zombie *zombie2 = new Zombie(name);
+    return (zombie2);
 }

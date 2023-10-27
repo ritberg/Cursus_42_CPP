@@ -14,7 +14,6 @@
 #include <string>
 #include "Zombie.hpp"
 
-
 Zombie::Zombie(std::string name) : _name(name)
 {
     std::cout << "Constructor " << this->_name << " called" << std::endl;

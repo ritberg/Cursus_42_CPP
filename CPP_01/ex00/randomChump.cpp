@@ -12,11 +12,11 @@
 
 #include "Zombie.hpp"
 
-void Zombie::randomChump(std::string name)
+/*  Stack allocation. When the function randomChump ends,
+    the object zombie2 is automatically destroyed */
+void randomChump(std::string name)
 {
-    Zombie* newZombie = new Zombie(name);
-    newZombie->announce();
-    delete newZombie;
+    Zombie  zombie2 = Zombie(name);
+    zombie2.announce();
     return;
 }
-

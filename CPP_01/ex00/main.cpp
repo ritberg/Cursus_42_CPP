@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <string>
 #include <iostream>
 
 int main()
 {
-    Zombie  zombie = Zombie("Foo");
-    Zombie* newZombie = zombie.newZombie("Foo");
-    newZombie->randomChump("Foo");
+    Zombie *zombie1 = newZombie("Foo"); /* Heap allocation */
+    zombie1->announce();
+    randomChump("Hoho");
    
-    delete newZombie;
+    delete zombie1;
 
     return (0);
 }
