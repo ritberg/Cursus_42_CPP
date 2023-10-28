@@ -3,12 +3,17 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
+			Weapon.cpp\
+			HumanA.cpp\
+			HumanB.cpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
 NAME	= fight
 
-INCL	= Zombie.hpp\
+INCL	= Weapon.hpp\
+			HumanA.hpp\
+			HumanB.hpp\
 
 CC		= g++
 
