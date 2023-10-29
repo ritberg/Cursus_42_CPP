@@ -14,32 +14,26 @@
 #include <iostream>
 #include <fstream>
 
-//to do: understand references in regards to this code (cf. chat gpt); change file name; args check
-
-bool isString(const std::string& variable)
-{
-    return (true);
-}
-
 int main(int argc, char **argv)
 {
     if (argc == 4)
     {
         std::ifstream   ifs;
+        if ((std::string(argv[2])).empty() && (std::string(argv[3])).empty()) /* return 1 if there are no strings */
+            return (1);
         std::string     s1 = argv[2];
         std::string     s2 = argv[3];
         std::string     line;
-        
         ifs.open (argv[1], std::ifstream::in);
-        if (!ifs.is_open())
+        if ((!ifs.is_open()) || ifs.fail()) /* return 1 if no file or cannot open */
         {
-            std::cerr << "Error: no such file." << std::endl;
+            std::cerr << "Error: no such file or permission denied." << std::endl;
             return (1);
         }
-        std::string     ofsFileName = std::string(argv[1]) + ".replace";
+        std::string     ofsFileName = std::string(argv[1]) + ".replace"; /* <filename>.replace */
         std::ofstream   ofs(ofsFileName);
-    
-        while (std::getline(ifs, line))
+
+        while (std::getline(ifs, line)) /* replace s1 by s2 */
         {
             size_t  found = line.find(s1);
             while (found != std::string::npos) /* npos = no matches */
@@ -49,13 +43,12 @@ int main(int argc, char **argv)
                 line = before + s2 + after;
                 found = line.find(s1, found + s2.size());
             }
-            ofs << line << std::endl;
+            ofs << line << std::endl; /* put the line (modified or not) in the <filename>.replace file */
         }
         ifs.close();
         ofs.close();
     }
     else
         std::cout << "Error: you should enter a filename and two strings, s1 and s2" << std::endl;
-   
     return (0);
 }
