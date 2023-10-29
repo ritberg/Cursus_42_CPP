@@ -8,8 +8,6 @@ OBJS	= ${SRCS:.cpp=.o}
 
 NAME	= replacement
 
-INCL	= Replace.hpp\
-
 CC		= g++
 
 RM		= rm -f
@@ -20,7 +18,7 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 .c.o:
 			@${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
 
-${NAME}:	${OBJS} ${INCL}
+${NAME}:	${OBJS} 
 			@${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 			@echo "${BLUE} Compilation ${NAME} done ${RESET}"
 
