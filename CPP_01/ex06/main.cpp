@@ -17,6 +17,18 @@
 int main(int argc, char **argv)
 {
     Harl harl;
+
+    if (argc != 2)
+        return (1);
+    else
+        harl.complain(argv[1]);
+    return (0);
+}
+
+/* OLD
+int main(int argc, char **argv)
+{
+    Harl harl;
     int found_levels_flag = 0;
 
     if (argc == 2)
@@ -35,3 +47,4 @@ int main(int argc, char **argv)
     }
     return (0);
 }
+*/

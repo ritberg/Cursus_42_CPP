@@ -57,27 +57,35 @@ void    Harl::_error(void)
 
 void Harl::complain(std::string level)
 {
+    int levelIndex = -1;
+
     for (int i = 0; i < 4; i++)
     {
-        if (logLevels[i] == level)
+       if (logLevels[i] == level)
         {
-            switch (i)
-            {
-                case 0:
-                    _debug();
-                    break;
-                case 1:
-                    _info();
-                    break;
-                case 2:
-                    _warning();
-                    break;
-                case 3:
-                    _error();
-                    break;
-            }
-            return;
+            levelIndex = i;
+            break;
         }
     }
-    return;
+
+    if (levelIndex == -1)
+    {
+        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+        return;
+    }
+
+ switch (levelIndex)
+    {
+        case 0:
+            _debug();
+        case 1:
+            _info();
+        case 2:
+            _warning();
+        case 3:
+            _error();
+            break;
+        default:
+            std::cout << "[ Unknown log level ]" << std::endl;
+    }
 }
