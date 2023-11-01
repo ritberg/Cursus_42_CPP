@@ -19,12 +19,12 @@
 */
 HumanB::HumanB(const std::string& name) : _name(name)
 {
-    std::cout << "The HumanA named " << _name << " has no weapon" << std::endl;
+    std::cout << "The HumanB named " << _name << " has no weapon" << std::endl;
 }
 
 HumanB::~HumanB(void)
 {
-    std::cout << "The HumanA " << this->_name << " died" << std::endl;
+    std::cout << "The HumanB " << this->_name << " died" << std::endl;
     return;
 }
 
