@@ -30,6 +30,11 @@ int main(int argc, char **argv)
             std::cerr << "Error: no such file or permission denied." << std::endl;
             return (1);
         }
+        if (ifs.peek() == EOF) /* return 1 if empty file (inside) */
+        {
+            std::cerr << "Error: empty file." << std::endl;
+            return (1);
+        }
         std::string     ofsFileName = std::string(argv[1]) + ".replace"; /* <filename>.replace */
         std::ofstream   ofs(ofsFileName);
 

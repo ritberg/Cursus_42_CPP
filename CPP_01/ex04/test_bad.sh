@@ -45,3 +45,9 @@ echo -e "${YELLOW}Test 7: No replacement needed${RESET}"
 echo "./replacement file quick brown"
 ./replacement file quick brown
 echo -e "${GREEN}OK${RESET}"
+
+# Test case 8: Empty file (inside)
+echo -e "${YELLOW}Test 8: Empty file (inside)${RESET}"
+echo "./replacement empty_file k g"
+./replacement empty_file k g
+echo -e "${GREEN}OK${RESET}"
