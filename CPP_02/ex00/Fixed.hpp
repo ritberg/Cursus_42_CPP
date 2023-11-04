@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,21 +9,25 @@
 /*   Updated: 2023/11/02 17:57:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <iostream>
-#include "Fixed.hpp"
 
-int main(void)
-{
-	Fixed a;
-	Fixed b(a);
-	Fixed c;
+#ifndef FIXED_H
+# define FIXED_H
 
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+class Fixed {
+ 
+    public:
+        Fixed(void);
+        Fixed(Fixed const & src);
+        ~Fixed(void);
 
-	c.setRawBits(255);
-	std::cout << c.getRawBits() << std::endl;
-	return (0);
-}
+        Fixed&  operator=(Fixed const & rhs);
+        int     getRawBits(void) const;
+        void    setRawBits(int const raw);
+
+    private:
+        int                 _value;
+        static const int    _fract = 8;
+};
+
+
+#endif
