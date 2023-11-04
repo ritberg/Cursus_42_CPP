@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,22 +9,35 @@
 /*   Updated: 2023/11/02 17:57:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <iostream>
-#include "Fixed.hpp"
 
-int main(void)
-{
-	Fixed a;
-	Fixed b(a);
-	Fixed c;
+#ifndef FIXED_H
+# define FIXED_H
 
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-/*
-	c.setRawBits(255);
-	std::cout << c.getRawBits() << std::endl;
-*/
-	return (0);
-}
+# include <iostream>
+# include <string>
+# include <cmath>
+
+class Fixed {
+ 
+    public:
+        Fixed(void);
+        Fixed(const int n);
+        Fixed(const float nf);
+        Fixed(Fixed const & src);
+        ~Fixed(void);
+
+        Fixed&  operator=(Fixed const & rhs);
+        int     getRawBits(void) const;
+        void    setRawBits(int const raw);
+
+        float toFloat(void) const;
+        int toInt(void) const;
+
+    private:
+        int                 _value;
+        static const int    _fract;
+};
+
+std::ostream&   operator<<(std::ostream& o, Fixed const & i);
+
+#endif

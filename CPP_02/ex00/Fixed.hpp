@@ -13,6 +13,8 @@
 #ifndef FIXED_H
 # define FIXED_H
 
+# include <iostream>
+# include <string>
 class Fixed {
  
     public:
@@ -26,7 +28,7 @@ class Fixed {
 
     private:
         int                 _value;
-        static const int    _fract = 8;
+        static const int    _fract;
 };
 
 
