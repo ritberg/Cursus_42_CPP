@@ -118,15 +118,15 @@ How does it work ?
 
 Example of Fixed const b(Fixed(5.05f) * Fixed(2)) from main.cpp.
 `5.05 * 256 = 1292.8` (`1293` rounded)
-2 doesn't change
+2 doesn't change (because 2 * 256 = 512 then 512 /256 = 2).
 `1293 * 2 = 2586`
 `2586 / 256 = 10.1016 (rounded)`
 
 Example of Fixed const b(Fixed(5.05f) + Fixed(2)) from main.cpp. 
 `5.05 * 256 = 1292.8` (`1293` rounded)
-????   `2 * 256 = 512` - wrong   ???? it should be 2?
+2 doesn't change
 `1293 + 512 = 1805`
-`1805 / 256 = 7.05078` ???????
+`1805 / 256 = 7.05078`
 */
 Fixed  Fixed::operator+(Fixed const & rhs) const
 {
@@ -213,9 +213,7 @@ Fixed&  Fixed::operator--(void)
 
 /*
 Postfix addition a++ :
-The postfix increment operator also increments the value of a,
-but it returns a temporary copy of the original (unmodified) object,
-which is the value before the increment.
+The postfix increment operator also increments the value of `a`.
 
 Decrement the value of the current object *this using --(*this).
 The value of temp is created as a copy of the original object before the decrement operation.
