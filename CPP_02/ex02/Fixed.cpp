@@ -215,9 +215,10 @@ Fixed&  Fixed::operator--(void)
 Postfix addition a++ :
 The postfix increment operator also increments the value of `a`.
 
-Decrement the value of the current object *this using --(*this).
-The value of temp is created as a copy of the original object before the decrement operation.
-The post-decrement operator returns the original value of the object (i.e., temp) before the decrement.
+Increments the value of the current object *this using ++(*this).
+The value of `temp` is created as a copy of the original object before the increment operation.
+The postfix increment operator returns the original value of the object
+(i.e., temp) before the incrementation.
 */
 Fixed   Fixed::operator++(int)
 {
@@ -230,7 +231,7 @@ Fixed   Fixed::operator--(int)
 {
     Fixed   temp(*this);
     --(*this);
-    return (temp);
+   return (temp);
 }
 
 /*                    Max and min functions                               */

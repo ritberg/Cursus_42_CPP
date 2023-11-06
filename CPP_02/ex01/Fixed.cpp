@@ -90,6 +90,8 @@ If 42.42 is stored as a fixed-point number by multiplying it by 256
 (_fract is 8), _value = 10860 (rounded).
 To convert 10860 back to 42.42, we need to divide it by 256
 to reverse the scaling operation.
+
+Actually, this conversion is useful to the set the fractional part of the fixed-point number
 */
 float   Fixed::toFloat(void) const
 {
@@ -101,6 +103,9 @@ Shifting to the right by _fract positions removes the fractional bits
 and leaves only the integer part of the fixed-point value. 
 
 Example: 10860 >> 8 = 42 (cf. Fixed const c(42.42f) in main.cpp).
+10860 in binary is 10101001101100, binary point is after 8 bits:
+101010.01101100
+If I need only int part, I take 101010 which is 42.
 */
 int     Fixed::toInt(void) const
 {

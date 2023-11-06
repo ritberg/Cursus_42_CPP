@@ -11,7 +11,7 @@ OBJS	= ${SRCS:.cpp=.o}
 
 NAME	= fixed
 
-CC		= g++
+CC		= c++
 
 RM		= rm -f
 

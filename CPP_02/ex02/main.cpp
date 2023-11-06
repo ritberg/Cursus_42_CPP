@@ -35,7 +35,7 @@ int main(void)
     std::cout << std::endl;
     std::cout << "****** Arithmetic operator tests ******" << std::endl << std::endl;
 
-	Fixed const s(Fixed(5.05f) / Fixed(2));
+    Fixed const s(Fixed(5.05f) / Fixed(2));
 	Fixed const r(Fixed(5.05f) + Fixed(2));
 	Fixed const o(Fixed(5.05f) - Fixed(2));
     Fixed const j(Fixed(-5.05f) + Fixed(2));
@@ -74,16 +74,14 @@ int main(void)
 
 	std::cout << "++m : " <<  ++m << std::endl;
 	std::cout << "m now is : " << m << std::endl;
-	std::cout << "m++ : " << m++ << std::endl;
+    std::cout << "--m : " << --m << std::endl;
 	std::cout << "m now is : " << m << std::endl;
-
-    Fixed n(10.11f);
-    std::cout << "n : " << n << std::endl;
-
-	std::cout << "--n : " << --n << std::endl;
-	std::cout << "n now is : " << n << std::endl;
-	std::cout << "n-- : " << n-- << std::endl;
-	std::cout << "n now is : " << n << std::endl;
+    m = 10.11f;
+    std::cout << "original m was : " << m << std::endl;
+    std::cout << "m++ : " << m++ << std::endl;
+    std::cout << "m now is : " << m << std::endl;
+    std::cout << "m-- : " << m-- << std::endl;
+	std::cout << "m now is : " << m << std::endl;
 
 /*                   Max and min tests                              */
 
