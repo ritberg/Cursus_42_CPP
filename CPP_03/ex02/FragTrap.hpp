@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,35 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_H
-# define SCAVTRAP_H
+#ifndef FRAGTRAP_H
+# define FRAGTRAP_H
 
 # include "ClapTrap.hpp"
+# include "FragTrap.hpp"
 
 # define RESET	"\e[0m"
 # define GREEN	"\e[32m"
 
-class ScavTrap : public ClapTrap {
+class FragTrap : public ClapTrap {
  
     public:
-        ScavTrap(void);
-        ScavTrap(std::string _name);
-        ScavTrap(ScavTrap const & src);
-        ~ScavTrap(void);
+        FragTrap(void);
+        FragTrap(std::string _name);
+        FragTrap(FragTrap const & src);
+        ~FragTrap(void);
 
-        ScavTrap&  operator=(ScavTrap const & rhs);
+        FragTrap&  operator=(FragTrap const & rhs);
 
         void attack(const std::string& target);
 
-        void guardGate(void);
+        void highFivesGuys(void);
 
         void    setName(std::string name);
         void    setHitPoints(unsigned int amount);
         void    setEnergyPoints(unsigned int amount);
         void    setAttackDamage(unsigned int amount);
 
+
 };
 
-std::ostream&   operator<<(std::ostream& o, ScavTrap const & i);
+std::ostream&   operator<<(std::ostream& o, FragTrap const & i);
 
 #endif

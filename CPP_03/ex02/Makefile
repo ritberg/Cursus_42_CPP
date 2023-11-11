@@ -5,13 +5,15 @@ RESET			:= $(shell tput sgr0)
 SRCS	= main.cpp\
 		  ClapTrap.cpp\
 		  ScavTrap.cpp\
+		  FragTrap.cpp\
 
 INCL	= ClapTrap.hpp\
 		ScavTrap.hpp\
+		FragTrap.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= scavtrap
+NAME	= fragtrap
 
 CC		= c++
 

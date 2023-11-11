@@ -11,9 +11,16 @@
 /* ************************************************************************** */
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
+	std::cout << std::endl;
+	std::cout << "***************************************" << std::endl;
+	std::cout << "    No color - parent ClapTrap class   " << std::endl;
+	std::cout << "    🟣 - child ScavTrap class          " << std::endl;
+	std::cout << "    🟡 - child FragTrap class          " << std::endl;
+	std::cout << "***************************************" << std::endl << std::endl;
 
 
     std::string p1 = "Trak";
@@ -39,6 +46,9 @@ int main()
     scav.attack("Target 2");
     scav.takeDamage(15);
     scav.beRepaired(5);
+
+	FragTrap frag("Test");
+	frag.highFivesGuys();
 
 
 /*
