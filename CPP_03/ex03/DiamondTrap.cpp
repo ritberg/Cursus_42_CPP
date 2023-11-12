@@ -34,7 +34,7 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name + "_clap_name"),
                                         ScavTrap(name + "_clap_name")
 {
-    setName(name + "_clap_name");
+    setName(name);
     setHitPoints(FragTrap::_hitPoints2);
     setEnergyPoints(ScavTrap::_energyPoints1);
     setAttackDamage(FragTrap::_attackDamage2);
