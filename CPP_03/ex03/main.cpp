@@ -12,6 +12,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
@@ -22,7 +23,7 @@ int main()
 	std::cout << "*   🟡 - child FragTrap class         *" << std::endl;
 	std::cout << "***************************************" << std::endl << std::endl;
 
-
+/*
     std::string p1 = "Trak";
     std::string p2 = "Tran";
 
@@ -51,7 +52,7 @@ int main()
 	frag.highFivesGuys();
     frag.takeDamage(100);
     frag.highFivesGuys(); // impossible to ask for high fives if 0 hit points left
-
+*/
 
 /*
 	std::string Name0 = "000";
@@ -120,6 +121,26 @@ int main()
 	ClapTrap dNewNew = c;
 	ClapTrap defaultt;
 */
+
+	std::cout << "---- CONSTRUCTORS ----" << std::endl;
+	DiamondTrap bulbizar("Bulbizar");
+	DiamondTrap def;
+
+	std::cout << std::endl << "---- VALID ACTIONS ----" << std::endl;
+	bulbizar.whoAmI();
+	bulbizar.attack("Carapuce");
+	def.whoAmI();
+
+	std::cout << std::endl << "---- INVALID ACTIONS ----" << std::endl;
+	bulbizar.takeDamage(1000);
+	bulbizar.attack("Carapuce");
+
+	for (int i = 0; i < 51; i++)
+		def.attack("Carapuce");
+
+
+	std::cout << std::endl << "---- DESTRUCTORS ----" << std::endl;
+
 
     return (0);
 }

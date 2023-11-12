@@ -11,24 +11,29 @@
 /* ************************************************************************** */
 #include "FragTrap.hpp"
 
+unsigned int FragTrap::_hitPoints2 = 100;
+unsigned int FragTrap::_energyPoints2 = 100;
+unsigned int FragTrap::_attackDamage2 = 30;
+
 /*******     Default constructor, copy constructor, destructor      ***********/
 
 FragTrap::FragTrap(void) : ClapTrap()
 {
-    setName("Default");
-    setHitPoints(100);
-    setEnergyPoints(100);
-    setAttackDamage(30);
-    std::cout << GREEN "🟡 From FragTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
+    this->_name = "Default";
+    this->_hitPoints = _hitPoints2;
+    this->_energyPoints = _energyPoints2;
+    this->_attackDamage = _attackDamage2;
+    std::cout << YELLOW "🟡 From FragTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
     return;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-    setHitPoints(100);
-    setEnergyPoints(100);
-    setAttackDamage(30);
-    std::cout << "🟡 From FragTrap. Str constructor for " << name << " called" << std::endl;
+    this->_name = name;
+    this->_hitPoints = _hitPoints2;
+    this->_energyPoints = _energyPoints2;
+    this->_attackDamage = _attackDamage2;
+    std::cout << YELLOW "🟡 From FragTrap. Str constructor for " << name << " called" RESET << std::endl;
     return;
 }
 
@@ -41,7 +46,7 @@ FragTrap::FragTrap(FragTrap const & src) : ClapTrap(src)
 
 FragTrap::~FragTrap(void)
 {
-    std::cout << "🟡 From FragTrap. Destructor for " << this->_name << " called" << std::endl;
+    std::cout << YELLOW "🟡 From FragTrap. Destructor for " << this->_name << " called" RESET << std::endl;
     return;
 }
 
@@ -53,9 +58,9 @@ FragTrap&  FragTrap::operator=(FragTrap const & rhs)
     if (this != &rhs)
     {
         this->_name = rhs.getName();
-        this->_attackDamage = rhs.getAttackDamage();
-        this->_hitPoints = rhs.getHitPoints();
-        this->_energyPoints = rhs.getEnergyPoints();
+        this->_attackDamage2 = rhs.getAttackDamage();
+        this->_hitPoints2 = rhs.getHitPoints();
+        this->_energyPoints2 = rhs.getEnergyPoints();
     }
     return (*this);
 }
@@ -76,31 +81,5 @@ void    FragTrap::highFivesGuys(void)
         return;
     }
     std::cout << "🟡 FragTrap: is asking for a high fives ✋ " << std::endl;
-    return;
-}
-
-/**********           accessors                ***********/
-
-void    FragTrap::setName(std::string name)
-{
-    this->_name = name;
-    return;
-}
-
-void    FragTrap::setHitPoints(unsigned int amount)
-{
-    this->_hitPoints = amount;
-    return;
-}
-
-void    FragTrap::setEnergyPoints(unsigned int amount)
-{
-    this->_energyPoints = amount;
-    return;
-}
-
-void    FragTrap::setAttackDamage(unsigned int amount)
-{
-    this->_attackDamage = amount;
     return;
 }
