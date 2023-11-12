@@ -18,6 +18,8 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
     setName("Default");
     ClapTrap::_name = "Default_clap_name";
+    ScavTrap::_name = "Default_scav_name";
+    FragTrap::_name = "Default_frag_name";
     setHitPoints(FragTrap::_hitPoints2);
     setEnergyPoints(ScavTrap::_energyPoints1);
     setAttackDamage(FragTrap::_attackDamage2);
@@ -31,8 +33,8 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
     return;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name + "_clap_name"),
-                                        ScavTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_scav_name"),
+                                    FragTrap(name + "_frag_name")
 {
     setName(name);
     setHitPoints(FragTrap::_hitPoints2);
@@ -61,7 +63,7 @@ DiamondTrap::~DiamondTrap(void)
     return;
 }
 
-/********    Assignment and outstream perators overloads             ***********/
+/********    Assignment and outstream operators overloads             ***********/
 
 DiamondTrap&  DiamondTrap::operator=(DiamondTrap const & rhs)
 {

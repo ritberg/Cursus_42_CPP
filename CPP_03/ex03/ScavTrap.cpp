@@ -51,7 +51,7 @@ ScavTrap::~ScavTrap(void)
     return;
 }
 
-/********    Assignment and outstream perators overloads             ***********/
+/********    Assignment and outstream operators overloads             ***********/
 
 ScavTrap&  ScavTrap::operator=(ScavTrap const & rhs)
 {

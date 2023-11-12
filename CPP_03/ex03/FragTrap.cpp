@@ -50,7 +50,7 @@ FragTrap::~FragTrap(void)
     return;
 }
 
-/********    Assignment and outstream perators overloads             ***********/
+/********    Assignment and outstream operators overloads             ***********/
 
 FragTrap&  FragTrap::operator=(FragTrap const & rhs)
 {

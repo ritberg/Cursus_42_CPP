@@ -39,7 +39,7 @@ ClapTrap::~ClapTrap(void)
     return;
 }
 
-/********    Assignment and outstream perators overloads             ***********/
+/********    Assignment and outstream operators overloads             ***********/
 
 ClapTrap&  ClapTrap::operator=(ClapTrap const & rhs)
 {
