@@ -19,7 +19,7 @@ ScavTrap::ScavTrap(void) : ClapTrap()
     setHitPoints(100);
     setEnergyPoints(50);
     setAttackDamage(20);
-    std::cout << GREEN "🟣 From ScavTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
+    std::cout << VIOLET "🟣 From ScavTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
     return;
 }
 
@@ -28,28 +28,28 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     setHitPoints(100);
     setEnergyPoints(50);
     setAttackDamage(20);
-    std::cout << "🟣 From ScavTrap. Str constructor for " << name << " called" << std::endl;
+    std::cout << VIOLET "🟣 From ScavTrap. Str constructor for " << name << " called" RESET << std::endl;
     return;
 }
 
 ScavTrap::ScavTrap(ScavTrap const & src) : ClapTrap(src)
 {
-    std::cout << "🟣 From ScavTrap. Copy constructor for " << src.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << VIOLET "🟣 From ScavTrap. Copy constructor for " << src.getName() << " called" RESET << std::endl;
     *this = src;
     return;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-    std::cout << "🟣 From ScavTrap. Destructor for " << this->_name << " called" << std::endl;
+    std::cout << VIOLET "🟣 From ScavTrap. Destructor for " << this->_name << " called" RESET << std::endl;
     return;
 }
 
-/********    Assignment and outstream operators overloads             ***********/
+/********    Assignment and outstream perators overloads             ***********/
 
 ScavTrap&  ScavTrap::operator=(ScavTrap const & rhs)
 {
-    std::cout << "🟣 Copy assignment operator for " << rhs.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << VIOLET "🟣 From ScavTrap. Copy assignment operator for " << rhs.getName() << " called" RESET << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();
@@ -66,28 +66,27 @@ std::ostream&   operator<<(std::ostream& o, ScavTrap const & i)
     return (o);
 }
 
-
 /************       member functions attack and guardGate        ***********/
 
 void ScavTrap::attack(const std::string& target)
 {
     if (target == this->_name)
     {
-        std::cout << "🟣 From ScavTrap. ClapTrap " << this->_name << " attacks itself! Impossible action" << std::endl;
+        std::cout << VIOLET "🟣 From ScavTrap. ClapTrap " << this->_name << " attacks itself! Impossible action" RESET << std::endl;
         return;
     }
     else if (this->_hitPoints <= 0)
     {
-        std::cout << "🟣 From ScavTrap. ClapTrap " << this->_name << " has too few hit points to attack" << std::endl;
+        std::cout << VIOLET "🟣 From ScavTrap. ClapTrap " << this->_name << " has too few hit points to attack" RESET << std::endl;
         return;
     }
     else if (this->_energyPoints <= 0)
     {
-        std::cout << "🟣 From ScavTrap. ClapTrap " << this->_name << " has too few energy points to attack" << std::endl;
+        std::cout << VIOLET "🟣 From ScavTrap. ClapTrap " << this->_name << " has too few energy points to attack" RESET << std::endl;
         return;
     }
-    std::cout << "🟣 From ScavTrap. ClapTrap " << this->_name << " attacks " << target << ", causing "
-            << this->_attackDamage << " points of damage!" << std::endl;
+    std::cout << VIOLET "🟣 From ScavTrap. ClapTrap " << this->_name << " attacks " << target << ", causing "
+            << this->_attackDamage << " points of damage!" RESET << std::endl;
     // this->_hitPoints -= this->_attackDamage;
     this->_energyPoints--;
     return;
@@ -95,7 +94,7 @@ void ScavTrap::attack(const std::string& target)
 
 void ScavTrap::guardGate(void)
 {
-    std::cout << "🟣 ScavTrap " << this->_name << " has entered in Gate keeper mode" << std::endl;
+    std::cout << VIOLET "🟣 ScavTrap " << this->_name << " has entered in Gate keeper mode" RESET << std::endl;
     return;
 }
 

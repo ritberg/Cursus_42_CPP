@@ -17,7 +17,7 @@
 # include "FragTrap.hpp"
 
 # define RESET	"\e[0m"
-# define GREEN	"\e[32m"
+# define YELLOW "\033[33m"
 
 class FragTrap : public ClapTrap {
  

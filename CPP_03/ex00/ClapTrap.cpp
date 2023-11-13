@@ -28,7 +28,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 
 ClapTrap::ClapTrap(ClapTrap const & src)
 {
-    std::cout << "Copy constructor for " << src.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << "Copy constructor for " << src.getName() << " called" << std::endl;
     *this = src;
     return;
 }
@@ -43,7 +43,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap&  ClapTrap::operator=(ClapTrap const & rhs)
 {
-    std::cout << "Copy assignment operator for " << rhs.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << "Copy assignment operator for " << rhs.getName() << " called" << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();

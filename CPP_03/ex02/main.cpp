@@ -17,12 +17,12 @@ int main()
 {
 	std::cout << std::endl;
 	std::cout << "***************************************" << std::endl;
-	std::cout << "*   No color - parent ClapTrap class  *" << std::endl;
+	std::cout << "*   ⚪️ - parent ClapTrap class        *" << std::endl;
 	std::cout << "*   🟣 - child ScavTrap class         *" << std::endl;
 	std::cout << "*   🟡 - child FragTrap class         *" << std::endl;
 	std::cout << "***************************************" << std::endl << std::endl;
 
-
+/*
     std::string p1 = "Trak";
     std::string p2 = "Tran";
 
@@ -38,87 +38,74 @@ int main()
     claptrap.beRepaired(3);
     claptrap.attack("Enemy2");
 
-    // Creating an instance of ScavTrap
     std::cout << std::endl;
-    ScavTrap scav("ScavTrapInstance");
 
-    // Testing ScavTrap member functions
+	// Creating an instance of ScavTrap
+    ScavTrap scav("ScavTrapInstance");
     scav.attack("Target 2");
     scav.takeDamage(15);
     scav.beRepaired(5);
 
+	std::cout << std::endl;
+
+	// Creating an instance of FragTrap
 	FragTrap frag("Test");
 	frag.highFivesGuys();
     frag.takeDamage(100);
     frag.highFivesGuys(); // impossible to ask for high fives if 0 hit points left
 
+	std::cout << "--------------------------" << std::endl;
+*/
 
-/*
+
 	std::string Name0 = "000";
 	std::string Name1 = "111";
 
 	ScavTrap	scavTrap(Name0);
 	ClapTrap	clapTrap(Name1);
 
-	clapTrap.attack(Name0);
-	scavTrap.takeDamage(0);
-	scavTrap.attack(Name1);
-	clapTrap.takeDamage(20);
-	clapTrap.beRepaired(5000);
-	scavTrap.guardGate();
+	std::cout << "--------------------------" << std::endl << std::endl;
+
+	clapTrap.attack(Name0); // ClapTrap attack message (from ClapTrap.cpp)
+	scavTrap.takeDamage(0); // ClapTrap damage message (from ClapTrap.cpp)
+	scavTrap.attack(Name1); // ScavTrap attack message (from ScavTrap.cpp)
+	clapTrap.takeDamage(20); // ClapTrap damage message (from ClapTrap.cpp)
+	clapTrap.beRepaired(5000); // ClapTrap reparing message (from ClapTrap.cpp)
+	scavTrap.guardGate();      // ScavTrap unique function (from ScavTrap.cpp)
 	for (int i = 0; i < 50; i++)
-		scavTrap.beRepaired(5000);
-	scavTrap.attack(Name0);
-	scavTrap.guardGate();
-	scavTrap.takeDamage(5000);
-*/
+		scavTrap.beRepaired(5000);  // ClapTrap reparing message (from ClapTrap.cpp)
+	scavTrap.attack(Name0);         // ScavTrap attack message (from ScavTrap.cpp)
+	scavTrap.guardGate();           // ScavTrap unique function (from ScavTrap.cpp)
+	scavTrap.takeDamage(5000);      // ClapTrap damage message (from ClapTrap.cpp)
+
+	std::cout << "--------------------------" << std::endl << std::endl;
+
+	FragTrap	fragTrap(Name0);
+	fragTrap.attack(Name1);
+	fragTrap.highFivesGuys();
+	fragTrap.takeDamage(100);
+	fragTrap.highFivesGuys();
+	fragTrap.attack(Name1);
+
+	std::cout << "--------------------------" << std::endl << std::endl;
 
 /*
-	std::string Name0 = "000";
-	std::string Name1 = "111";
-
-	ClapTrap	trap0(Name0);
-	ClapTrap	trap1(Name1);
-    
-	trap0.beRepaired(0);
-	for (int i = 0; i < 9; i++)
-		trap0.attack(Name1);
-	trap0.attack(Name1);  //impossible: 000 has too few energy points to attack
-	trap1.takeDamage(5);
-	trap1.beRepaired(4);
-	trap1.attack(Name0);
-	trap0.takeDamage(5);    //impossible: 000 cannot take damage: there are no energy points left
-	trap0.beRepaired(5000); //impossible: 000 cannot be repaired: there are no energy points left
-	trap1.beRepaired(5000); //impossible: 111 cannot be repaired: it will have more than 10 points
-	trap1.attack(Name1);    //impossible: 111 cannot attack itself
-	trap1.takeDamage(5000); //impossible: 111 cannot take damage: hit points cannot become negative
-	trap1.beRepaired(5000); //impossible: 111 cannot be repaired: it will have more than 10 points
-	trap1.takeDamage(1);
-*/
-
-/*
-    ClapTrap a;
-    ClapTrap b("Cody");
-
-	a.attack("some other robot");
-	a.takeDamage(10);
-	a.takeDamage(10);
-	a.beRepaired(5);
-	a.attack("some other other robot");
-	b.beRepaired(3);
-	for (int i = 0; i < 12; i++)
-		b.attack("Cody-clone");
-	b.beRepaired(3);
-*/
-/*
-
-	ClapTrap a("AAAAAA"); //why copy constructor and assignment operator don't work for a?
-	ClapTrap b("BBBBBB"); //why copy constructor and assignment operator don't work for b?
+	ClapTrap a("AAAAAA");
+	ClapTrap b("BBBBBB");
 	ClapTrap c("CCCCCC");
 	ClapTrap d("DDDDDD");
+
     ClapTrap dNew(d);
 	ClapTrap dNewNew = c;
+
 	ClapTrap defaultt;
+
+	std::cout << "----------------" << std::endl;
+
+	ScavTrap h("LLLLLL");
+	FragTrap o("PPPPPP");
+	FragTrap ooo(o);
+	ScavTrap nnn(h);
 */
 
     return (0);

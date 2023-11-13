@@ -39,7 +39,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 
 FragTrap::FragTrap(FragTrap const & src) : ClapTrap(src)
 {
-    std::cout << "🟡 From FragTrap. Copy constructor for " << src.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << YELLOW "🟡 From FragTrap. Copy constructor for " << src.getName() << " called" RESET << std::endl;
     *this = src;
     return;
 }
@@ -54,7 +54,7 @@ FragTrap::~FragTrap(void)
 
 FragTrap&  FragTrap::operator=(FragTrap const & rhs)
 {
-    std::cout << "🟡 Copy assignment operator for " << rhs.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << YELLOW "🟡 From FragTrap. Copy assignment operator for " << rhs.getName() << " called" RESET << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();
@@ -77,9 +77,9 @@ void    FragTrap::highFivesGuys(void)
 {
     if (this->_hitPoints <= 0 || this->_energyPoints <= 0)
     {
-        std::cout << "🟡 FragTrap: " << this->_name << " is dead, can't ask for a high fives ✋ " << std::endl;
+        std::cout << YELLOW "🟡 From FragTrap: " << this->_name << " is dead, can't ask for a high fives ✋ " RESET << std::endl;
         return;
     }
-    std::cout << "🟡 FragTrap: is asking for a high fives ✋ " << std::endl;
+    std::cout << YELLOW "🟡 From FragTrap: is asking for a high fives ✋ " RESET << std::endl;
     return;
 }

@@ -16,7 +16,7 @@
 # include "ClapTrap.hpp"
 
 # define RESET	"\e[0m"
-# define GREEN	"\e[32m"
+# define VIOLET	"\033[35m"
 
 class ScavTrap : public ClapTrap {
  

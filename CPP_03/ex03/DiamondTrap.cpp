@@ -26,9 +26,9 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 
     std::cout << GREEN "🟢 From DiamondTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
 
-    std::cout << "hitPoints[100]: " << this->_hitPoints << std::endl;
-	std::cout << "energyPoints[50]: " << this->_energyPoints << std::endl;
-	std::cout << "attackDamage[30]: " << this->_attackDamage << std::endl;
+    std::cout << GREEN "hitPoints[100]: " RESET << this->_hitPoints << std::endl;
+	std::cout << GREEN "energyPoints[50]: " RESET << this->_energyPoints << std::endl;
+	std::cout << GREEN "attackDamage[30]: " RESET << this->_attackDamage << std::endl;
 
     return;
 }
@@ -43,16 +43,16 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 
     std::cout << GREEN "🟢 From DiamondTrap. Str constructor for " << name << " called" RESET << std::endl;
 
-    std::cout << "hitPoints[100]: " << this->_hitPoints << std::endl;
-	std::cout << "energyPoints[50]: " << this->_energyPoints << std::endl;
-	std::cout << "attackDamage[30]: " << this->_attackDamage << std::endl;
+    std::cout << GREEN "hitPoints[100]: " RESET << this->_hitPoints << std::endl;
+	std::cout << GREEN "energyPoints[50]: " RESET << this->_energyPoints << std::endl;
+	std::cout << GREEN "attackDamage[30]: " RESET << this->_attackDamage << std::endl;
 
     return;
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const & src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
-    std::cout << "🟢 From DiamondTrap. Copy constructor for " << src.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << GREEN "🟢 From DiamondTrap. Copy constructor for " << src.getName() << " called" RESET << std::endl; // why this->name dsn't work?
     *this = src;
     return;
 }
@@ -67,7 +67,7 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap&  DiamondTrap::operator=(DiamondTrap const & rhs)
 {
-    std::cout << "🟢 From DiamondTrap: Copy assignment operator for " << rhs.getName() << " called" << std::endl; // why this->name dsn't work?
+    std::cout << GREEN "🟢 From DiamondTrap: Copy assignment operator for " << rhs.getName() << " called" RESET << std::endl; // why this->name dsn't work?
     if (this != &rhs)
     {
         this->_name = rhs.getName();
@@ -93,8 +93,8 @@ void DiamondTrap::attack(const std::string& target)
 
  void   DiamondTrap::whoAmI(void)
     {
-        std::cout << "🟢 From DiamondTrap. My name is " << this->_name << std::endl;
-        std::cout << "🟢 From DiamondTrap. My ClapTrap name is " << ClapTrap::_name << std::endl;
+        std::cout << GREEN "🟢 From DiamondTrap. My name is " << this->_name << RESET << std::endl;
+        std::cout << GREEN "🟢 From DiamondTrap. My ClapTrap name is " << ClapTrap::_name << RESET << std::endl;
         return;
     }
 
