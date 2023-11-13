@@ -31,6 +31,11 @@ class FragTrap : virtual public ClapTrap {
 
         void highFivesGuys(void);
 
+    protected:
+        static unsigned int _hitPoints2;
+        static unsigned int _energyPoints2;
+        static unsigned int _attackDamage2;
+
 };
 
 #endif

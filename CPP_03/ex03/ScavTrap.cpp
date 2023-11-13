@@ -11,14 +11,18 @@
 /* ************************************************************************** */
 #include "ScavTrap.hpp"
 
+unsigned int ScavTrap::_hitPoints1 = 100;
+unsigned int ScavTrap::_energyPoints1 = 50;
+unsigned int ScavTrap::_attackDamage1 = 20;
+
 /*******     Default constructor, copy constructor, destructor      ***********/
 
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
     this->_name = "Default";
-    this->_hitPoints = 100;
-    this->_energyPoints = 50;
-    this->_attackDamage = 20;
+    this->_hitPoints = _hitPoints1;
+    this->_energyPoints = _energyPoints1;
+    this->_attackDamage = _attackDamage1;
 
     std::cout << VIOLET "🟣 From ScavTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
     return;
@@ -27,9 +31,9 @@ ScavTrap::ScavTrap(void) : ClapTrap()
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     this->_name = name;
-    this->_hitPoints = 100;
-    this->_energyPoints = 50;
-    this->_attackDamage = 20;
+    this->_hitPoints = _hitPoints1;
+    this->_energyPoints = _energyPoints1;
+    this->_attackDamage = _attackDamage1;
     std::cout << VIOLET "🟣 From ScavTrap. Str constructor for " << name << " called" RESET << std::endl;
     return;
 }

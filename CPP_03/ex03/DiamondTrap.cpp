@@ -18,16 +18,10 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
     this->_name = "Default";
     ClapTrap::_name = "Default_clap_name";
-    ScavTrap::_name = "Default_scav_name";
-    FragTrap::_name = "Default_frag_name";
 
-    // FragTrap::_hitPoints = 100;
-    // ScavTrap::_energyPoints = 50;
-    // FragTrap::_attackDamage = 30;
-    
-    this->_hitPoints = FragTrap::_hitPoints;
-    this->_energyPoints = ScavTrap::_energyPoints;
-    this->_attackDamage = FragTrap::_attackDamage;
+    this->_hitPoints = FragTrap::_hitPoints2;
+    this->_energyPoints = ScavTrap::_energyPoints1;
+    this->_attackDamage = FragTrap::_attackDamage2;
 
     std::cout << GREEN "🟢 From DiamondTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
 
@@ -38,17 +32,13 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
     return;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_scav_name"),
-                                    FragTrap(name + "_frag_name")
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_clap_name"),
+                                    FragTrap(name + "_clap_name")
 {
     this->_name = name;
-    // FragTrap::_hitPoints = 100;
-    // ScavTrap::_energyPoints = 50;
-    // FragTrap::_attackDamage = 30;
-
-    this->_hitPoints = FragTrap::_hitPoints;
-    this->_energyPoints = ScavTrap::_energyPoints;
-    this->_attackDamage = FragTrap::_attackDamage;
+    this->_hitPoints = FragTrap::_hitPoints2;
+    this->_energyPoints = ScavTrap::_energyPoints1;
+    this->_attackDamage = FragTrap::_attackDamage2;
 
     std::cout << GREEN "🟢 From DiamondTrap. Str constructor for " << name << " called" RESET << std::endl;
 
@@ -61,7 +51,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 
 DiamondTrap::DiamondTrap(DiamondTrap const & src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
-    std::cout << GREEN "🟢 From DiamondTrap. Copy constructor for " << src.getName() << " called" RESET << std::endl; // why this->name dsn't work?
+    std::cout << GREEN "🟢 From DiamondTrap. Copy constructor for " << src.getName() << " called" RESET << std::endl;
     *this = src;
     return;
 }
@@ -76,7 +66,7 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap&  DiamondTrap::operator=(DiamondTrap const & rhs)
 {
-    std::cout << GREEN "🟢 From DiamondTrap: Copy assignment operator for " << rhs.getName() << " called" RESET << std::endl; // why this->name dsn't work?
+    std::cout << GREEN "🟢 From DiamondTrap: Copy assignment operator for " << rhs.getName() << " called" RESET << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();
@@ -95,8 +85,8 @@ void DiamondTrap::attack(const std::string& target)
 }
 
  void   DiamondTrap::whoAmI(void)
-    {
+{
         std::cout << GREEN "🟢 From DiamondTrap. My name is " << this->_name << RESET << std::endl;
         std::cout << GREEN "🟢 From DiamondTrap. My ClapTrap name is " << ClapTrap::_name << RESET << std::endl;
         return;
-    }
+}
