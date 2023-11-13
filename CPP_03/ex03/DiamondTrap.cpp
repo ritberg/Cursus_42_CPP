@@ -16,13 +16,18 @@
 
 DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
-    setName("Default");
+    this->_name = "Default";
     ClapTrap::_name = "Default_clap_name";
     ScavTrap::_name = "Default_scav_name";
     FragTrap::_name = "Default_frag_name";
-    setHitPoints(FragTrap::_hitPoints2);
-    setEnergyPoints(ScavTrap::_energyPoints1);
-    setAttackDamage(FragTrap::_attackDamage2);
+
+    // FragTrap::_hitPoints = 100;
+    // ScavTrap::_energyPoints = 50;
+    // FragTrap::_attackDamage = 30;
+    
+    this->_hitPoints = FragTrap::_hitPoints;
+    this->_energyPoints = ScavTrap::_energyPoints;
+    this->_attackDamage = FragTrap::_attackDamage;
 
     std::cout << GREEN "🟢 From DiamondTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
 
@@ -36,10 +41,14 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_scav_name"),
                                     FragTrap(name + "_frag_name")
 {
-    setName(name);
-    setHitPoints(FragTrap::_hitPoints2);
-    setEnergyPoints(ScavTrap::_energyPoints1);
-    setAttackDamage(FragTrap::_attackDamage2);
+    this->_name = name;
+    // FragTrap::_hitPoints = 100;
+    // ScavTrap::_energyPoints = 50;
+    // FragTrap::_attackDamage = 30;
+
+    this->_hitPoints = FragTrap::_hitPoints;
+    this->_energyPoints = ScavTrap::_energyPoints;
+    this->_attackDamage = FragTrap::_attackDamage;
 
     std::cout << GREEN "🟢 From DiamondTrap. Str constructor for " << name << " called" RESET << std::endl;
 
@@ -78,12 +87,6 @@ DiamondTrap&  DiamondTrap::operator=(DiamondTrap const & rhs)
     return (*this);
 }
 
-std::ostream&   operator<<(std::ostream& o, DiamondTrap const & i)
-{
-    o << i;
-    return (o);
-}
-
 /************       member functions attack and guardGate        ***********/
 
 void DiamondTrap::attack(const std::string& target)
@@ -97,29 +100,3 @@ void DiamondTrap::attack(const std::string& target)
         std::cout << GREEN "🟢 From DiamondTrap. My ClapTrap name is " << ClapTrap::_name << RESET << std::endl;
         return;
     }
-
-/**********           accessors                ***********/
-
-void    DiamondTrap::setName(std::string name)
-{
-    this->_name = name;
-    return;
-}
-
-void    DiamondTrap::setHitPoints(unsigned int amount)
-{
-    this->_hitPoints = amount;
-    return;
-}
-
-void    DiamondTrap::setEnergyPoints(unsigned int amount)
-{
-    this->_energyPoints = amount;
-    return;
-}
-
-void    DiamondTrap::setAttackDamage(unsigned int amount)
-{
-    this->_attackDamage = amount;
-    return;
-}

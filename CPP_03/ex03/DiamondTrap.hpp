@@ -35,16 +35,9 @@ class DiamondTrap : public ScavTrap, public FragTrap {
 
         void whoAmI(void);
 
-        void    setName(std::string name);
-        void    setHitPoints(unsigned int amount);
-        void    setEnergyPoints(unsigned int amount);
-        void    setAttackDamage(unsigned int amount);
-
     private:
         std::string _name;
 
 };
-
-std::ostream&   operator<<(std::ostream& o, DiamondTrap const & i);
 
 #endif

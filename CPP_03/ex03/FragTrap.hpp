@@ -31,15 +31,6 @@ class FragTrap : virtual public ClapTrap {
 
         void highFivesGuys(void);
 
-    
-    protected:
-        static unsigned int _hitPoints2;
-        static unsigned int _energyPoints2;
-        static unsigned int _attackDamage2;
-
-
 };
-
-std::ostream&   operator<<(std::ostream& o, FragTrap const & i);
 
 #endif

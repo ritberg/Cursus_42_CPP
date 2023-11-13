@@ -54,12 +54,6 @@ ClapTrap&  ClapTrap::operator=(ClapTrap const & rhs)
     return (*this);
 }
 
-std::ostream&   operator<<(std::ostream& o, ClapTrap const & i)
-{
-    o << i;
-    return (o);
-}
-
 /**********           accessors                ***********/
 
 std::string ClapTrap::getName(void) const

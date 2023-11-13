@@ -32,13 +32,6 @@ class ScavTrap : virtual public ClapTrap {
 
         void guardGate(void);
 
-    protected:
-        static unsigned int _hitPoints1;
-        static unsigned int _energyPoints1;
-        static unsigned int _attackDamage1;
-
 };
-
-std::ostream&   operator<<(std::ostream& o, ScavTrap const & i);
 
 #endif

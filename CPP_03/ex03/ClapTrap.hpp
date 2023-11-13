@@ -43,6 +43,4 @@ class ClapTrap {
 
 };
 
-std::ostream&   operator<<(std::ostream& o, ClapTrap const & i);
-
 #endif

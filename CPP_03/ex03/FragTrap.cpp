@@ -11,18 +11,14 @@
 /* ************************************************************************** */
 #include "FragTrap.hpp"
 
-unsigned int FragTrap::_hitPoints2 = 100;
-unsigned int FragTrap::_energyPoints2 = 100;
-unsigned int FragTrap::_attackDamage2 = 30;
-
 /*******     Default constructor, copy constructor, destructor      ***********/
 
 FragTrap::FragTrap(void) : ClapTrap()
 {
     this->_name = "Default";
-    this->_hitPoints = _hitPoints2;
-    this->_energyPoints = _energyPoints2;
-    this->_attackDamage = _attackDamage2;
+    this->_hitPoints = 100;
+    this->_energyPoints = 100;
+    this->_attackDamage = 30;
     std::cout << YELLOW "🟡 From FragTrap. Default constructor for " << this->_name<< " called" RESET << std::endl;
     return;
 }
@@ -30,9 +26,9 @@ FragTrap::FragTrap(void) : ClapTrap()
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
     this->_name = name;
-    this->_hitPoints = _hitPoints2;
-    this->_energyPoints = _energyPoints2;
-    this->_attackDamage = _attackDamage2;
+    this->_hitPoints = 100;
+    this->_energyPoints = 100;
+    this->_attackDamage = 30;
     std::cout << YELLOW "🟡 From FragTrap. Str constructor for " << name << " called" RESET << std::endl;
     return;
 }
@@ -58,17 +54,11 @@ FragTrap&  FragTrap::operator=(FragTrap const & rhs)
     if (this != &rhs)
     {
         this->_name = rhs.getName();
-        this->_attackDamage2 = rhs.getAttackDamage();
-        this->_hitPoints2 = rhs.getHitPoints();
-        this->_energyPoints2 = rhs.getEnergyPoints();
+        this->_attackDamage = rhs.getAttackDamage();
+        this->_hitPoints = rhs.getHitPoints();
+        this->_energyPoints = rhs.getEnergyPoints();
     }
     return (*this);
-}
-
-std::ostream&   operator<<(std::ostream& o, FragTrap const & i)
-{
-    o << i;
-    return (o);
 }
 
 /************       member function highFivesGuys        ***********/
