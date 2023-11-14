@@ -19,6 +19,9 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
     this->_name = "Default";
     ClapTrap::_name = "Default_clap_name";
 
+    /*  ok? if I don't put membres attributes protected with differnt names
+        in ScavTrap.hpp et FragTrap.hpp, I will have _energyPoints = 100 here
+        like in FragTrap instead of ScavTrap   */
     this->_hitPoints = FragTrap::_hitPoints2;
     this->_energyPoints = ScavTrap::_energyPoints1;
     this->_attackDamage = FragTrap::_attackDamage2;
