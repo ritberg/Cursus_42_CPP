@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,50 +9,50 @@
 /*   Updated: 2023/11/12 17:57:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 /*******     Default constructor, copy constructor, destructor      ***********/
 
-Cat::Cat(void) : Animal()
+WrongCat::WrongCat(void) : WrongAnimal()
 {
-    this->type = YELLOW "🟡 Cat" RESET;
-    std::cout << YELLOW "🟡 From Cat. Default constructor called" RESET << std::endl;
+    this->type = YELLOW "🟡🟡 Cat" RESET;
+    std::cout << YELLOW "🟡🟡 From WrongCat. Default constructor called" RESET << std::endl;
     return;
 }
 
-Cat::Cat(std::string CatType) : Animal(CatType)
+WrongCat::WrongCat(std::string CatType) : WrongAnimal(CatType)
 {
-    this->type = YELLOW "🟡 Cat" RESET;
-    std::cout << YELLOW "🟡 From Cat. Str constructor for " << CatType << " called" << std::endl;
+    this->type = YELLOW "🟡🟡 Cat" RESET;
+    std::cout << YELLOW "🟡🟡 From WrongCat. Str constructor for " << CatType << " called" << std::endl;
     return;
 }
 
-Cat::Cat(Cat const & src) : Animal(src)
+WrongCat::WrongCat(WrongCat const & src) : WrongAnimal(src)
 {
-    std::cout << YELLOW "🟡 From Cat. Copy constructor called" RESET << std::endl;
+    std::cout << YELLOW "🟡🟡 From WrongCat. Copy constructor called" RESET << std::endl;
     *this = src;
     return;
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
-    std::cout << YELLOW "🟡 From Cat. Destructor called" RESET << std::endl;
+    std::cout << YELLOW "🟡🟡 From WrongCat. Destructor called" RESET << std::endl;
     return;
 }
 
 /************       member functions        ***********/
 
-void    Cat::makeSound(void) const
+void    WrongCat::makeSound(void) const
 {
-    std::cout << YELLOW "🟡 From Cat: meeeooooowwwww " RESET << std::endl;
+    std::cout << YELLOW "🟡🟡 From WrongCat: meeeooooowwwww " RESET << std::endl;
     return;
 }
 
 /********    Assignment and outstream operators overloads             ***********/
 
-Cat&  Cat::operator=(Cat const & rhs)
+WrongCat&  WrongCat::operator=(WrongCat const & rhs)
 {
-    std::cout << YELLOW "🟡 From Cat. Copy assignment operator called" RESET << std::endl;
+    std::cout << YELLOW "🟡🟡 From WrongCat. Copy assignment operator called" RESET << std::endl;
     if (this != &rhs)
         this->type = rhs.getType();
     return (*this);
