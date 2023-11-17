@@ -14,6 +14,7 @@
 # define CAT_H
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 # define RESET	"\e[0m"
 # define YELLOW "\033[33m"
@@ -29,6 +30,9 @@ class Cat : public Animal {
         Cat&    operator=(Cat const & rhs);
 
         void    makeSound() const;
+
+    private:
+        Brain*  _brain;
 
 };
 

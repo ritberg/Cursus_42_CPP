@@ -15,6 +15,7 @@
 
 Cat::Cat(void) : Animal()
 {
+    _brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Default constructor called" RESET << std::endl;
     return;
@@ -22,6 +23,7 @@ Cat::Cat(void) : Animal()
 
 Cat::Cat(std::string CatType) : Animal(CatType)
 {
+    _brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Str constructor for " << CatType << " called" << std::endl;
     return;
@@ -36,6 +38,7 @@ Cat::Cat(Cat const & src) : Animal(src)
 
 Cat::~Cat(void)
 {
+    delete _brain;
     std::cout << YELLOW "🟡 From Cat. Destructor called" RESET << std::endl;
     return;
 }

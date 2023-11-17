@@ -15,6 +15,7 @@
 
 Dog::Dog(void) : Animal()
 {
+     _brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Default constructor called" RESET << std::endl;
     return;
@@ -22,6 +23,7 @@ Dog::Dog(void) : Animal()
 
 Dog::Dog(std::string DogType) : Animal(DogType)
 {
+     _brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Str constructor for " << DogType << " called" << std::endl;
     return;
@@ -37,6 +39,7 @@ Dog::Dog(Dog const & src) : Animal(src)
 
 Dog::~Dog(void)
 {
+    delete _brain;
     std::cout << VIOLET "🟣 From Dog. Destructor called" RESET << std::endl;
     return;
 }

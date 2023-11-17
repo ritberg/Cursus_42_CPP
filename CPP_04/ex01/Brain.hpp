@@ -15,13 +15,17 @@
 
 # include <iostream>
 
+# define RESET	"\e[0m"
+# define GREEN "\033[32m"
+
 class Brain
 {
     private:
-        std::string ideas[100];
-        
+        std::string _ideas[100];
+
     public:
         Brain(void);
+        Brain (std::string idea);
         Brain(Brain const & src);
         ~Brain(void);
         Brain&  operator=(Brain const & rhs);

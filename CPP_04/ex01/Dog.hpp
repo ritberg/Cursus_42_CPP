@@ -14,6 +14,7 @@
 # define DOG_H
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 # define RESET	"\e[0m"
 # define VIOLET	"\033[35m"
@@ -26,9 +27,12 @@ class Dog : public Animal {
         Dog(Dog const & src);
         virtual ~Dog(void);
 
-        Dog&  operator=(Dog const & rhs);
+        Dog&    operator=(Dog const & rhs);
 
         void    makeSound() const;
+
+    private:
+        Brain*  _brain;
 
 };
 
