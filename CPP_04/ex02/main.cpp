@@ -26,17 +26,17 @@ int main()
 
     std::cout << "----------Subject tests------------" << std::endl << std::endl;
 
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	// const AAnimal* meta = new AAnimal(); //non instanciable! error: allocating an object of abstract class type 'AAnimal'
+	const AAnimal* j = new Dog(); // I can create an object derived from AAnimal class. This is a form of polymorphism
+	const AAnimal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
+	i->makeSound();
 	j->makeSound();
-	meta->makeSound();
+	// meta->makeSound(); //non instanciable! error: allocating an object of abstract class type 'AAnimal'
 	delete j;
 	delete i;
-    delete meta;
+    // delete meta; //non instanciable! error: allocating an object of abstract class type 'AAnimal'
 
     std::cout << std::endl << "----------More tests------------" << std::endl;
 
@@ -56,41 +56,36 @@ int main()
 
     std::cout << std::endl << "[ 3 ] : Animal* test2 = new Animal(str)" << std::endl << std::endl;
 
-    const Animal* test2 = new Animal("Hohoho");
-    std::cout << test2->getType() << " " << std::endl;
-    test2->makeSound();
-    delete test2;
+    // const AAnimal* test2 = new AAnimal("Hohoho"); //non instanciable! error: allocating an object of abstract class type 'AAnimal'
+    // std::cout << test2->getType() << " " << std::endl;
+    // test2->makeSound();
+    // delete test2;
 
     std::cout << std::endl << "[ 4 ] : Animal* test3 = new Cat(str)" << std::endl << std::endl;
 
-    const Animal* test3 = new Cat("Mau");
+    const AAnimal* test3 = new Cat("Mau");
     std::cout << test3->getType() << " " << std::endl;
     test3->makeSound();
     delete test3;
 
     std::cout << std::endl << "[ 5 ] : Animal* test4 = new Dog(str)" << std::endl << std::endl;
 
-    const Animal* test4 = new Dog("Woof");
+    const AAnimal* test4 = new Dog("Woof");
     std::cout << test4->getType() << " " << std::endl;
     test4->makeSound();
     delete test4;
-
-    /* [ 6 ] : Dog* d = new Animal() - compilation error */
-    // const Dog* d = new Animal();
-	// d->makeSound();
-	// delete d;
 
 
     std::cout << std::endl << "**** **** **** NEW EX01 TESTS **** **** ****" << std::endl << std::endl;
 
     std::cout << std::endl << "---------An animal table with half cats, half dogs---------" << std::endl << std::endl;
 
-    Animal animal[6];
+    // AAnimal animal[6]; //non instanciable! error: array of abstract class type 'AAnimal'
 
-    for (int i = 0; i < 3; ++i)
-        animal[i] = Dog();
-    for (int i = 3; i < 6; ++i)
-        animal[i] = Cat();
+    // for (int i = 0; i < 3; ++i)
+    //     animal[i] = Dog();
+    // for (int i = 3; i < 6; ++i)
+    //     animal[i] = Cat();
 
     std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 

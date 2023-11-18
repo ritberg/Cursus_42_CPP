@@ -13,7 +13,7 @@
 
 /*******     Default constructor, copy constructor, destructor      ***********/
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void) : AAnimal()
 {
     this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
@@ -21,7 +21,7 @@ Cat::Cat(void) : Animal()
     return;
 }
 
-Cat::Cat(std::string CatType) : Animal(CatType)
+Cat::Cat(std::string CatType) : AAnimal(CatType)
 {
     this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
@@ -33,7 +33,7 @@ Cat::Cat(std::string CatType) : Animal(CatType)
     this->_brain = new Brain(*(src._brain)) creates a new Brain object by
     dereferencing the source Cat object's _brain pointer and copying its contents.
 */
-Cat::Cat(Cat const & src) : Animal(src)
+Cat::Cat(Cat const & src) : AAnimal(src)
 {
     this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
     std::cout << YELLOW "🟡 From Cat. Copy constructor called" RESET << std::endl;

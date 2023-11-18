@@ -32,8 +32,8 @@ Dog::Dog(std::string DogType) : Animal(DogType)
 
 Dog::Dog(Dog const & src) : Animal(src)
 {
+    this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
     std::cout << VIOLET "🟣 From Dog. Copy constructor called" RESET << std::endl;
-    *this = src;
     return;
 }
 
@@ -63,7 +63,11 @@ Dog&  Dog::operator=(Dog const & rhs)
 {
     std::cout << VIOLET "🟣 From Dog. Copy assignment operator called" RESET << std::endl;
     if (this != &rhs)
+    {
         this->type = rhs.getType();
+        delete this->_brain;  // Delete the existing Brain object
+        this->_brain = new Brain(*(rhs._brain));  // Create a new Brain object with a copy of the source Brain
+    }
     return (*this);
 }
 

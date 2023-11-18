@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,62 +9,59 @@
 /*   Updated: 2023/11/12 17:57:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "Cat.hpp"
+#include "Dog.hpp"
 
 /*******     Default constructor, copy constructor, destructor      ***********/
 
-Cat::Cat(void) : Animal()
+Dog::Dog(void) : AAnimal()
 {
     this->_brain = new Brain();
-    this->type = YELLOW "🟡 Cat" RESET;
-    std::cout << YELLOW "🟡 From Cat. Default constructor called" RESET << std::endl;
+    this->type = VIOLET "🟣 Dog" RESET;
+    std::cout << VIOLET "🟣 From Dog. Default constructor called" RESET << std::endl;
     return;
 }
 
-Cat::Cat(std::string CatType) : Animal(CatType)
+Dog::Dog(std::string DogType) : AAnimal(DogType)
 {
     this->_brain = new Brain();
-    this->type = YELLOW "🟡 Cat" RESET;
-    std::cout << YELLOW "🟡 From Cat. Str constructor for " << CatType << " called" << std::endl;
+    this->type = VIOLET "🟣 Dog" RESET;
+    std::cout << VIOLET "🟣 From Dog. Str constructor for " << DogType << " called" << std::endl;
     return;
 }
 
-/*
-    this->_brain = new Brain(*(src._brain)) creates a new Brain object by
-    dereferencing the source Cat object's _brain pointer and copying its contents.
-*/
-Cat::Cat(Cat const & src) : Animal(src)
+
+Dog::Dog(Dog const & src) : AAnimal(src)
 {
     this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
-    std::cout << YELLOW "🟡 From Cat. Copy constructor called" RESET << std::endl;
+    std::cout << VIOLET "🟣 From Dog. Copy constructor called" RESET << std::endl;
     return;
 }
 
-Cat::~Cat(void)
+Dog::~Dog(void)
 {
     delete this->_brain;
-    std::cout << YELLOW "🟡 From Cat. Destructor called" RESET << std::endl;
+    std::cout << VIOLET "🟣 From Dog. Destructor called" RESET << std::endl;
     return;
 }
 
 /************       member functions        ***********/
 
-void    Cat::makeSound(void) const
+void    Dog::makeSound(void) const
 {
-    std::cout << YELLOW "🟡 From Cat: meeeooooowwwww " RESET << std::endl;
+    std::cout << VIOLET "🟣 From Dog: woof woof woof" RESET << std::endl;
     return;
 }
 
-Brain*   Cat::getBrain(void) const
+Brain*   Dog::getBrain(void) const
 {
     return (this->_brain);
 }
 
 /********    Assignment and outstream operators overloads             ***********/
 
-Cat&  Cat::operator=(Cat const & rhs)
+Dog&  Dog::operator=(Dog const & rhs)
 {
-    std::cout << YELLOW "🟡 From Cat. Copy assignment operator called" RESET << std::endl;
+    std::cout << VIOLET "🟣 From Dog. Copy assignment operator called" RESET << std::endl;
     if (this != &rhs)
     {
         this->type = rhs.getType();
@@ -74,7 +71,8 @@ Cat&  Cat::operator=(Cat const & rhs)
     return (*this);
 }
 
-// std::ostream& operator <<(std::ostream & o, Cat const & i)
+// std::ostream& operator <<(std::ostream & o, Dog const & i)
 // {
 //     o << i.getType() << " : ";
+//     return (o);
 // }
