@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
+#include "Brain.hpp"
 
 int main()
 {
@@ -111,6 +111,14 @@ int main()
         animal[i] = Dog();
     for (int i = 3; i < 6; ++i)
         animal[i] = Cat();
+
+    // Dog* gaffe = new Dog();
+    // std::cout << gaffe->getBrain()->getIdeas() << " " << std::endl;
+    // delete gaffe;
+
+    // Cat* miau = new Cat();
+    // std::cout << miau->getBrain()->getIdeas() << " " << std::endl;
+    // delete miau;
 
     return (0);
 }

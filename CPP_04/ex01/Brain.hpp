@@ -30,7 +30,7 @@ class Brain
         ~Brain(void);
         Brain&  operator=(Brain const & rhs);
 
-        std::string* getIdeas(void);
+        std::string* getIdeas();
 };
 
 #endif

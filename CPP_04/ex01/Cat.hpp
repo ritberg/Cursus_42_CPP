@@ -31,6 +31,8 @@ class Cat : public Animal {
 
         void    makeSound() const;
 
+        Brain*  getBrain(void) const;
+
     private:
         Brain*  _brain;
 

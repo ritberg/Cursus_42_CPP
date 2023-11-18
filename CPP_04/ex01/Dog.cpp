@@ -15,7 +15,7 @@
 
 Dog::Dog(void) : Animal()
 {
-     _brain = new Brain();
+    this->_brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Default constructor called" RESET << std::endl;
     return;
@@ -23,7 +23,7 @@ Dog::Dog(void) : Animal()
 
 Dog::Dog(std::string DogType) : Animal(DogType)
 {
-     _brain = new Brain();
+    this->_brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Str constructor for " << DogType << " called" << std::endl;
     return;
@@ -39,7 +39,7 @@ Dog::Dog(Dog const & src) : Animal(src)
 
 Dog::~Dog(void)
 {
-    delete _brain;
+    delete this->_brain;
     std::cout << VIOLET "🟣 From Dog. Destructor called" RESET << std::endl;
     return;
 }
@@ -50,6 +50,11 @@ void    Dog::makeSound(void) const
 {
     std::cout << VIOLET "🟣 From Dog: woof woof woof" RESET << std::endl;
     return;
+}
+
+Brain*   Dog::getBrain(void) const
+{
+    return (this->_brain);
 }
 
 /********    Assignment and outstream operators overloads             ***********/

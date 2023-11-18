@@ -16,6 +16,7 @@
 
 Brain::Brain(void) 
 {
+    this->_ideas[0] = "An idea";
     std::cout << GREEN "🟢 From Brain. Default constructor called" RESET << std::endl;
     return;
 }
