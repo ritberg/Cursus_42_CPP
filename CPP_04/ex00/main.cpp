@@ -73,7 +73,7 @@ int main()
     test4->makeSound();
     delete test4;
 
-    /* [ 6 ] : Dog* d = new Animal() - compilation error */
+    /* [ 6 ] : Dog* d = new Animal() - compilation error: cannot initialize a variable of type 'const Dog *' with an rvalue of type 'Animal * */
     // const Dog* d = new Animal();
 	// d->makeSound();
 	// delete d;

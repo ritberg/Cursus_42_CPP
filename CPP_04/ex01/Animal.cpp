@@ -48,7 +48,7 @@ std::string Animal::getType(void) const
 
 void    Animal::makeSound(void) const
 {
-    std::cout << "⚪️ From Animal: no specific sound" << std::endl;
+    std::cout << "⚪️ From Animal. * no specific sound *" << std::endl;
 }
 
 /********    Assignment and outstream operators overloads             ***********/
@@ -60,9 +60,3 @@ Animal&  Animal::operator=(Animal const & rhs)
         this->type = rhs.getType();
     return (*this);
 }
-
-// std::ostream& operator <<(std::ostream & o, Animal const & i)
-// {
-//     o << i.getType() << " : ";
-//     return (o);
-// }

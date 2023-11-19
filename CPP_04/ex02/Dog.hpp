@@ -38,6 +38,4 @@ class Dog : public AAnimal {
 
 };
 
-// std::ostream& operator <<(std::ostream & o, Dog const & i);
-
 #endif

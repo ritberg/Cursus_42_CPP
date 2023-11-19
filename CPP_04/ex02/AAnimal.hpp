@@ -26,7 +26,7 @@ class AAnimal {
 
         AAnimal&  operator=(AAnimal const & rhs);
 
-        virtual void    makeSound() const = 0;
+        virtual void    makeSound() const = 0; //pure virtual function
 
         std::string     getType() const;
 
@@ -34,7 +34,5 @@ class AAnimal {
         std::string type;
 
 };
-
-// std::ostream& operator <<(std::ostream & o, Animal const & i);
 
 #endif

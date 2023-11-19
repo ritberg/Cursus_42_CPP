@@ -48,7 +48,7 @@ Dog::~Dog(void)
 
 void    Dog::makeSound(void) const
 {
-    std::cout << VIOLET "🟣 From Dog: woof woof woof" RESET << std::endl;
+    std::cout << VIOLET "🟣 From Dog. * woof woof woof *" RESET << std::endl;
     return;
 }
 
@@ -70,9 +70,3 @@ Dog&  Dog::operator=(Dog const & rhs)
     }
     return (*this);
 }
-
-// std::ostream& operator <<(std::ostream & o, Dog const & i)
-// {
-//     o << i.getType() << " : ";
-//     return (o);
-// }

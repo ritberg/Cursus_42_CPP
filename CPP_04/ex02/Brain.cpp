@@ -47,7 +47,6 @@ std::string*    Brain::getIdeas(void)
 
 void    Brain::setIdeas(std::string idea, int i)
 {
-    // this->_ideas[i] = ideas_array;
     if (i >= 0 && i < 100)
         _ideas[i] = idea;
 }

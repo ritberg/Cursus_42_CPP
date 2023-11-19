@@ -28,10 +28,11 @@ class Brain
         Brain (std::string idea);
         Brain(Brain const & src);
         ~Brain(void);
-        Brain&  operator=(Brain const & rhs);
 
-        std::string* getIdeas();
-        void    setIdeas(std::string ideas, int i);
+        Brain&     operator=(Brain const & rhs);
+
+        std::string*    getIdeas();
+        void            setIdeas(std::string ideas, int i);
 };
 
 #endif

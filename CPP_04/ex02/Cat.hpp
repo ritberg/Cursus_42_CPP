@@ -38,6 +38,4 @@ class Cat : public AAnimal {
 
 };
 
-// std::ostream& operator <<(std::ostream & o, Cat const & i);
-
 #endif

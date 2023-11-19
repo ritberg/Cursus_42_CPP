@@ -94,7 +94,10 @@ int main()
 
     std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 
-  
+    /*
+    The Brain objects of the original and copied objects should have different addresses, because they are distinct objects in memory.
+    Additionally, modifying one object (ex, adding an idea to the Brain) should not affect the other object.
+    */
     Cat originalCat("Persian");
     Cat copiedCat = originalCat; // Make a copy of the Cat
 
@@ -158,6 +161,24 @@ int main()
         std::cout << miauIdeas[i];
     std::cout << std::endl;
     delete miau;
+    
+    std::cout << std::endl << "------Evaluation sheet tests----------" << std::endl << std::endl;
+    /*
+    Each component is copied individually (The Dog object is copied, and it involves the copy constructor
+        of Animal, the copy assignment operator of Animal, the copy constructor of Brain,
+        and the copy constructor of Dog).
+
+    In a shallow copy, the copy process would involve copying the values of pointers
+        to the same memory locations, i.e. the copied object and the original object would share
+        the same underlying data. In a deep copy, each component of the object is duplicated,
+        creating new, independent copies.
+
+    The fact that there are calls to copy constructors and destructors for each component
+        (Animal, Brain, and Dog) suggests that a deep copy is taking place. 
+    */
+    Dog basic;
+    { Dog tmp = basic; }
+
 
     std::cout << std::endl << "----- Destructors-----" << std::endl << std::endl;
 
