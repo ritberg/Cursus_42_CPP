@@ -2,12 +2,12 @@ BLUE			:= $(shell tput setaf 4)
 PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
-SRCS	= main.cpp\
-		  Animal.cpp\
+SRCS	= Animal.cpp\
 		  Cat.cpp\
 		  Dog.cpp\
 		  WrongAnimal.cpp\
 		  WrongCat.cpp\
+		  main.cpp\
 
 INCL	= Animal.hpp\
 		Cat.hpp\

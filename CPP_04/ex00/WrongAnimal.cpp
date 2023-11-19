@@ -48,7 +48,7 @@ std::string WrongAnimal::getType(void) const
 
 void    WrongAnimal::makeSound(void) const
 {
-    std::cout << "⚪️⚪️ From WrongAnimal: no specific sound" << std::endl;
+    std::cout << "⚪️⚪️ From WrongAnimal. * no specific sound *" << std::endl;
 }
 
 /********    Assignment and outstream operators overloads             ***********/

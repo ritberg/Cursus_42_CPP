@@ -29,9 +29,6 @@ class WrongCat : public WrongAnimal {
         WrongCat&    operator=(WrongCat const & rhs);
 
         void    makeSound() const;
-
 };
-
-// std::ostream& operator <<(std::ostream & o, Cat const & i);
 
 #endif

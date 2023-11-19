@@ -44,7 +44,7 @@ Cat::~Cat(void)
 
 void    Cat::makeSound(void) const
 {
-    std::cout << YELLOW "🟡 From Cat: meeeooooowwwww " RESET << std::endl;
+    std::cout << YELLOW "🟡 From Cat. * meeeooooowwwww * " RESET << std::endl;
     return;
 }
 
@@ -57,8 +57,3 @@ Cat&  Cat::operator=(Cat const & rhs)
         this->type = rhs.getType();
     return (*this);
 }
-
-// std::ostream& operator <<(std::ostream & o, Cat const & i)
-// {
-//     o << i.getType() << " : ";
-// }
