@@ -154,6 +154,10 @@ int main()
     std::cout << std::endl;
     delete miau;
 
+    std::cout << std::endl << "------Evaluation sheet tests----------" << std::endl << std::endl;
+
+    // AAnimal test0;
+
     std::cout << std::endl << "----- Destructors-----" << std::endl << std::endl;
 
     return (0);
