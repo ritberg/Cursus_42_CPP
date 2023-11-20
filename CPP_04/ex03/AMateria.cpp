@@ -20,20 +20,20 @@ AMateria::AMateria(void) : type("default")
 
 AMateria::AMateria(std::string const & type) : type(type)
 {
-    std::cout << "AMateria str constructor called" << std::endl;
+    std::cout << "AMateria str constructor for " << type << " called" << std::endl;
     return;
 }
 
 AMateria::AMateria(AMateria const & src)
 {
-    std::cout << "AMateria copy constructor called" << std::endl;
+    std::cout << "AMateria copy constructor for " << this->type <<" called" << std::endl;
     *this = src;
     return;
 }
 
 AMateria::~AMateria(void)
 {
-    std::cout << "AMateria destructor called" << std::endl;
+    std::cout << "AMateria destructor " << this->type << " called" << std::endl;
     return;
 }
 
