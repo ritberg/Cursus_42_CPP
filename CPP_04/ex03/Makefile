@@ -3,19 +3,23 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
-		  AAnimal.cpp\
-		  Cat.cpp\
-		  Dog.cpp\
-		  Brain.cpp\
+		  AMateria.cpp\
+		  Character.cpp\
+		  MateriaSource.cpp\
+		  Ice.cpp\
+		  Cure.cpp\
 
-INCL	= AAnimal.hpp\
-		Cat.hpp\
-		Dog.hpp\
-		Brain.hpp\
+INCL	= AMateria.hpp\
+		ICharacter.hpp\
+		Character.hpp\
+		IMateriaSource.hpp\
+		MateriaSource.hpp\
+		Ice.hpp\
+		Cure.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= animals
+NAME	= weird_exercise
 
 CC		= c++
 
