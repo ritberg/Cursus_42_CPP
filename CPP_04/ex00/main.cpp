@@ -38,40 +38,40 @@ int main()
 
     std::cout << std::endl << "----------More tests------------" << std::endl;
 
-    std::cout << std::endl << "[ 1 ] : Dog* test = new Dog()" << std::endl << std::endl;
+    std::cout << std::endl << "[ 1 ] : Dog* test1 = new Dog()" << std::endl << std::endl;
 
-    const Dog* test = new Dog();
-    std::cout << test->getType() << " " << std::endl;
-    test->makeSound();
-    delete test;
-
-    std::cout << std::endl << "[ 2 ] : Cat* test1 = new Cat()" << std::endl << std::endl;
-
-	const Cat* test1 = new Cat();
+    const Dog* test1 = new Dog();
     std::cout << test1->getType() << " " << std::endl;
     test1->makeSound();
     delete test1;
 
-    std::cout << std::endl << "[ 3 ] : Animal* test2 = new Animal(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 2 ] : Cat* test2 = new Cat()" << std::endl << std::endl;
 
-    const Animal* test2 = new Animal("Hohoho");
+	const Cat* test2 = new Cat();
     std::cout << test2->getType() << " " << std::endl;
     test2->makeSound();
     delete test2;
 
-    std::cout << std::endl << "[ 4 ] : Animal* test3 = new Cat(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 3 ] : Animal* test3 = new Animal(str)" << std::endl << std::endl;
 
-    const Animal* test3 = new Cat("Mau");
+    const Animal* test3 = new Animal("Hohoho");
     std::cout << test3->getType() << " " << std::endl;
     test3->makeSound();
     delete test3;
 
-    std::cout << std::endl << "[ 5 ] : Animal* test4 = new Dog(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 4 ] : Animal* test4 = new Cat(str)" << std::endl << std::endl;
 
-    const Animal* test4 = new Dog("Woof");
+    const Animal* test4 = new Cat("Mau");
     std::cout << test4->getType() << " " << std::endl;
     test4->makeSound();
     delete test4;
+
+    std::cout << std::endl << "[ 5 ] : Animal* test5 = new Dog(str)" << std::endl << std::endl;
+
+    const Animal* test5 = new Dog("Woof");
+    std::cout << test5->getType() << " " << std::endl;
+    test5->makeSound();
+    delete test5;
 
     /* [ 6 ] : Dog* d = new Animal() - compilation error: cannot initialize a variable of type 'const Dog *' with an rvalue of type 'Animal * */
     // const Dog* d = new Animal();

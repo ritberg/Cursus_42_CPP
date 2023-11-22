@@ -40,40 +40,40 @@ int main()
 
     std::cout << std::endl << "----------More tests------------" << std::endl;
 
-    std::cout << std::endl << "[ 1 ] : Dog* test = new Dog()" << std::endl << std::endl;
+    std::cout << std::endl << "[ 1 ] : Dog* test1 = new Dog()" << std::endl << std::endl;
 
-    const Dog* test = new Dog();
-    std::cout << test->getType() << " " << std::endl;
-    test->makeSound();
-    delete test;
-
-    std::cout << std::endl << "[ 2 ] : Cat* test1 = new Cat()" << std::endl << std::endl;
-
-	const Cat* test1 = new Cat();
+    const Dog* test1 = new Dog();
     std::cout << test1->getType() << " " << std::endl;
     test1->makeSound();
     delete test1;
 
-    std::cout << std::endl << "[ 3 ] : Animal* test2 = new Animal(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 2 ] : Cat* test2 = new Cat()" << std::endl << std::endl;
 
-    const Animal* test2 = new Animal("Hohoho");
+	const Cat* test2 = new Cat();
     std::cout << test2->getType() << " " << std::endl;
     test2->makeSound();
     delete test2;
 
-    std::cout << std::endl << "[ 4 ] : Animal* test3 = new Cat(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 3 ] : Animal* test3 = new Animal(str)" << std::endl << std::endl;
 
-    const Animal* test3 = new Cat("Mau");
+    const Animal* test3 = new Animal("Hohoho");
     std::cout << test3->getType() << " " << std::endl;
     test3->makeSound();
     delete test3;
 
-    std::cout << std::endl << "[ 5 ] : Animal* test4 = new Dog(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 4 ] : Animal* test4 = new Cat(str)" << std::endl << std::endl;
 
-    const Animal* test4 = new Dog("Woof");
+    const Animal* test4 = new Cat("Mau");
     std::cout << test4->getType() << " " << std::endl;
     test4->makeSound();
     delete test4;
+
+    std::cout << std::endl << "[ 5 ] : Animal* test5 = new Dog(str)" << std::endl << std::endl;
+
+    const Animal* test5 = new Dog("Woof");
+    std::cout << test5->getType() << " " << std::endl;
+    test5->makeSound();
+    delete test5;
 
     /* [ 6 ] : Dog* d = new Animal() - compilation error */
     // const Dog* d = new Animal();
@@ -124,7 +124,7 @@ int main()
     std::cout << "Type: " << copiedDog.getType() << std::endl;
     std::cout << "Copied Dog Brain Address: " << copiedDog.getBrain() << std::endl;
 
-    std::cout << std::endl << "---------Set ideas in Brain class and in Dog and Cat classes---------" << std::endl << std::endl;
+    std::cout << std::endl << "---------Set ideas in Brain class and in Dog and Cat classes---------" << std::endl;
 
     std::cout << std::endl << "[ 1 ] : set and get ideas in Brain class" << std::endl << std::endl;
 
@@ -143,9 +143,10 @@ int main()
     std::cout << std::endl << "[ 2 ] : set and get ideas in Dog class" << std::endl << std::endl;
 
     Dog* gaffe = new Dog();
-    gaffe->getBrain()->setIdeas("interesting idea", 0);
+    int indexx = 0;
+    gaffe->getBrain()->setIdeas("interesting idea", indexx);
     std::string* gaffeIdeas = gaffe->getBrain()->getIdeas();
-    std::cout << "Dog Idea: ";
+    std::cout << "Dog Idea " << indexx << " : ";
     for (int i = 0; i < 100; ++i)
         std::cout << gaffeIdeas[i];
     std::cout << std::endl;
@@ -154,9 +155,10 @@ int main()
     std::cout << std::endl << "[ 3 ] : set and get ideas in Cat class" << std::endl << std::endl;
 
     Cat* miau = new Cat();
-    miau->getBrain()->setIdeas("stupid idea", 4);
+    indexx = 4;
+    miau->getBrain()->setIdeas("stupid idea", indexx);
     std::string* miauIdeas = miau->getBrain()->getIdeas();
-    std::cout << "Cat Idea: ";
+    std::cout << "Cat Idea " << indexx << " : ";
     for (int i = 0; i < 100; ++i)
         std::cout << miauIdeas[i];
     std::cout << std::endl;
