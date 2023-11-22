@@ -12,7 +12,7 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void) : _name("⚪️ A bureaucrat by default")
+Bureaucrat::Bureaucrat(void) : _name("⚪️ A bureaucrat by default"), _grade(150)
 {
     std::cout << "⚪️ Default constructor called" << std::endl;
     return;
@@ -72,4 +72,14 @@ std::ostream&   operator<<(std::ostream& o, const Bureaucrat & i)
 {
     o << "👋 " << i.getName() << " is a bureaucrat with a grade = " << i.getGrade();
     return (o);
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("❗️ Error: the grade is too high");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("❗️ Error: the grade is too low");
 }
