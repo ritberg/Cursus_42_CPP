@@ -25,7 +25,7 @@ class Cat : public Animal {
         Cat(void);
         Cat(std::string CatType);
         Cat(Cat const & src);
-        virtual ~Cat(void);
+        ~Cat(void);
 
         Cat&    operator=(Cat const & rhs);
 

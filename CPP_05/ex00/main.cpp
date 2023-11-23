@@ -14,7 +14,7 @@
 
 int main()
 {
-    std::cout <<  std::endl << "----------------- HIGH --------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- LOW AT THE CONSTR--------------------" << std::endl << std::endl;
     try
     {
         int grade = 151;
@@ -24,11 +24,6 @@ int main()
         std::cout << "after decrementGrade(): " << a << std::endl;
         a.incrementGrade();
         std::cout << "after incrementGrade(): " << a << std::endl;
-
-        if (grade < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > 150)
-            throw Bureaucrat::GradeTooLowException();
     }
     catch(const Bureaucrat::GradeTooLowException & e)
     {
@@ -39,22 +34,17 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout << std::endl << "----------------- LOW --------------------" << std::endl << std::endl;
+    std::cout << std::endl << "----------------- HEIGH AT THE CONSTR --------------------" << std::endl << std::endl;
 
     try
     {
         int grade = -1;
-        Bureaucrat a;
+        Bureaucrat a("Qqch", grade);
         std::cout << a << std::endl;
         a.decrementGrade();
         std::cout << "after decrementGrade(): " << a << std::endl;
         a.incrementGrade();
         std::cout << "after incrementGrade(): " << a << std::endl;
-
-        if (grade < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > 150)
-            throw Bureaucrat::GradeTooLowException();
     }
     catch(const Bureaucrat::GradeTooLowException & e)
     {
@@ -76,11 +66,22 @@ int main()
         std::cout << "after decrementGrade(): " << a << std::endl;
         a.incrementGrade();
         std::cout << "after incrementGrade(): " << a << std::endl;
+    }
+    catch(const std::exception & e)
+    {
+        std::cerr << e.what() << std::endl;;
+    }
+  
+   std::cout << std::endl << "----------------- DECREM IMPOSSIBLE --------------------" << std::endl << std::endl;
 
-        if (grade < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > 150)
-            throw Bureaucrat::GradeTooLowException();
+   try
+    {
+        Bureaucrat a;
+        std::cout << a << std::endl;
+        a.decrementGrade();
+        std::cout << "after decrementGrade(): " << a << std::endl;
+        a.incrementGrade();
+        std::cout << "after incrementGrade(): " << a << std::endl;
     }
     catch(const Bureaucrat::GradeTooLowException & e)
     {
@@ -91,10 +92,10 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout << std::endl << "----------------- INCR/DECR --------------------" << std::endl << std::endl;
+    std::cout << std::endl << "----------------- INCREM IMPOSSIBLE --------------------" << std::endl << std::endl;
 
-    Bureaucrat b("Dog", 1);
-    Bureaucrat d("Dog", 1);
+    Bureaucrat b("Dog1", 1);
+    Bureaucrat d("Dog2", 1);
 
     try
     {
@@ -107,19 +108,12 @@ int main()
         d.incrementGrade();
         std::cout << "d after incrementGrade(): " << d << std::endl;
 
-        if (b.getGrade() < 1 || d.getGrade() < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (b.getGrade() > 150 || d.getGrade() > 150)
-            throw Bureaucrat::GradeTooLowException();
     }
-    catch(const Bureaucrat::GradeTooLowException & e)
+    catch(const std::exception & e)
     {
         std::cerr << e.what() << std::endl;;
     }
-    catch(const Bureaucrat::GradeTooHighException & e)
-    {
-        std::cerr << e.what() << std::endl;;
-    }
+
 
     std::cout << std::endl << "----------------- = OPERATOR --------------------" << std::endl << std::endl;
 

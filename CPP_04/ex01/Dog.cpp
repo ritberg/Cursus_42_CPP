@@ -15,32 +15,32 @@
 
 Dog::Dog(void) : Animal()
 {
-    this->_brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Default constructor called" RESET << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
 Dog::Dog(std::string DogType) : Animal(DogType)
 {
-    this->_brain = new Brain();
     this->type = VIOLET "🟣 Dog" RESET;
     std::cout << VIOLET "🟣 From Dog. Str constructor for " << DogType << " called" << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
-
-Dog::Dog(Dog const & src) : Animal(src)
+/* _brain in tmp = NULL because tmp should be created (cf. test { Dog tmp = basic; }) */
+Dog::Dog(Dog const & src) : Animal(src), _brain(NULL)
 {
-    this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
     std::cout << VIOLET "🟣 From Dog. Copy constructor called" RESET << std::endl;
+    *this = src;
     return;
 }
 
 Dog::~Dog(void)
 {
-    delete this->_brain;
     std::cout << VIOLET "🟣 From Dog. Destructor called" RESET << std::endl;
+    delete this->_brain;
     return;
 }
 
@@ -65,7 +65,8 @@ Dog&  Dog::operator=(Dog const & rhs)
     if (this != &rhs)
     {
         this->type = rhs.getType();
-        delete this->_brain;  // Delete the existing Brain object
+        if (this->_brain)
+            delete this->_brain;  // Delete the existing Brain object
         this->_brain = new Brain(*(rhs._brain));  // Create a new Brain object with a copy of the source Brain
     }
     return (*this);

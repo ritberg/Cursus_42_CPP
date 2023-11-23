@@ -45,7 +45,7 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & rhs)
 
         count = rhs.count; // Update the count
     }
-    return *this;
+    return (*this);
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
@@ -62,7 +62,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
     for (int i = 0; i < count; ++i)
     {
         if (inventory[i] != NULL && inventory[i]->getType() == type)
-            return inventory[i]->clone(); // Return a new instance of the same type
+            return (inventory[i]->clone()); // Return a new instance of the same type
     }
-    return NULL;
+    return (NULL);
 }

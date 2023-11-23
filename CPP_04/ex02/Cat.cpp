@@ -15,35 +15,31 @@
 
 Cat::Cat(void) : AAnimal()
 {
-    this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Default constructor called" RESET << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
 Cat::Cat(std::string CatType) : AAnimal(CatType)
 {
-    this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Str constructor for " << CatType << " called" << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
-/*
-    this->_brain = new Brain(*(src._brain)) creates a new Brain object by
-    dereferencing the source Cat object's _brain pointer and copying its contents.
-*/
-Cat::Cat(Cat const & src) : AAnimal(src)
+Cat::Cat(Cat const & src) : AAnimal(src), _brain(NULL)
 {
-    this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
     std::cout << YELLOW "🟡 From Cat. Copy constructor called" RESET << std::endl;
+    *this = src;
     return;
 }
 
 Cat::~Cat(void)
 {
-    delete this->_brain;
     std::cout << YELLOW "🟡 From Cat. Destructor called" RESET << std::endl;
+    delete this->_brain;
     return;
 }
 
@@ -68,8 +64,9 @@ Cat&  Cat::operator=(Cat const & rhs)
     if (this != &rhs)
     {
         this->type = rhs.getType();
-        delete this->_brain;  // Delete the existing Brain object
-        this->_brain = new Brain(*(rhs._brain));  // Create a new Brain object with a copy of the source Brain
+        if (this->_brain)
+            delete this->_brain;
+        this->_brain = new Brain(*(rhs._brain)); 
     }
     return (*this);
 }

@@ -22,7 +22,7 @@ int main()
 	std::cout << "*   🟡 - child Cat class              *" << std::endl;
 	std::cout << "***************************************" << std::endl << std::endl;
 
-    std::cout << std::endl << "**** **** **** OLD **** **** ****" << std::endl << std::endl;
+    std::cout << "**** **** **** OLD **** **** ****" << std::endl << std::endl;
 
     std::cout << "----------Subject tests------------" << std::endl << std::endl;
 
@@ -31,65 +31,86 @@ int main()
 	const AAnimal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
+	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	// meta->makeSound(); //non instanciable! error: allocating an object of abstract class type 'AAnimal'
+	// meta->makeSound();
 	delete j;
 	delete i;
-    // delete meta; //non instanciable! error: allocating an object of abstract class type 'AAnimal'
+    // delete meta;
 
     std::cout << std::endl << "----------More tests------------" << std::endl;
 
-    std::cout << std::endl << "[ 1 ] : Dog* test = new Dog()" << std::endl << std::endl;
+    std::cout << std::endl << "[ 1 ] : Dog* test1 = new Dog()" << std::endl << std::endl;
 
-    const Dog* test = new Dog();
-    std::cout << test->getType() << " " << std::endl;
-    test->makeSound();
-    delete test;
-
-    std::cout << std::endl << "[ 2 ] : Cat* test1 = new Cat()" << std::endl << std::endl;
-
-	const Cat* test1 = new Cat();
+    const Dog* test1 = new Dog();
     std::cout << test1->getType() << " " << std::endl;
     test1->makeSound();
     delete test1;
 
-    std::cout << std::endl << "[ 3 ] : Animal* test2 = new Animal(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 2 ] : Cat* test2 = new Cat()" << std::endl << std::endl;
 
-    // const AAnimal* test2 = new AAnimal("Hohoho"); //non instanciable! error: allocating an object of abstract class type 'AAnimal'
-    // std::cout << test2->getType() << " " << std::endl;
-    // test2->makeSound();
-    // delete test2;
+	const Cat* test2 = new Cat();
+    std::cout << test2->getType() << " " << std::endl;
+    test2->makeSound();
+    delete test2;
 
-    std::cout << std::endl << "[ 4 ] : Animal* test3 = new Cat(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 3 ] : Animal* test3 = new Animal(str) - impossible" << std::endl << std::endl;
 
-    const AAnimal* test3 = new Cat("Mau");
-    std::cout << test3->getType() << " " << std::endl;
-    test3->makeSound();
-    delete test3;
+    // const AAnimal* test3 = new AAnimal("Hohoho");  //non instanciable! error: allocating an object of abstract class type 'AAnimal'
+    // std::cout << test3->getType() << " " << std::endl;
+    // test3->makeSound();
+    // delete test3;
 
-    std::cout << std::endl << "[ 5 ] : Animal* test4 = new Dog(str)" << std::endl << std::endl;
+    std::cout << std::endl << "[ 4 ] : Animal* test4 = new Cat(str)" << std::endl << std::endl;
 
-    const AAnimal* test4 = new Dog("Woof");
+    const AAnimal* test4 = new Cat("Mau");
     std::cout << test4->getType() << " " << std::endl;
     test4->makeSound();
     delete test4;
 
+    std::cout << std::endl << "[ 5 ] : Animal* test5 = new Dog(str)" << std::endl << std::endl;
+
+    const AAnimal* test5 = new Dog("Woof");
+    std::cout << test5->getType() << " " << std::endl;
+    test5->makeSound();
+    delete test5;
 
     std::cout << std::endl << "**** **** **** NEW EX01 TESTS **** **** ****" << std::endl << std::endl;
 
     std::cout << std::endl << "---------An animal table with half cats, half dogs---------" << std::endl << std::endl;
+/*
+It works ! Pointers to the base class can be used to point to objects of derived classes.
 
-    // AAnimal animal[6]; //non instanciable! error: array of abstract class type 'AAnimal'
+This array animal can store pointers to objects of any class derived from AAnimal.
+The new Dog() and new Cat() statements allocate memory for objects of the derived classes
+Dog and Cat and return pointers to the base class AAnimal.
+*/
+    AAnimal *animal[6];
+    std::cout << std::endl;
 
-    // for (int i = 0; i < 3; ++i)
-    //     animal[i] = Dog();
-    // for (int i = 3; i < 6; ++i)
-    //     animal[i] = Cat();
+    for (int i = 0; i < 3; ++i)
+    {
+        animal[i] = new Dog();
+        std::cout << std::endl;
+    }
+    for (int i = 3; i < 6; ++i)
+    {
+        animal[i] = new Cat();
+        std::cout << std::endl;
+    }
+    for (int i = 0; i < 6; ++i)
+    {
+        delete animal[i];
+        std::cout << std::endl;
+    }
+  
 
     std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 
-  
+    /*
+    The Brain objects of the original and copied objects should have different addresses, because they are distinct objects in memory.
+    Additionally, modifying one object (ex, adding an idea to the Brain) should not affect the other object.
+    */
     Cat originalCat("Persian");
     Cat copiedCat = originalCat; // Make a copy of the Cat
 
@@ -116,7 +137,7 @@ int main()
     std::cout << "Type: " << copiedDog.getType() << std::endl;
     std::cout << "Copied Dog Brain Address: " << copiedDog.getBrain() << std::endl;
 
-    std::cout << std::endl << "---------Set ideas in Brain class and in Dog and Cat classes---------" << std::endl << std::endl;
+    std::cout << std::endl << "---------Set ideas in Brain class and in Dog and Cat classes---------" << std::endl;
 
     std::cout << std::endl << "[ 1 ] : set and get ideas in Brain class" << std::endl << std::endl;
 
@@ -135,9 +156,10 @@ int main()
     std::cout << std::endl << "[ 2 ] : set and get ideas in Dog class" << std::endl << std::endl;
 
     Dog* gaffe = new Dog();
-    gaffe->getBrain()->setIdeas("interesting idea", 0);
+    int indexx = 0;
+    gaffe->getBrain()->setIdeas("interesting idea", indexx);
     std::string* gaffeIdeas = gaffe->getBrain()->getIdeas();
-    std::cout << "Dog Idea: ";
+    std::cout << "Dog Idea " << indexx << " : ";
     for (int i = 0; i < 100; ++i)
         std::cout << gaffeIdeas[i];
     std::cout << std::endl;
@@ -146,14 +168,15 @@ int main()
     std::cout << std::endl << "[ 3 ] : set and get ideas in Cat class" << std::endl << std::endl;
 
     Cat* miau = new Cat();
-    miau->getBrain()->setIdeas("stupid idea", 4);
+    indexx = 4;
+    miau->getBrain()->setIdeas("stupid idea", indexx);
     std::string* miauIdeas = miau->getBrain()->getIdeas();
-    std::cout << "Cat Idea: ";
+    std::cout << "Cat Idea " << indexx << " : ";
     for (int i = 0; i < 100; ++i)
         std::cout << miauIdeas[i];
     std::cout << std::endl;
     delete miau;
-
+    
     std::cout << std::endl << "------Evaluation sheet tests----------" << std::endl << std::endl;
 
     // AAnimal test0;

@@ -27,12 +27,14 @@ Character::Character(std::string const & name) : _name(name)
         this->_inventory[i] = 0;
     return;
 }
-
-Character::Character(Character const & src)
+/*
+_inventory() appelle:
+ for (int i = 0; i < 4; ++i)
+    this->_inventory[i] = 0;
+*/
+Character::Character(Character const & src) : _inventory()
 {
     std::cout << "Character copy constructor called" << std::endl;
-    for (int i = 0; i < 4; ++i)
-        this->_inventory[i] = 0;
     *this = src;
     return;
 }

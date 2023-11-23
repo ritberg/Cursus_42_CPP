@@ -22,7 +22,7 @@ int main()
 	std::cout << "*   🟡 - child Cat class              *" << std::endl;
 	std::cout << "***************************************" << std::endl << std::endl;
 
-    std::cout << std::endl << "**** **** **** OLD **** **** ****" << std::endl << std::endl;
+    std::cout << "**** **** **** OLD **** **** ****" << std::endl << std::endl;
 
     std::cout << "----------Subject tests------------" << std::endl << std::endl;
 
@@ -85,12 +85,25 @@ int main()
 
     std::cout << std::endl << "---------An animal table with half cats, half dogs---------" << std::endl << std::endl;
 
-    Animal animal[6];
+    Animal *animal[6];
+    std::cout << std::endl;
 
     for (int i = 0; i < 3; ++i)
-        animal[i] = Dog();
+    {
+        animal[i] = new Dog();
+        std::cout << std::endl;
+    }
     for (int i = 3; i < 6; ++i)
-        animal[i] = Cat();
+    {
+        animal[i] = new Cat();
+        std::cout << std::endl;
+    }
+    for (int i = 0; i < 6; ++i)
+    {
+        delete animal[i];
+        std::cout << std::endl;
+    }
+  
 
     std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 

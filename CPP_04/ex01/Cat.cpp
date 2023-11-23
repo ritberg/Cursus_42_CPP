@@ -15,35 +15,35 @@
 
 Cat::Cat(void) : Animal()
 {
-    this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Default constructor called" RESET << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
 Cat::Cat(std::string CatType) : Animal(CatType)
 {
-    this->_brain = new Brain();
     this->type = YELLOW "🟡 Cat" RESET;
     std::cout << YELLOW "🟡 From Cat. Str constructor for " << CatType << " called" << std::endl;
+    this->_brain = new Brain();
     return;
 }
 
-/*
-    this->_brain = new Brain(*(src._brain)) creates a new Brain object by
-    dereferencing the source Cat object's _brain pointer and copying its contents.
+/* 
+_brain in tmp = NULL because tmp should be created (cf. test { Dog tmp = basic; })
+no need to this->_brain = new Brain(*(rhs._brain)) here as I had before - double allocation
 */
-Cat::Cat(Cat const & src) : Animal(src)
+Cat::Cat(Cat const & src) : Animal(src), _brain(NULL)
 {
-    this->_brain = new Brain(*(src._brain));  // Creating a new Brain object with a copy of the source Brain
     std::cout << YELLOW "🟡 From Cat. Copy constructor called" RESET << std::endl;
+    *this = src;
     return;
 }
 
 Cat::~Cat(void)
 {
-    delete this->_brain;
     std::cout << YELLOW "🟡 From Cat. Destructor called" RESET << std::endl;
+    delete this->_brain;
     return;
 }
 
@@ -61,14 +61,18 @@ Brain*   Cat::getBrain(void) const
 }
 
 /********    Assignment and outstream operators overloads             ***********/
-
+/*
+    this->_brain = new Brain(*(src._brain)) creates a new Brain object by
+    dereferencing the source Cat object's _brain pointer and copying its contents.
+*/
 Cat&  Cat::operator=(Cat const & rhs)
 {
     std::cout << YELLOW "🟡 From Cat. Copy assignment operator called" RESET << std::endl;
     if (this != &rhs)
     {
         this->type = rhs.getType();
-        delete this->_brain;  // Delete the existing Brain object
+        if (this->_brain)
+            delete this->_brain;  // Delete the existing Brain object
         this->_brain = new Brain(*(rhs._brain));  // Create a new Brain object with a copy of the source Brain
     }
     return (*this);

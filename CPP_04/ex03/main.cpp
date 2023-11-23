@@ -56,13 +56,13 @@ int main()
     player1->use(0, *player2);  // Use the Materia in the first slot on player2
     player1->use(1, *player2);  // Use the Materia in the second slot on player2
 
+    player1->unequip(1);
     player1->unequip(0);
 
     delete player1;
     delete player2;
     delete iceMateria;
-    // delete cureMateria;
-
+    delete cureMateria;
 
 /*
     std::cout << std::endl << "************ More tests 2 **************" << std::endl << std::endl;

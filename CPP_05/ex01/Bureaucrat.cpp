@@ -91,3 +91,13 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
     return ("❗️ Error: the grade is too low");
 }
+
+/*   NEW FUNCTION IN EX 01 */
+void    Bureaucrat::signForm(Bureaucrat & b) //?
+{
+    // if (this->_formIsSigned == true)
+        std::cout << b << " signed the form " << this->_name << std::endl;
+    // else if (this->_formIsSigned == false)
+        std::cout << b << " couldn't sign the form " << this->_name << "because..." << std::endl;
+
+}
