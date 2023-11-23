@@ -20,7 +20,7 @@ class Character : public ICharacter
     private:
         std::string _name;
         AMateria *_inventory[4];
-        int count;
+        
     public:
         Character(void);
         Character(std::string const & name);

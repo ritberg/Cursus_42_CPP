@@ -28,7 +28,7 @@ Character::Character(std::string const & name) : _name(name)
     return;
 }
 /*
-_inventory() appelle:
+_inventory() calls:
  for (int i = 0; i < 4; ++i)
     this->_inventory[i] = 0;
 */
@@ -70,15 +70,15 @@ std::string const & Character::getName() const
     return (this->_name);
 }
 
-void Character::equip(AMateria* m)
+void Character::equip(AMateria* materia)
 {
-    if (!m)
+    if (!materia)
         return;
     for (int i = 0; i < 4; ++i)
     {
         if (!this->_inventory[i])
         {
-            this->_inventory[i] = m;
+            this->_inventory[i] = materia;
             return;
         }
     }

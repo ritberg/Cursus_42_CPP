@@ -53,8 +53,8 @@ int main()
     player1->equip(cureMateria);
 
     // Use Materias on a target character
-    player1->use(0, *player2);  // Use the Materia in the first slot on player2
-    player1->use(1, *player2);  // Use the Materia in the second slot on player2
+    player1->use(0, *player2);  // Use the Materia located in the first slot on player2
+    player1->use(1, *player2);  // Use the Materia located in the second slot on player2
 
     player1->unequip(1);
     player1->unequip(0);
@@ -64,7 +64,7 @@ int main()
     delete iceMateria;
     delete cureMateria;
 
-/*
+
     std::cout << std::endl << "************ More tests 2 **************" << std::endl << std::endl;
 
 	IMateriaSource* matSourceInterf = new MateriaSource(); // MateriaSource interface
@@ -100,6 +100,8 @@ int main()
 	dog->use(1, *dog);
     dog->use(8, *dog);
 
+    // if I unequip, for ex cat->unequip(4), it doesn't change anything. Weird!
+
     std::cout << std::endl << "------------------------" << std::endl;
 
 	delete cat;
@@ -108,6 +110,6 @@ int main()
 	delete dog2;
 	delete matSource;
     delete matSourceInterf;
-*/
+
     return (0);
 }

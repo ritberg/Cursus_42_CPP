@@ -104,8 +104,7 @@ int main()
         std::cout << std::endl;
     }
   
-
-    std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
+    std::cout << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 
     /*
     The Brain objects of the original and copied objects should have different addresses, because they are distinct objects in memory.
@@ -191,9 +190,16 @@ int main()
     The fact that there are calls to copy constructors and destructors for each component
         (Animal, Brain, and Dog) suggests that a deep copy is taking place. 
     */
+
+    std::cout << std::endl << "[ 1 ] dog" << std::endl << std::endl;
+
     Dog basic;
     { Dog tmp = basic; }
 
+    std::cout << std::endl << "[ 1 ] cat" << std::endl << std::endl;
+
+    Cat basic1;
+    { Cat tmp1 = basic1; }
 
     std::cout << std::endl << "----- Destructors-----" << std::endl << std::endl;
 

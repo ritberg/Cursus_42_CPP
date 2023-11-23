@@ -21,6 +21,7 @@ class AMateria
 {
     protected:
         std::string type;
+        
     public:
         AMateria(void);
         AMateria(std::string const & type);

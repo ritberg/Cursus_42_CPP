@@ -90,8 +90,9 @@ int main()
     std::cout << std::endl << "[ 2 ] : WrongAnimal* wac = new WrongCat()" << std::endl << std::endl;
 
     /*
-    Without the virtual keyword for the makeSound() function in the base class (WrongAnimal),
-    the function is determined by the type of the pointer, not the actual type of the object (WrongCat). 
+    Without the virtual keyword for the makeSound() function in the base class (WrongAnimal)
+    the function makeSound() is determined by the type of the pointer,
+    not the actual type of the object (WrongCat). 
 
     When using a pointer to the base class,
     it calls the function from the base class 

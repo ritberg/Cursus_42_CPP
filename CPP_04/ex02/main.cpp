@@ -78,6 +78,7 @@ int main()
     std::cout << std::endl << "**** **** **** NEW EX01 TESTS **** **** ****" << std::endl << std::endl;
 
     std::cout << std::endl << "---------An animal table with half cats, half dogs---------" << std::endl << std::endl;
+
 /*
 It works ! Pointers to the base class can be used to point to objects of derived classes.
 
@@ -104,18 +105,13 @@ Dog and Cat and return pointers to the base class AAnimal.
         std::cout << std::endl;
     }
   
-
     std::cout << std::endl << "---------Copy of the cat/dog and the original cat/dog---------" << std::endl << std::endl;
 
-    /*
-    The Brain objects of the original and copied objects should have different addresses, because they are distinct objects in memory.
-    Additionally, modifying one object (ex, adding an idea to the Brain) should not affect the other object.
-    */
     Cat originalCat("Persian");
-    Cat copiedCat = originalCat; // Make a copy of the Cat
+    Cat copiedCat = originalCat;
 
     Dog originalDog("Golden Retriever");
-    Dog copiedDog = originalDog; // Make a copy of the Dog
+    Dog copiedDog = originalDog;
 
     std::cout << "Original Cat: " << std::endl;
     originalCat.makeSound();

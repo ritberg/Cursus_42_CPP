@@ -18,8 +18,9 @@
 class MateriaSource : public IMateriaSource
 {
     private:
-        AMateria *inventory[4];
-        int count;
+        AMateria *_inventory[4];
+        int _count;
+
     public:
         MateriaSource(void);
         MateriaSource(MateriaSource const & src);
