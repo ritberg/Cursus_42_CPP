@@ -13,28 +13,30 @@
 #include "Form.hpp"
 
 /* 1 - all rights, 150 - no rights */
-Form::Form(void) : _name("a bureaucrat by default"), _formIsSigned(false), _gradeSign(1), _gradeExec(1)
+Form::Form(void) : _name("a form by default"), _formIsSigned(false), _gradeSign(1), _gradeExec(1)
 {
-    std::cout << "🟣 Default constructor called" << std::endl;
+    std::cout << VIOLET "🟣 Default constructor called for " << this->_name << " with gradeSign = "
+        << this->_gradeSign << " and gradeExec = " << this->_gradeExec << RESET << std::endl;
     return;
 }
 
 Form::Form(std::string name, int n, int nb) : _name(name),  _formIsSigned(false), _gradeSign(n), _gradeExec(nb)
 {
-    std::cout << "🟣 Str constructor for " << name << " called" << std::endl;
+    std::cout << VIOLET "🟣 Str constructor for " << name << " called with gradeSign = " << n
+        << " and gradeExec = " << nb << RESET << std::endl;
     return;
 }
 
 Form::Form(Form const & src) : _name(src._name),  _formIsSigned(false), _gradeSign(1), _gradeExec(1)
 {
-    std::cout << "🟣 Copy constructor called" << std::endl;
+    std::cout << VIOLET "🟣 Copy constructor called" RESET << std::endl;
     *this = src;
     return;
 }
 
 Form::~Form(void)
 {
-    std::cout << "🟣 Destructor called" << std::endl;
+    std::cout << VIOLET "🟣 Destructor called" RESET << std::endl;
     return;
 }
 
@@ -53,9 +55,14 @@ int Form::getGradeExec() const
     return (this->_gradeExec);
 }
 
+bool    Form::getBool() const
+{
+    return (this->_formIsSigned);
+}
+
 Form&  Form::operator=(Form const & rhs)
 {
-    std::cout << "🟣 Copy assignment operator called" << std::endl;
+    std::cout << VIOLET "🟣 Copy assignment operator called" RESET << std::endl;
     if (this != &rhs)
     {
         this->_formIsSigned = rhs._formIsSigned;
@@ -65,24 +72,28 @@ Form&  Form::operator=(Form const & rhs)
 
 std::ostream&   operator<<(std::ostream& o, const Form & i)
 {
-    o << "👋 " << i.getName() << " is a bureaucrat with a grade required to sign = " << i.getGradeSign()
-        << " and a grade required to execute " << i.getGradeExec();
+    o << VIOLET "🟣 " << i.getName() << " is a form with a gradeSign = " << i.getGradeSign()
+        << " and a gradeExec = " << i.getGradeExec() << RESET;
     return (o);
 }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return ("❗️ Error: the grade is too high");
+    return (VIOLET "🟣❗️ Error: the grade is too high" RESET);
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("❗️ Error: the grade is too low");
+    return (VIOLET "🟣❗️ Error: the grade is too low" RESET);
 }
 
-void Form::beSigned(Bureaucrat & b)
+bool    Form::beSigned(Bureaucrat & b)
 {
-    if (this->_gradeExec <= this->_gradeSign)
+    if (b.getGrade() <= this->_gradeSign)
+    {
         this->_formIsSigned = true;
+        return (this->_formIsSigned);
+    }
     this->_formIsSigned = false;
+    return (this->_formIsSigned);
 }

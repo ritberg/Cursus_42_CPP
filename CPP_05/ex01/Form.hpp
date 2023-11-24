@@ -18,6 +18,10 @@
 # include <stdexcept>
 # include "Bureaucrat.hpp"
 
+# define RESET	"\e[0m"
+# define VIOLET	"\033[35m"
+
+class Bureaucrat;
 class Form 
 {
     private:
@@ -37,8 +41,9 @@ class Form
         std::string getName() const;
         int         getGradeSign() const;
         int         getGradeExec() const;
+        bool        getBool() const;
 
-        void beSigned(Bureaucrat & b);
+        bool    beSigned(Bureaucrat & b);
 
         class GradeTooHighException : public std::exception
         {
@@ -51,7 +56,6 @@ class Form
             public:
                 const char* what() const throw();
         };
-       
 };
 
 std::ostream&   operator<<(std::ostream& o, const Form& i);

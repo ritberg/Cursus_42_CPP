@@ -20,11 +20,11 @@ Bureaucrat::Bureaucrat(void) : _name("a bureaucrat by default"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
+    std::cout << "⚪️ Str + int constructor for " << name << " with a grade = " << grade << " called" << std::endl;
     if (this->_grade >= 151)
         throw Bureaucrat::GradeTooLowException();
     if (this->_grade <= 0)
         throw Bureaucrat::GradeTooHighException();
-    std::cout << "⚪️ Str + int constructor for " << name << " with a grade = " << grade << " called" << std::endl;
     return;
 }
 
@@ -84,20 +84,22 @@ std::ostream&   operator<<(std::ostream& o, const Bureaucrat & i)
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("❗️ Error: the grade is too high");
+    return ("⚪️❗️ Error: the grade is too high");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("❗️ Error: the grade is too low");
+    return ("⚪️❗️ Error: the grade is too low");
 }
 
 /*   NEW FUNCTION IN EX 01 */
-void    Bureaucrat::signForm(Bureaucrat & b) //?
+void    Bureaucrat::signForm(Form & f)
 {
-    // if (this->_formIsSigned == true)
-        std::cout << b << " signed the form " << this->_name << std::endl;
-    // else if (this->_formIsSigned == false)
-        std::cout << b << " couldn't sign the form " << this->_name << "because..." << std::endl;
+    if (f.getBool() == true)
+        std::cout << "⚪️ " << this->_name << " signed the form " << f.getName() << " because "
+            << this->_grade << " is more important than " << f.getGradeSign() << std::endl;
+    else if (f.getBool() == false)
+        std::cout << "⚪️ " << this->_name << " couldn't sign the form " << f.getName() << " because he is tired "
+            << "and because " << this->_grade << " is less important than " << f.getGradeSign() << std::endl;
 
 }

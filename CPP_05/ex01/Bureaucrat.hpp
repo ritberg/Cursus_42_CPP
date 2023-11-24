@@ -16,7 +16,9 @@
 # include <string>
 # include <iostream>
 # include <stdexcept>
+# include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
     private:
@@ -49,7 +51,7 @@ class Bureaucrat
                 const char* what() const throw();
         };
 
-        void    signForm(Bureaucrat & b); //?
+        void    signForm(Form & f);
 };
 
 std::ostream&   operator<<(std::ostream& o, const Bureaucrat& i);

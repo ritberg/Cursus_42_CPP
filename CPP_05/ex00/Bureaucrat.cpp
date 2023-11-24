@@ -20,11 +20,11 @@ Bureaucrat::Bureaucrat(void) : _name("a bureaucrat by default"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
+    std::cout << "⚪️ Str + int constructor for " << name << " with a grade = " << grade << " called" << std::endl;
     if (this->_grade >= 151)
         throw Bureaucrat::GradeTooLowException();
     if (this->_grade <= 0)
         throw Bureaucrat::GradeTooHighException();
-    std::cout << "⚪️ Str + int constructor for " << name << " with a grade = " << grade << " called" << std::endl;
     return;
 }
 

@@ -15,37 +15,85 @@
 
 int main()
 {
-    std::cout << std::endl << "----------------- OK --------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- SMALLER THAN GRADE SIGN - SIGNED --------------------" << std::endl << std::endl;
+    
+    try
+    {
+        int grade = 2;
+        Bureaucrat b("Petya", grade);
+
+        int gradeSign = 5;
+        int gradeExec = 9;
+
+        Form f("pdf", gradeSign, gradeExec);
+        f.beSigned(b);
+        b.signForm(f);
+        std::cout << f << std::endl;
+    }
+    catch(const std::exception & e)
+    {
+        std::cerr << e.what() << std::endl;;
+    }
+
+    std::cout <<  std::endl << "----------------- BIGGER THAN GRADE SIGN - DIDN'T SIGN --------------------" << std::endl << std::endl;
+    
+    try
+    {
+        int grade = 88;
+        Bureaucrat b("Petya", grade);
+
+        int gradeSign = 5;
+        int gradeExec = 9;
+
+        Form f("pdf", gradeSign, gradeExec);
+        f.beSigned(b);
+        b.signForm(f);
+        std::cout << f << std::endl;
+    }
+    catch(const std::exception & e)
+    {
+        std::cerr << e.what() << std::endl;;
+    }
+
+    std::cout <<  std::endl << "----------------- TOO LOW - ERROR --------------------" << std::endl << std::endl;
+    
+    try
+    {
+        int grade = 160;
+        Bureaucrat b("Petya", grade);
+
+        int gradeSign = 5;
+        int gradeExec = 9;
+
+        Form f("pdf", gradeSign, gradeExec);
+        f.beSigned(b);
+        b.signForm(f);
+        std::cout << f << std::endl;
+    }
+    catch(const std::exception & e)
+    {
+        std::cerr << e.what() << std::endl;;
+    }
+
+    std::cout <<  std::endl << "----------------- TOO HEIGH - ERROR --------------------" << std::endl << std::endl;
 
     try
     {
-        int grade = 14;
-        Bureaucrat a("Petya", grade);
-        std::cout << a << std::endl;
-        a.decrementGrade();
-        std::cout << "after decrementGrade(): " << a << std::endl;
-        a.incrementGrade();
-        std::cout << "after incrementGrade(): " << a << std::endl;
+        int grade = -2;
+        Bureaucrat b("Petya", grade);
 
-        if (grade < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > 150)
-            throw Bureaucrat::GradeTooLowException();
+        int gradeSign = 5;
+        int gradeExec = 9;
+
+        Form f("pdf", gradeSign, gradeExec);
+        f.beSigned(b);
+        b.signForm(f);
+        std::cout << f << std::endl;
     }
-    catch(const Bureaucrat::GradeTooLowException & e)
+    catch(const std::exception & e)
     {
         std::cerr << e.what() << std::endl;;
     }
-    catch(const Bureaucrat::GradeTooHighException & e)
-    {
-        std::cerr << e.what() << std::endl;;
-    }
-    
-    Bureaucrat b("Petya", 11);
-
-    Form f("pdf", 4, 9);
-    f.beSigned(b);
-    std::cout << f << std::endl;
 
     return (0);
 }

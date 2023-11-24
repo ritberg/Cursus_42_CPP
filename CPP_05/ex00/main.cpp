@@ -14,7 +14,7 @@
 
 int main()
 {
-    std::cout <<  std::endl << "----------------- LOW AT THE CONSTR--------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- LOW AT THE CONSTRUCTION --------------------" << std::endl << std::endl;
     try
     {
         int grade = 151;
@@ -34,7 +34,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout << std::endl << "----------------- HEIGH AT THE CONSTR --------------------" << std::endl << std::endl;
+    std::cout << std::endl << "----------------- HEIGH AT THE CONSTRUCTION --------------------" << std::endl << std::endl;
 
     try
     {
@@ -46,11 +46,7 @@ int main()
         a.incrementGrade();
         std::cout << "after incrementGrade(): " << a << std::endl;
     }
-    catch(const Bureaucrat::GradeTooLowException & e)
-    {
-        std::cerr << e.what() << std::endl;;
-    }
-    catch(const Bureaucrat::GradeTooHighException & e)
+    catch(const std::exception & e)
     {
         std::cerr << e.what() << std::endl;;
     }
@@ -72,7 +68,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
   
-   std::cout << std::endl << "----------------- DECREM IMPOSSIBLE --------------------" << std::endl << std::endl;
+   std::cout << std::endl << "----------------- IMPOSSIBLE TO DECREMENT --------------------" << std::endl << std::endl;
 
    try
     {
@@ -92,7 +88,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout << std::endl << "----------------- INCREM IMPOSSIBLE --------------------" << std::endl << std::endl;
+    std::cout << std::endl << "----------------- IMPOSSIBLE TO INCREMENT --------------------" << std::endl << std::endl;
 
     Bureaucrat b("Dog1", 1);
     Bureaucrat d("Dog2", 1);
