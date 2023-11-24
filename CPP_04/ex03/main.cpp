@@ -25,6 +25,10 @@ int main()
 
     ICharacter* me = new Character("me");
 
+/*
+Even though AMateria is an abstract class, the `createMateria()` function
+is responsible for creating concrete instances of classes derived from AMateria (like Ice and Cure)
+*/
     AMateria* tmp;
     tmp = src->createMateria("ice");
     me->equip(tmp);
@@ -72,7 +76,7 @@ int main()
 	matSource->learnMateria(new Cure());
 	matSource->learnMateria(new Ice());
 
-	AMateria* materias[7];
+	AMateria* materias[6];
 
 	for (int i = 0; i < 3; ++i)
 		materias[i] = matSource->createMateria("ice");
@@ -91,6 +95,8 @@ int main()
 		cat->equip(materias[i]);
 	for (int i = 3; i < 6; i++)
 		dog->equip(materias[i]);
+    
+    // cat->equip(materias[9]); seg fault
 
 	cat->use(-1, *cat);
 	cat->use(4, *cat);

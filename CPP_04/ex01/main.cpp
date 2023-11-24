@@ -196,7 +196,7 @@ int main()
     Dog basic;
     { Dog tmp = basic; }
 
-    std::cout << std::endl << "[ 1 ] cat" << std::endl << std::endl;
+    std::cout << std::endl << "[ 2 ] cat" << std::endl << std::endl;
 
     Cat basic1;
     { Cat tmp1 = basic1; }
