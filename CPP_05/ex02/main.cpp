@@ -17,6 +17,19 @@
 
 int main()
 {
+    int grade = 2;
+    Bureaucrat b("Petya", grade);
+
+    int gradeSign = 5;
+    int gradeExec = 9;
+
+    ShrubberyCreationForm f("pdf", gradeSign, gradeExec);
+    f.beSigned(b);
+    b.signForm(f);
+    f.execute(b);
+    b.executeForm(f);
+    std::cout << f << std::endl;
+    
 
     return (0);
 }

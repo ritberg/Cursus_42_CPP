@@ -109,12 +109,12 @@ void    Bureaucrat::executeForm(AForm const & form)
 {
     try
     {
-        // AForm::ShrubberyCreationForm a;
-        // a.execute(a);
+        form.execute(*this);
+        std::cout << getName() << " executes " << form.getName() << " successfully." << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << getName() << " cannot execute " << form.getName() << ": " << e.what() << std::endl;
     }
     
 }

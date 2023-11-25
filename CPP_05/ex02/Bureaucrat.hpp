@@ -19,6 +19,8 @@
 # include "AForm.hpp"
 
 class AForm;
+class ShrubberyCreationForm;
+
 class Bureaucrat
 {
     private:

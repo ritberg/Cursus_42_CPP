@@ -2,18 +2,18 @@ BLUE			:= $(shell tput setaf 4)
 PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
-SRCS	= Bureaucrat.cpp\
+SRCS	= main.cpp\
+		  Bureaucrat.cpp\
 		  AForm.cpp\
 		  ShrubberyCreationForm.cpp\
-		  RobotomyRequestForm.cpp\
-		  PresidentialPardonForm.cpp\
-		  main.cpp\
+		#   RobotomyRequestForm.cpp\
+		#   PresidentialPardonForm.cpp\
 
 INCL	= Bureaucrat.hpp\
 		  AForm.hpp\
 		  ShrubberyCreationForm.hpp\
-		  RobotomyRequestForm.hpp\
-		  PresidentialPardonForm.hpp\
+		#   RobotomyRequestForm.hpp\
+		#   PresidentialPardonForm.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
