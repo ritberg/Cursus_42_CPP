@@ -16,21 +16,22 @@
 # include "AForm.hpp"
 
 # define RESET	"\e[0m"
-# define BLUE   "\033[34m"
+# define BLUE   "\033[96m"
 
 class PresidentialPardonForm : public AForm
 {
+    private:
+        std::string _target;
+
     public:
         PresidentialPardonForm(void);
-        PresidentialPardonForm(std::string name, int n, int nb);
+        PresidentialPardonForm(std::string target);
         PresidentialPardonForm(PresidentialPardonForm const & src);
         virtual ~PresidentialPardonForm(void);
 
         PresidentialPardonForm&  operator=(PresidentialPardonForm const & rhs);
-
-        // bool    beSigned(Bureaucrat & b); //?
+        
         void    execute(Bureaucrat const & executor) const;
-
 };
 
 std::ostream&   operator<<(std::ostream& o, const PresidentialPardonForm& i);

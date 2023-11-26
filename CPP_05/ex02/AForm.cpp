@@ -22,7 +22,7 @@ AForm::AForm(void) : _name("a form by default"), _formIsSigned(false), _gradeSig
 
 AForm::AForm(std::string name, int n, int nb) : _name(name),  _formIsSigned(false), _gradeSign(n), _gradeExec(nb)
 {
-    std::cout << VIOLET "🟣 Str constructor for " << name << " called with gradeSign = " << n
+    std::cout << VIOLET "🟣 Constructor for " << name << " called with gradeSign = " << n
         << " and gradeExec = " << nb << RESET << std::endl;
     return;
 }
@@ -87,13 +87,18 @@ const char* AForm::GradeTooLowException::what() const throw()
     return (VIOLET "🟣❗️ Error: the grade is too low" RESET);
 }
 
+const char* AForm::FormIsNotSigned::what() const throw()
+{
+    return (VIOLET "🟣❗️ Error: the form is not signed" RESET);
+}
+
 bool    AForm::beSigned(Bureaucrat & b)
 {
-    if (b.getGrade() <= this->_gradeSign)
+    if (b.getGrade() > this->_gradeSign)
     {
-        this->_formIsSigned = true;
-        return (this->_formIsSigned);
+        throw AForm::GradeTooLowException();
+        this->_formIsSigned = false;
     }
-    this->_formIsSigned = false;
+    this->_formIsSigned = true;
     return (this->_formIsSigned);
 }

@@ -95,11 +95,22 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 /*   NEW FUNCTION IN EX 01 */
 void    Bureaucrat::signForm(Form & f)
 {
-    if (f.getBool() == true)
-        std::cout << "⚪️ " << this->_name << " signed the form " << f.getName() << " because "
-            << this->_grade << " is more important than " << f.getGradeSign() << std::endl;
-    else if (f.getBool() == false)
-        std::cout << "⚪️ " << this->_name << " couldn't sign the form " << f.getName() << " because he is tired "
-            << "and because " << this->_grade << " is less important than " << f.getGradeSign() << std::endl;
+
+    try
+    {
+        f.beSigned(*this);
+        std::cout << "⚪️ " << this->getName() << " signs " << f.getName() << " successfully" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "⚪️ " << this->getName() << " cannot sign " << f.getName() << ": " << e.what() << std::endl;
+    }
+
+    // if (f.getBool() == true)
+    //     std::cout << "⚪️ " << this->_name << " signed the form " << f.getName() << " because "
+    //         << this->_grade << " is more important than " << f.getGradeSign() << std::endl;
+    // else if (f.getBool() == false)
+    //     std::cout << "⚪️ " << this->_name << " couldn't sign the form " << f.getName() << " because he is tired "
+    //         << "and because " << this->_grade << " is less important than " << f.getGradeSign() << std::endl;
 
 }

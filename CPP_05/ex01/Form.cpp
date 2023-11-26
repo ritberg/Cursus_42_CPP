@@ -22,7 +22,7 @@ Form::Form(void) : _name("a form by default"), _formIsSigned(false), _gradeSign(
 
 Form::Form(std::string name, int n, int nb) : _name(name),  _formIsSigned(false), _gradeSign(n), _gradeExec(nb)
 {
-    std::cout << VIOLET "🟣 Str constructor for " << name << " called with gradeSign = " << n
+    std::cout << VIOLET "🟣 Constructor for " << name << " called with gradeSign = " << n
         << " and gradeExec = " << nb << RESET << std::endl;
     return;
 }

@@ -6,14 +6,14 @@ SRCS	= main.cpp\
 		  Bureaucrat.cpp\
 		  AForm.cpp\
 		  ShrubberyCreationForm.cpp\
-		#   RobotomyRequestForm.cpp\
-		#   PresidentialPardonForm.cpp\
+		  RobotomyRequestForm.cpp\
+		  PresidentialPardonForm.cpp\
 
 INCL	= Bureaucrat.hpp\
 		  AForm.hpp\
 		  ShrubberyCreationForm.hpp\
-		#   RobotomyRequestForm.hpp\
-		#   PresidentialPardonForm.hpp\
+		  RobotomyRequestForm.hpp\
+		  PresidentialPardonForm.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
@@ -37,6 +37,7 @@ all:		${NAME}
 
 clean:
 			@${RM} ${OBJS}
+			@rm -f *_shrubbery
 			@echo "${BLUE} Clean object files done ${RESET}"
 
 fclean:		clean

@@ -14,27 +14,56 @@
 
 PresidentialPardonForm::PresidentialPardonForm(void) : AForm()
 {
-    std::cout << BLUE "🔵 Default constructor called for " << this->getName() << " with gradeSign = "
-        << this->getGradeSign() << " and gradeExec = " << this->getGradeExec() << RESET << std::endl;
+    std::cout <<BLUE "🔵 Default constructor for Pardon called" RESET << std::endl;
+    this->_target = "default";
     return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name, int n, int nb) : AForm(name, n, nb)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pardon", 25, 5)
 {
-    std::cout << BLUE "🔵 Str constructor for " << name << " called with gradeSign = " << n
-        << " and gradeExec = " << nb << RESET << std::endl;
+    std::cout << BLUE "🔵 Constructor for Pardon called with the following target = "
+                    << target << RESET << std::endl;
+    this->_target = target;
     return;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & src) : AForm(src)
 {
-    std::cout << BLUE "🔵 Copy constructor called" RESET << std::endl;
+    std::cout << BLUE "🔵 Copy constructor for Pardon called" RESET << std::endl;
     *this = src;
     return;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-    std::cout << BLUE "🔵 Destructor called" RESET << std::endl;
+    std::cout << BLUE "🔵 Destructor for Pardon called" RESET << std::endl;
+    return;
+}
+
+PresidentialPardonForm&  PresidentialPardonForm::operator=(PresidentialPardonForm const & rhs)
+{
+    std::cout << BLUE "🔵 Copy assignment operator called" RESET << std::endl;
+    if (this != &rhs)
+    {
+        this->_target = rhs._target;
+    }
+    return (*this);
+}
+
+std::ostream&   operator<<(std::ostream& o, const PresidentialPardonForm & i)
+{
+    o << BLUE "🔵 " << i.getName() << " is a form with a gradeSign = " << i.getGradeSign()
+        << " and a gradeExec = " << i.getGradeExec() << RESET;
+    return (o);
+}
+
+void    PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+    if (this->getBool() == false)
+        throw AForm::FormIsNotSigned();
+    if (executor.getGrade() > 5)
+        throw AForm::GradeTooLowException();
+    std::cout << BLUE "🔵 "  << this->_target << " has been pardoned by Zaphod Beeblebrox" RESET << std::endl;
+   
     return;
 }

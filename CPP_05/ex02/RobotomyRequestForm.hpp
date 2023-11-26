@@ -14,23 +14,26 @@
 # define ROBOTOMYREQUESTFORM_H
 
 # include "AForm.hpp"
+# include <cstdlib>
+# include <ctime>
 
 # define RESET	"\e[0m"
 # define GREEN "\033[32m"
 
 class RobotomyRequestForm : public AForm
 {
+    private:
+        std::string _target;
+
     public:
         RobotomyRequestForm(void);
-        RobotomyRequestForm(std::string name, int n, int nb);
+        RobotomyRequestForm(std::string target);
         RobotomyRequestForm(RobotomyRequestForm const & src);
         virtual ~RobotomyRequestForm(void);
 
         RobotomyRequestForm&  operator=(RobotomyRequestForm const & rhs);
 
-        // bool    beSigned(Bureaucrat & b); //?
         void    execute(Bureaucrat const & executor) const;
-
 };
 
 std::ostream&   operator<<(std::ostream& o, const RobotomyRequestForm& i);

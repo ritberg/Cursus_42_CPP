@@ -95,13 +95,15 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 /*   NEW FUNCTION IN EX 01 */
 void    Bureaucrat::signForm(AForm & f)
 {
-    if (f.getBool() == true)
-        std::cout << "⚪️ " << this->_name << " signed the form " << f.getName() << " because "
-            << this->_grade << " is more important than " << f.getGradeSign() << std::endl;
-    else if (f.getBool() == false)
-        std::cout << "⚪️ " << this->_name << " couldn't sign the form " << f.getName() << " because he is tired "
-            << "and because " << this->_grade << " is less important than " << f.getGradeSign() << std::endl;
-
+    try
+    {
+        f.beSigned(*this);
+        std::cout << "⚪️ " << this->getName() << " signs " << f.getName() << " successfully" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "⚪️ " << this->getName() << " cannot sign " << f.getName() << ": " << e.what() << std::endl;
+    }
 }
 
 /*   NEW FUNCTION IN EX 02 */
@@ -110,11 +112,11 @@ void    Bureaucrat::executeForm(AForm const & form)
     try
     {
         form.execute(*this);
-        std::cout << getName() << " executes " << form.getName() << " successfully." << std::endl;
+        std::cout << "⚪️ " << this->getName() << " executes " << form.getName() << " successfully." << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << getName() << " cannot execute " << form.getName() << ": " << e.what() << std::endl;
+        std::cerr << "⚪️ " << this->getName() << " cannot execute " << form.getName() << ": " << e.what() << std::endl;
     }
     
 }
