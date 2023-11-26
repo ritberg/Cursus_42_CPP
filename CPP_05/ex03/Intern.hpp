@@ -18,6 +18,9 @@
 # include "RobotomyRequestForm.hpp"
 # include "PresidentialPardonForm.hpp"
 
+# define RESET	"\e[0m"
+# define RED "\033[91m"
+
 class Intern
 {
     public:
@@ -27,10 +30,15 @@ class Intern
 
         Intern&  operator=(Intern const & rhs);
 
-        AForm*   makeForm(std::string formName, std::string target);
+        AForm*   makeForm(const std::string& formName, const std::string& target) const;
+
+        /* An other way to do it */
+        // class ErrorMessage : public std::exception
+        // {
+        //     public:
+        //         const char* what() const throw();
+        // };
 
 };
-
-std::ostream&   operator<<(std::ostream& o, const Intern& i);
 
 #endif

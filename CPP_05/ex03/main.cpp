@@ -91,8 +91,50 @@ int main()
 
     
     Intern someRandomIntern;
-    Form* rrf;
+    AForm* rrf;
     rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+
+    delete rrf;
+
+    std::cout << std::endl << "-------------------OK------------------" << std::endl << std::endl;
+
+    Intern	intern = Intern();
+	Bureaucrat b("Petya", 1);
+	AForm*	f;
+	try
+	{
+		f = intern.makeForm("presidential request", "Vasya");
+        if (f != NULL)
+		{
+            b.signForm(*f);
+		    b.executeForm(*f);
+		    delete f;
+        }
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+    std::cout << std::endl << "-------------------NOT OK------------------" << std::endl << std::endl;
+
+    Intern	intern1 = Intern();
+	Bureaucrat b1("Petya", 1);
+	AForm*	f1;
+	try
+	{
+		f1 = intern1.makeForm("unknown request", "Vasya");
+        if (f1 != NULL)
+        {
+            b1.signForm(*f1);
+            b1.executeForm(*f1);
+            delete f1;
+        }
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
     return (0);
 }
