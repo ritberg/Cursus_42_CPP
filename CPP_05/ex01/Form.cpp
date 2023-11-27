@@ -89,11 +89,23 @@ const char* Form::GradeTooLowException::what() const throw()
 
 bool    Form::beSigned(Bureaucrat & b)
 {
-    if (b.getGrade() <= this->_gradeSign)
+    if (b.getGrade() > this->_gradeSign)
     {
-        this->_formIsSigned = true;
-        return (this->_formIsSigned);
+        this->_formIsSigned = false;
+        throw Form::GradeTooLowException();
     }
-    this->_formIsSigned = false;
+    this->_formIsSigned = true;
     return (this->_formIsSigned);
 }
+
+/* old */
+// bool    Form::beSigned(Bureaucrat & b)
+// {
+//     if (b.getGrade() <= this->_gradeSign)
+//     {
+//         this->_formIsSigned = true;
+//         return (this->_formIsSigned);
+//     }
+//     this->_formIsSigned = false;
+//     return (this->_formIsSigned);
+// }

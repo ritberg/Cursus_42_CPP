@@ -118,5 +118,4 @@ void    Bureaucrat::executeForm(AForm const & form)
     {
         std::cerr << "⚪️ " << this->getName() << " cannot execute " << form.getName() << ": " << e.what() << std::endl;
     }
-    
 }

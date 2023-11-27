@@ -34,7 +34,7 @@ class Form
         Form(void);
         Form(std::string name, int n, int nb);
         Form(Form const & src);
-        virtual ~Form(void);
+        ~Form(void);
 
         Form&  operator=(Form const & rhs);
 
@@ -50,7 +50,7 @@ class Form
             public:
                 const char* what() const throw();
         };
-
+        
         class GradeTooLowException : public std::exception
         {
             public:

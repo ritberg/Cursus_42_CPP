@@ -16,87 +16,18 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
-void runBureaucratWithGrade(int grade)
-{
-    try
-    {
-        Bureaucrat b("Petya", grade);
-
-        ShrubberyCreationForm shr("home");
-        RobotomyRequestForm rob("smth");
-        PresidentialPardonForm pre("hi");
-
-        std::cout <<  std::endl << YELLOW "-----Bureaucrat and shr form----" RESET << std::endl << std::endl;
-
-        b.signForm(shr);
-        b.executeForm(shr);
-
-        std::cout <<  std::endl << GREEN "-----Bureaucrat and rob form----" RESET << std::endl << std::endl;
-
-        b.signForm(rob);
-        b.executeForm(rob);
-
-        std::cout <<  std::endl << BLUE "-----Bureaucrat and pre form----" RESET << std::endl << std::endl;
-
-        b.signForm(pre);
-        b.executeForm(pre);
-
-        std::cout <<  std::endl << "---------" << std::endl << std::endl;
-
-    }
-    catch(const std::exception & e)
-    {
-        std::cerr << e.what() << std::endl;;
-    }
-}
 
 int main()
 {
-    // std::cout <<  std::endl << "**************************************" << std::endl;
-    // std::cout << "************ GRADE = 149 *************" << std::endl;
-    // std::cout << "**************************************" << std::endl << std::endl;
+    std::cout << std::endl << GREEN "-------------------Subject test - robotomy request------------------" RESET << std::endl << std::endl;
 
-    // runBureaucratWithGrade(149); // nothing is signed nor executed
-
-    // std::cout <<  std::endl << "**************************************" << std::endl;
-    // std::cout << "************ GRADE = 100 *************" << std::endl;
-    // std::cout << "**************************************" << std::endl << std::endl;
-
-    // runBureaucratWithGrade(100); // only SchrubberyCreation is signed and executed
-
-    // std::cout <<  std::endl << "*************************************" << std::endl;
-    // std::cout << "************ GRADE = 71 *************" << std::endl;
-    // std::cout << "*************************************" << std::endl << std::endl;
-
-    // runBureaucratWithGrade(71); // SchrubberyCreation is signed and executed; Robotomy is signed. That's it
-
-    // std::cout <<  std::endl << "************************************" << std::endl;
-    // std::cout << "************ GRADE = 6 *************" << std::endl;
-    // std::cout << "************************************" << std::endl << std::endl;
-
-    // runBureaucratWithGrade(6); // all ok but PresidentialPardon not executed
-
-    // std::cout <<  std::endl << "************************************" << std::endl;
-    // std::cout << "************ GRADE = 1 *************" << std::endl;
-    // std::cout << "************************************" << std::endl << std::endl;
-
-    // runBureaucratWithGrade(1); // all ok
-    
-    // std::cout <<  std::endl << "**************************************" << std::endl;
-    // std::cout << "************ GRADE = 156 *************" << std::endl;
-    // std::cout << "**************************************" << std::endl << std::endl;
-
-    // runBureaucratWithGrade(156); // error from the beginning in Bureaucrat
-
-
-    
     Intern someRandomIntern;
     AForm* rrf;
     rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 
     delete rrf;
 
-    std::cout << std::endl << "-------------------OK------------------" << std::endl << std::endl;
+    std::cout << std::endl << BLUE "-------------------Presidential request - OK------------------" RESET << std::endl << std::endl;
 
     Intern	intern = Intern();
 	Bureaucrat b("Petya", 1);
@@ -116,25 +47,47 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 
-    std::cout << std::endl << "-------------------NOT OK------------------" << std::endl << std::endl;
+    std::cout << std::endl << YELLOW "-------------------Shrubberry request - OK------------------" RESET << std::endl << std::endl;
 
     Intern	intern1 = Intern();
-	Bureaucrat b1("Petya", 1);
+	Bureaucrat b1("Ivan", 1);
 	AForm*	f1;
 	try
 	{
-		f1 = intern1.makeForm("unknown request", "Vasya");
+		f1 = intern1.makeForm("shrubberry request", "Oleg");
         if (f1 != NULL)
-        {
-            b1.signForm(*f1);
-            b1.executeForm(*f1);
-            delete f1;
+		{
+            b1.signForm(*f);
+		    b1.executeForm(*f);
+		    delete f1;
         }
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+    std::cout << std::endl << "-------------------Unknown request - NOT OK------------------" << std::endl << std::endl;
+
+    Intern	intern2 = Intern();
+	Bureaucrat b2("Anne", 1);
+	AForm*	f2;
+	try
+	{
+		f2 = intern2.makeForm("unknown request", "Intern inconnu");
+        if (f2 != NULL)
+        {
+            b2.signForm(*f2);
+            b2.executeForm(*f2);
+            delete f2;
+        }
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+    
+    std::cout <<std::endl << "-------" << std::endl << std::endl;
 
     return (0);
 }

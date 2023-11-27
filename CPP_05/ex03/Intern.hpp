@@ -26,13 +26,13 @@ class Intern
     public:
         Intern(void);
         Intern(Intern const & src);
-        virtual ~Intern(void);
+        ~Intern(void);
 
         Intern&  operator=(Intern const & rhs);
 
         AForm*   makeForm(const std::string& formName, const std::string& target) const;
 
-        /* An other way to do it */
+        // /* An other way to do it */
         // class ErrorMessage : public std::exception
         // {
         //     public:

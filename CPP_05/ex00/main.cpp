@@ -72,18 +72,14 @@ int main()
 
    try
     {
-        Bureaucrat a;
+        Bureaucrat a; //by default grade = 150
         std::cout << a << std::endl;
         a.decrementGrade();
         std::cout << "after decrementGrade(): " << a << std::endl;
         a.incrementGrade();
         std::cout << "after incrementGrade(): " << a << std::endl;
     }
-    catch(const Bureaucrat::GradeTooLowException & e)
-    {
-        std::cerr << e.what() << std::endl;;
-    }
-    catch(const Bureaucrat::GradeTooHighException & e)
+    catch(const std::exception & e)
     {
         std::cerr << e.what() << std::endl;;
     }
@@ -96,7 +92,7 @@ int main()
     try
     {
         std::cout << "b is: " << b << std::endl;
-        b.incrementGrade();
+        b.incrementGrade(); // stops here because grade cannot be 0
         std::cout << "b after incrementGrade(): " << b << std::endl;
         std::cout << "d is: " << d << std::endl;
         d.decrementGrade();
@@ -110,12 +106,17 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-
     std::cout << std::endl << "----------------- = OPERATOR --------------------" << std::endl << std::endl;
 
     Bureaucrat c("Cat", 120);
     Bureaucrat u;
     c = u;
+
+    std::cout << std::endl << "----------------- << OPERATOR --------------------" << std::endl << std::endl;
+
+    std::cout << c << std::endl;
+
+    std::cout << std::endl << "----------------" << std::endl << std::endl;
 
     return (0);
 }

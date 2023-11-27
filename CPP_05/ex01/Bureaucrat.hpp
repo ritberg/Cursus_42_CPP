@@ -29,7 +29,7 @@ class Bureaucrat
         Bureaucrat(void);
         Bureaucrat(std::string name, int garde);
         Bureaucrat(Bureaucrat const & src);
-        virtual ~Bureaucrat(void);
+        ~Bureaucrat(void);
 
         Bureaucrat&  operator=(Bureaucrat const & rhs);
 

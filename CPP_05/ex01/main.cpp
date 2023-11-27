@@ -26,7 +26,7 @@ int main()
         int gradeExec = 9;
 
         Form f("pdf", gradeSign, gradeExec);
-        f.beSigned(b);
+        // f.beSigned(b);
         b.signForm(f);
         std::cout << f << std::endl;
     }
@@ -46,7 +46,6 @@ int main()
         int gradeExec = 9;
 
         Form f("pdf", gradeSign, gradeExec);
-        f.beSigned(b);
         b.signForm(f);
         std::cout << f << std::endl;
     }
@@ -55,7 +54,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout <<  std::endl << "----------------- TOO LOW - ERROR --------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- TOO LOW AT THE CONSTRUCTION - ERROR --------------------" << std::endl << std::endl;
     
     try
     {
@@ -66,7 +65,6 @@ int main()
         int gradeExec = 9;
 
         Form f("pdf", gradeSign, gradeExec);
-        f.beSigned(b);
         b.signForm(f);
         std::cout << f << std::endl;
     }
@@ -75,7 +73,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout <<  std::endl << "----------------- TOO HEIGH - ERROR --------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- TOO HEIGH AT THE CONSTRUCTION - ERROR --------------------" << std::endl << std::endl;
 
     try
     {
@@ -86,7 +84,6 @@ int main()
         int gradeExec = 9;
 
         Form f("pdf", gradeSign, gradeExec);
-        f.beSigned(b);
         b.signForm(f);
         std::cout << f << std::endl;
     }

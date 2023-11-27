@@ -29,7 +29,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm(void);
         RobotomyRequestForm(std::string target);
         RobotomyRequestForm(RobotomyRequestForm const & src);
-        virtual ~RobotomyRequestForm(void);
+        ~RobotomyRequestForm(void);
 
         RobotomyRequestForm&  operator=(RobotomyRequestForm const & rhs);
 
