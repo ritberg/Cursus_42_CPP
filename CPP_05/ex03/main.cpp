@@ -16,7 +16,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
-
 int main()
 {
     std::cout << std::endl << GREEN "-------------------Subject test - robotomy request------------------" RESET << std::endl << std::endl;

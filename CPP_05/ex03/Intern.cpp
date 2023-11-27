@@ -38,46 +38,46 @@ Intern&  Intern::operator=(Intern const & rhs)
     return (*this);
 }
 
+const char* Intern::ErrorMessage::what() const throw()
+{
+    return (RED "🔴 Intern doesn't know this form" RESET);
+}
+
 AForm*   Intern::makeForm(const std::string& formName, const std::string& target) const
 {
-     std::cout << RED "🔴 Intern creates " << formName << RESET << std::endl;
+    std::cout << RED "🔴 Intern creates " << formName << RESET << std::endl;
 
-    return 
-        (formName == "shrubberry request") ? new ShrubberyCreationForm(target) :
-        (formName == "robotomy request") ? new RobotomyRequestForm(target) :
-        (formName == "presidential request") ? new PresidentialPardonForm(target) :
-        (std::cout << RED "🔴 Intern doesn't know this form" RESET << std::endl, (AForm*)NULL);
+    AForm *form = NULL;
+    std::string arr[3] = {"presidential request","robotomy request","shrubberry request"};
+    int i = -1;
+    while (arr[++i] != formName){}
+    switch (i)
+    {
+        case 0:
+            form = new PresidentialPardonForm(target);
+            break;
+        case 1:
+            form = new RobotomyRequestForm(target);
+            break;
+        case 2:
+            form = new ShrubberyCreationForm(target);
+            break;
+        default:
+            throw ErrorMessage();
+            break;
+    }
+    return (form);
 }
 
 /* AN OTHER WAY TO DO IT */
 
-// const char* Intern::ErrorMessage::what() const throw()
-// {
-//     return "Error";
-// }
-
 // AForm*   Intern::makeForm(const std::string& formName, const std::string& target) const
 // {
+//      std::cout << RED "🔴 Intern creates " << formName << RESET << std::endl;
 
-//     AForm *form = NULL;
-//     std::string arr[3] = {"presidential request","robotomy request","shrubberry request"};
-//     int i = -1;
-//     while (arr[++i] != formName){}
-//     switch (i)
-//     {
-//         case 0:
-//             form = new PresidentialPardonForm(target);
-//             break;
-//         case 1:
-//             form = new RobotomyRequestForm(target);
-//             break;
-//         case 2:
-//             form = new ShrubberyCreationForm(target);
-//             break;
-//         default:
-//             throw ErrorMessage();
-//             break;
-//     }
-//     return (form);
+//     return 
+//         (formName == "shrubberry request") ? new ShrubberyCreationForm(target) :
+//         (formName == "robotomy request") ? new RobotomyRequestForm(target) :
+//         (formName == "presidential request") ? new PresidentialPardonForm(target) :
+//         (std::cout << RED "🔴 Intern doesn't know this form" RESET << std::endl, (AForm*)NULL);
 // }
-

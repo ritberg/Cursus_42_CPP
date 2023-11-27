@@ -31,13 +31,12 @@ class Intern
         Intern&  operator=(Intern const & rhs);
 
         AForm*   makeForm(const std::string& formName, const std::string& target) const;
-
-        // /* An other way to do it */
-        // class ErrorMessage : public std::exception
-        // {
-        //     public:
-        //         const char* what() const throw();
-        // };
+        
+        class ErrorMessage : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
 
 };
 
