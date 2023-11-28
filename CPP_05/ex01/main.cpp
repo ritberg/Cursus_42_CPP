@@ -73,7 +73,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout <<  std::endl << "----------------- TOO HEIGH AT THE CONSTRUCTION - ERROR --------------------" << std::endl << std::endl;
+    std::cout <<  std::endl << "----------------- TOO HIGH AT THE CONSTRUCTION - ERROR --------------------" << std::endl << std::endl;
 
     try
     {

@@ -34,7 +34,7 @@ int main()
         std::cerr << e.what() << std::endl;;
     }
 
-    std::cout << std::endl << "----------------- HEIGH AT THE CONSTRUCTION --------------------" << std::endl << std::endl;
+    std::cout << std::endl << "----------------- HIGH AT THE CONSTRUCTION --------------------" << std::endl << std::endl;
 
     try
     {
