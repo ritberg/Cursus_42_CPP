@@ -2,10 +2,10 @@ BLUE			:= $(shell tput setaf 4)
 PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
-SRCS	= test.cpp\
-		main.cpp\
+SRCS	= main.cpp\
+		ScalarConverter.cpp\
 
-# INCL	= ScalarConverter.hpp\
+INCL	= ScalarConverter.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 // #include "ScalarConverter.hpp"
-#include "test.cpp"
+#include "ScalarConverter.hpp"
 
 int main(int argc, char** argv)
 {

@@ -31,6 +31,18 @@ class ScalarConverter
         ScalarConverter&  operator=(ScalarConverter const & rhs);
         static void convert(const std::string & literal);
 
+        static void    outputInt(int i);
+        static void    outputChar(char c);
+        static void    outputFloat(float f);
+        static void    outputDouble(double d);
+
+        class InvalidInput : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
 };
+
 
 #endif
