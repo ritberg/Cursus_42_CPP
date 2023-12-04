@@ -42,6 +42,7 @@ class ScalarConverter
 				virtual const char *what() const throw();
 		};
 
+
 };
 
 
