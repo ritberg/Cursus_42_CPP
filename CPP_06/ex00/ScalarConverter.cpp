@@ -100,28 +100,27 @@ void    ScalarConverter::outputFloat(float f)
     std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
 }
 
-void    outputStr(const std::string &literal)
-{
-    std::cout << "Char conversion" << std::endl << std::endl;
-    
+void outputStr(const std::string &literal)
+{    
+    std::cout << "Weird str conversion" << std::endl << std::endl;
+
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
     std::cout << "float: " << literal << "f" << std::endl;
     std::cout << "double: " << literal << std::endl;
+
 }
 
 /*           IS SMTH           */
 
 bool    isInt(const std::string & literal)
 {
-    std::size_t found = literal.find(".");
-    if (found == std::string::npos)
+    for (int i = 0; i < literal.size(); i++)
     {
-        std::size_t found2 = literal.find("f");
-        if (found2 == std::string::npos)
-            return (true);
+        if (!std::isdigit(literal[i]))
+            return (false); 
     }
-    return (false);
+    return (true);
 }
 
 bool    isDouble(const std::string & literal)
@@ -130,47 +129,59 @@ bool    isDouble(const std::string & literal)
     if (found != std::string::npos)
     {
         std::size_t found2 = literal.find("f");
-        if (found2 != std::string::npos)
-            return (false);
+        if (found2 == std::string::npos)
+            return (true);
     }
-    return (true);
+    return (false);
 }
 
 bool    isFloat(const std::string & literal)
 {
     std::size_t found = literal.find("f");
+    if (found != std::string::npos && found != literal.size() - 1)
+        throw ScalarConverter::InvalidInput();
     if (found != std::string::npos)
     {
+        int count = 0;
+        for (int i = 0;  i < literal.size(); i++)
+        {
+            if (literal[i] == '.')
+                count++;
+        }
         std::size_t found2 = literal.find(".");
-        if (found2 != std::string::npos)
+        if (found2 != std::string::npos && count == 1)
            return (true);
     }
     return (false);
+}
+
+bool	isWeirdStr(const std::string &literal)
+{
+	return (literal == "nan" || literal == "nanf"
+			|| literal == "-inff" || literal =="+inff"
+			||  literal == "-inf" || literal == "+inf");
 }
 
 /*           CONVERT METHOD           */
 
 void    ScalarConverter::convert(const std::string & literal)
 {
-    if (literal.empty())
-        throw ScalarConverter::InvalidInput();
-    else if (literal.size() == 1)
+    try
     {
-        if (std::isdigit(literal[0]))
+        if (literal.empty())
+            throw ScalarConverter::InvalidInput();
+        else if (literal.size() == 1)
         {
-            int i = std::atoi(literal.c_str());
-            outputInt(i);
+            if (std::isdigit(literal[0]))
+            {
+                int i = std::atoi(literal.c_str());
+                outputInt(i);
+            }
+            else
+                outputChar(literal[0]);
         }
-        else
-            outputChar(literal[0]);
-    }
-    else
-    {
-        if (isInt(literal))
-        {
-            int i = std::atoi(literal.c_str());
-            outputInt(i);
-        }
+        else if (isWeirdStr(literal))
+            outputStr(literal);
         else if (isFloat(literal))
         {
             float f = std::atof(literal.c_str());
@@ -183,9 +194,21 @@ void    ScalarConverter::convert(const std::string & literal)
             if (*end == 0)
                 outputDouble(d);
         }
+        else if (isInt(literal))
+        {
+            int i = std::atoi(literal.c_str());
+            outputInt(i);
+        }
         else
-            outputStr(literal);
-
+            throw ScalarConverter::InvalidInput();
+    }
+    catch (const std::out_of_range& e)
+    {
+        std::cerr << "Conversion error: Out of range" << std::endl;
+    }
+    catch (const ScalarConverter::InvalidInput& e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 
 }
@@ -194,7 +217,6 @@ const char *ScalarConverter::InvalidInput::what() const throw()
 {
     return ("Invalid input");
 }
-
 
 
 

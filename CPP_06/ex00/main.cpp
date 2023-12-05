@@ -15,6 +15,17 @@
 
 int main(int argc, char** argv)
 {
+    // try
+    // {
+    //     if (argc != 2)
+    //         throw ScalarConverter::InvalidInput();
+    //     ScalarConverter::convert(argv[1]);
+    // }
+    // catch (std::exception& e)
+    // {
+    //     std::cerr << e.what() << std::endl;
+    // }
+    
     if (argc != 2)
     {
         std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
@@ -22,6 +33,7 @@ int main(int argc, char** argv)
     }
 
     ScalarConverter::convert(argv[1]);
+    
 
     return (0);
 }
