@@ -32,7 +32,7 @@ ScalarConverter&  ScalarConverter::operator=(ScalarConverter const & rhs)
 
 /*           OUTPUT            */
 
-void    ScalarConverter::outputChar(char c)
+void    outputChar(char c)
 {
     std::cout << "Char conversion" << std::endl << std::endl;
 
@@ -49,12 +49,9 @@ void    ScalarConverter::outputChar(char c)
     std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
 }
 
-void    ScalarConverter::outputInt(int i)
+void    outputInt(int i)
 {
     std::cout << "Int conversion" << std::endl << std::endl;
-
-    if (i < MIN_INT || i > MAX_INT)
-        throw std::out_of_range("Out of range");
 
     char c = static_cast<char>(i);
     float f = static_cast<float>(i);
@@ -64,17 +61,23 @@ void    ScalarConverter::outputInt(int i)
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    if (i >= INT_MIN && i <= INT_MAX) 
+        std::cout << "int: " << i << std::endl;
+    else
+        throw std::out_of_range("Int out of range");
+    if (f >= FLT_MIN && f <= FLT_MAX)
+        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    else
+        throw std::out_of_range("Float out of range");
+    if (d >= DBL_MIN && d <= DBL_MAX)
+        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    else
+        throw std::out_of_range("Double out of range");
 }
 
-void    ScalarConverter::outputDouble(double d)
+void    outputDouble(double d)
 {
     std::cout << "Double conversion" << std::endl << std::endl;
-
-    if (d < MIN_DOUBLE || d > MAX_DOUBLE)
-        throw std::out_of_range("Out of range");
 
     char c = static_cast<char>(d);
     int i = static_cast<int>(d);
@@ -84,17 +87,23 @@ void    ScalarConverter::outputDouble(double d)
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    if (i >= INT_MIN && i <= INT_MAX) 
+        std::cout << "int: " << i << std::endl;
+    else
+        throw std::out_of_range("Int out of range");
+    if (f >= FLT_MIN && f <= FLT_MAX)
+        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    else
+        throw std::out_of_range("Float out of range");
+    if (d >= DBL_MIN && d <= DBL_MAX)
+        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    else
+        throw std::out_of_range("Double out of range");
 }
 
-void    ScalarConverter::outputFloat(float f)
+void    outputFloat(float f)
 {
     std::cout << "Float conversion" << std::endl << std::endl;
-
-    if (f < MIN_FLOAT || f > MAX_FLOAT)
-        throw std::out_of_range("Out of range");
 
     char c = static_cast<char>(f);
     int i = static_cast<int>(f);
@@ -104,9 +113,18 @@ void    ScalarConverter::outputFloat(float f)
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    if (i >= INT_MIN && i <= INT_MAX) 
+        std::cout << "int: " << i << std::endl;
+    else
+        throw std::out_of_range("Int out of range");
+    if (f >= FLT_MIN && f <= FLT_MAX)
+        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    else
+        throw std::out_of_range("Float out of range");
+    if (d >= DBL_MIN && d <= DBL_MAX)
+        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
+    else
+        throw std::out_of_range("Double out of range");
 }
 
 void outputStr(const std::string &literal)
@@ -125,7 +143,7 @@ bool    isInt(const std::string & literal)
 {
     for (int i = 0; i < literal.size(); i++)
     {
-        if (!std::isdigit(literal[i]))
+        if (!std::isdigit(literal[i]) && literal[i] != '-')
             return (false); 
     }
     return (true);

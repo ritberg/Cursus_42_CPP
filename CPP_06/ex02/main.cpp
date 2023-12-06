@@ -10,29 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Base.hpp"
 
-int main(int argc, char** argv)
-{
-    // try
-    // {
-    //     if (argc != 2)
-    //         throw ScalarConverter::InvalidInput();
-    //     ScalarConverter::convert(argv[1]);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
+int main()
+{   
+    Base *base;
     
-    if (argc != 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
-        return (1);
-    }
+    base = generate();
+    identify(base);
+    identify(*base);
 
-    ScalarConverter::convert(argv[1]);
-    
+    delete base;
+
 
     return (0);
 }

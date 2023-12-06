@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main(int argc, char** argv)
+Serializer::Serializer(void) 
 {
-    // try
-    // {
-    //     if (argc != 2)
-    //         throw ScalarConverter::InvalidInput();
-    //     ScalarConverter::convert(argv[1]);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
-    
-    if (argc != 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
-        return (1);
-    }
+}
 
-    ScalarConverter::convert(argv[1]);
-    
+Serializer::Serializer(Serializer const & src)
+{
+}
 
-    return (0);
+Serializer::~Serializer(void)
+{
+}
+
+Serializer&  Serializer::operator=(Serializer const & rhs)
+{
+    (void)rhs;
+    return (*this);
+}
+
+std::ostream &	operator<<(std::ostream &out, const Data & obj)
+{
+    out << "Original data (unsigned int): " << obj.value << std::endl;
+    return (out);
+}
+
+/*           STATIC METHODS            */
+
+uintptr_t Serializer::serialize(Data* ptr)
+{
+    return reinterpret_cast<uintptr_t>(ptr);
+}
+
+Data* Serializer::deserialize(uintptr_t raw)
+{
+    return reinterpret_cast<Data*>(raw);
 }

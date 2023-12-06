@@ -19,13 +19,7 @@
 # include <string>
 # include <cstdlib>
 # include <sstream>
-
-# define MAX_INT std::numeric_limits<int>::max()
-# define MIN_INT std::numeric_limits<int>::min()
-# define MAX_FLOAT std::numeric_limits<float>::max()
-# define MIN_FLOAT std::numeric_limits<float>::min()
-# define MAX_DOUBLE std::numeric_limits<double>::max()
-# define MIN_DOUBLE std::numeric_limits<double>::min()
+# include <cfloat>
 
 
 class ScalarConverter
@@ -38,11 +32,6 @@ class ScalarConverter
     public:
         ScalarConverter&  operator=(ScalarConverter const & rhs);
         static void convert(const std::string & literal);
-
-        static void    outputInt(int i);
-        static void    outputChar(char c);
-        static void    outputFloat(float f);
-        static void    outputDouble(double d);
 
         class InvalidInput : public std::exception
 		{

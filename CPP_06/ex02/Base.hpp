@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef BASE_H
+# define BASE_H
 
-int main(int argc, char** argv)
+# include <iostream>
+# include <ctime>
+
+class Base
 {
-    // try
-    // {
-    //     if (argc != 2)
-    //         throw ScalarConverter::InvalidInput();
-    //     ScalarConverter::convert(argv[1]);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
-    
-    if (argc != 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
-        return (1);
-    }
+    public:
+        virtual ~Base(void);
+};
 
-    ScalarConverter::convert(argv[1]);
-    
+class A : public Base {};
 
-    return (0);
-}
+class B : public Base {};
+
+class C : public Base {};
+
+Base * generate(void);
+void identify(Base* p);
+void identify(Base& p);
+
+
+#endif

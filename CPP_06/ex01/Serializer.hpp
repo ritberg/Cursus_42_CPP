@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef SERIALIZER_H
+# define SERIALIZER_H
 
-int main(int argc, char** argv)
+# include <iostream>
+# include <cstdint>
+
+struct Data {
+    unsigned int value;
+    std::string		string;
+    float            fl;
+
+    Data(int val) : value(val) {}
+    Data(std::string str) : string(str) {}
+    Data(float fl) : fl(fl) {}
+};
+
+class Serializer
 {
-    // try
-    // {
-    //     if (argc != 2)
-    //         throw ScalarConverter::InvalidInput();
-    //     ScalarConverter::convert(argv[1]);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
+    private:
+        Serializer(void);
+        Serializer(Serializer const & src);
+        ~Serializer(void);
     
-    if (argc != 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
-        return (1);
-    }
+    public:
+        Serializer&  operator=(Serializer const & rhs);
+        
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
+};
 
-    ScalarConverter::convert(argv[1]);
-    
+std::ostream &	operator<<(std::ostream &stream, const Data & obj);
 
-    return (0);
-}
+
+#endif
