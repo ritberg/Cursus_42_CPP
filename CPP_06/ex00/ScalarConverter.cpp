@@ -53,6 +53,9 @@ void    ScalarConverter::outputInt(int i)
 {
     std::cout << "Int conversion" << std::endl << std::endl;
 
+    if (i < MIN_INT || i > MAX_INT)
+        throw std::out_of_range("Out of range");
+
     char c = static_cast<char>(i);
     float f = static_cast<float>(i);
     double d = static_cast<double>(i);
@@ -70,6 +73,9 @@ void    ScalarConverter::outputDouble(double d)
 {
     std::cout << "Double conversion" << std::endl << std::endl;
 
+    if (d < MIN_DOUBLE || d > MAX_DOUBLE)
+        throw std::out_of_range("Out of range");
+
     char c = static_cast<char>(d);
     int i = static_cast<int>(d);
     float f = static_cast<float>(d);
@@ -86,6 +92,9 @@ void    ScalarConverter::outputDouble(double d)
 void    ScalarConverter::outputFloat(float f)
 {
     std::cout << "Float conversion" << std::endl << std::endl;
+
+    if (f < MIN_FLOAT || f > MAX_FLOAT)
+        throw std::out_of_range("Out of range");
 
     char c = static_cast<char>(f);
     int i = static_cast<int>(f);
@@ -108,7 +117,6 @@ void outputStr(const std::string &literal)
     std::cout << "int: impossible" << std::endl;
     std::cout << "float: " << literal << "f" << std::endl;
     std::cout << "double: " << literal << std::endl;
-
 }
 
 /*           IS SMTH           */
@@ -210,7 +218,6 @@ void    ScalarConverter::convert(const std::string & literal)
     {
         std::cerr << e.what() << std::endl;
     }
-
 }
 
 const char *ScalarConverter::InvalidInput::what() const throw()
