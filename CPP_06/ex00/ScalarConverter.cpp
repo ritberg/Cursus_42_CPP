@@ -34,7 +34,7 @@ ScalarConverter&  ScalarConverter::operator=(ScalarConverter const & rhs)
 
 void    outputChar(char c)
 {
-    std::cout << "Char conversion" << std::endl << std::endl;
+    std::cout << std::endl << YELLOW "Char conversion" RESET << std::endl << std::endl;
 
     int i = static_cast<int>(c);
     float f = static_cast<float>(c);
@@ -51,7 +51,7 @@ void    outputChar(char c)
 
 void    outputInt(int i)
 {
-    std::cout << "Int conversion" << std::endl << std::endl;
+    std::cout << std::endl << BLUE "Int conversion" RESET << std::endl << std::endl;
 
     char c = static_cast<char>(i);
     float f = static_cast<float>(i);
@@ -61,23 +61,14 @@ void    outputInt(int i)
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    if (i >= INT_MIN && i <= INT_MAX) 
-        std::cout << "int: " << i << std::endl;
-    else
-        throw std::out_of_range("Int out of range");
-    if (f >= FLT_MIN && f <= FLT_MAX)
-        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    else
-        throw std::out_of_range("Float out of range");
-    if (d >= DBL_MIN && d <= DBL_MAX)
-        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
-    else
-        throw std::out_of_range("Double out of range");
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
 }
 
 void    outputDouble(double d)
 {
-    std::cout << "Double conversion" << std::endl << std::endl;
+    std::cout << std::endl << GREEN "Double conversion" RESET << std::endl << std::endl;
 
     char c = static_cast<char>(d);
     int i = static_cast<int>(d);
@@ -86,24 +77,15 @@ void    outputDouble(double d)
     if (isprint(c))
         std::cout << "char: '" << c << "'" << std::endl;
     else
-        std::cout << "char: Non displayable" << std::endl;
-    if (i >= INT_MIN && i <= INT_MAX) 
-        std::cout << "int: " << i << std::endl;
-    else
-        throw std::out_of_range("Int out of range");
-    if (f >= FLT_MIN && f <= FLT_MAX)
-        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    else
-        throw std::out_of_range("Float out of range");
-    if (d >= DBL_MIN && d <= DBL_MAX)
-        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
-    else
-        throw std::out_of_range("Double out of range");
+        std::cout << "char: Non displayable" << std::endl; 
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
 }
 
 void    outputFloat(float f)
 {
-    std::cout << "Float conversion" << std::endl << std::endl;
+    std::cout << std::endl << RED "Float conversion" RESET << std::endl << std::endl;
 
     char c = static_cast<char>(f);
     int i = static_cast<int>(f);
@@ -113,23 +95,14 @@ void    outputFloat(float f)
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    if (i >= INT_MIN && i <= INT_MAX) 
-        std::cout << "int: " << i << std::endl;
-    else
-        throw std::out_of_range("Int out of range");
-    if (f >= FLT_MIN && f <= FLT_MAX)
-        std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
-    else
-        throw std::out_of_range("Float out of range");
-    if (d >= DBL_MIN && d <= DBL_MAX)
-        std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
-    else
-        throw std::out_of_range("Double out of range");
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << f << (f == std::floor(f) ? ".0f" : "f") << std::endl;
+    std::cout << "double: " << d << (d == std::floor(d) ? ".0" : "") << std::endl;
 }
 
 void outputStr(const std::string &literal)
 {    
-    std::cout << "Weird str conversion" << std::endl << std::endl;
+    std::cout << std::endl << VIOLET "Weird str conversion" RESET << std::endl << std::endl;
 
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
@@ -141,16 +114,32 @@ void outputStr(const std::string &literal)
 
 bool    isInt(const std::string & literal)
 {
-    for (int i = 0; i < literal.size(); i++)
+    if (literal[0] == '-')
     {
-        if (!std::isdigit(literal[i]) && literal[i] != '-')
-            return (false); 
+        for (int i = 1; i < literal.size(); i++)
+        {
+            if (!std::isdigit(literal[i]))
+                return (false); 
+        }
+    }
+    else
+    {
+        for (int i = 0; i < literal.size(); i++)
+        {
+            if (!std::isdigit(literal[i]))
+                return (false); 
+        }
     }
     return (true);
 }
 
 bool    isDouble(const std::string & literal)
 {
+    for (int i = 0; i < literal.size(); i++)
+    {
+        if (!std::isdigit(literal[i]) && literal[i] != '-' && literal[i] != '.')
+            throw ScalarConverter::InvalidInput();
+    }
     std::size_t found = literal.find(".");
     if (found != std::string::npos)
     {
@@ -163,6 +152,12 @@ bool    isDouble(const std::string & literal)
 
 bool    isFloat(const std::string & literal)
 {
+    for (int i = 0; i < literal.size(); i++)
+    {
+        if (!std::isdigit(literal[i]) && literal[i] != '-' && literal[i] != '.'
+                && literal[i] != 'f')
+            throw ScalarConverter::InvalidInput();
+    }
     std::size_t found = literal.find("f");
     if (found != std::string::npos && found != literal.size() - 1)
         throw ScalarConverter::InvalidInput();
@@ -180,6 +175,7 @@ bool    isFloat(const std::string & literal)
     }
     return (false);
 }
+
 
 bool	isWeirdStr(const std::string &literal)
 {
@@ -210,7 +206,9 @@ void    ScalarConverter::convert(const std::string & literal)
             outputStr(literal);
         else if (isFloat(literal))
         {
-            float f = std::atof(literal.c_str());
+            double f = std::atof(literal.c_str());
+            if (f < ((-1) * FLT_MAX) || f > FLT_MAX) // MIN is 0! Therefore I need `MAX * (-1)`
+                throw std::out_of_range("float mix or max problem");
             outputFloat(f);
         }
         else if (isDouble(literal))
@@ -218,11 +216,17 @@ void    ScalarConverter::convert(const std::string & literal)
             char* end;
             double d = std::strtod(literal.c_str(), &end);
             if (*end == 0)
+            {
+                if (d < ((-1) * DBL_MAX) || d > DBL_MAX)
+                    throw std::out_of_range("double mix or max problem");
                 outputDouble(d);
+            }
         }
         else if (isInt(literal))
         {
-            int i = std::atoi(literal.c_str());
+            long i = std::atol(literal.c_str());
+            if (i < INT_MIN || i > INT_MAX)
+                throw std::out_of_range("int mix or max problem");
             outputInt(i);
         }
         else
@@ -230,7 +234,7 @@ void    ScalarConverter::convert(const std::string & literal)
     }
     catch (const std::out_of_range& e)
     {
-        std::cerr << "Conversion error: Out of range" << std::endl;
+        std::cerr << "❗️Conversion error: Out of range because of " << e.what() << std::endl;
     }
     catch (const ScalarConverter::InvalidInput& e)
     {
@@ -240,7 +244,7 @@ void    ScalarConverter::convert(const std::string & literal)
 
 const char *ScalarConverter::InvalidInput::what() const throw()
 {
-    return ("Invalid input");
+    return ("❗️Invalid input");
 }
 
 

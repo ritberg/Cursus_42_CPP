@@ -23,13 +23,13 @@ Base * generate(void)
     switch (randomValue)
     {
         case 0:
-            std::cout << "A generated" << std::endl;
+            std::cout << YELLOW "A generated" RESET << std::endl;
             return (new A());
         case 1:
-            std::cout << "B generated" << std::endl;
+            std::cout << GREEN "B generated" RESET << std::endl;
             return (new B());
         case 2:
-            std::cout << "C generated" << std::endl;
+            std::cout << BLUE "C generated" RESET << std::endl;
             return (new C());
         default:
             return (NULL);
@@ -39,16 +39,33 @@ Base * generate(void)
 void identify(Base* p)
 {
     if (dynamic_cast<A*>(p))
-        std::cout << "Type A" << std::endl;
+        std::cout << YELLOW "Type A" RESET << std::endl;
     else if (dynamic_cast<B*>(p))
-        std::cout << "Type B" << std::endl;
+        std::cout << GREEN "Type B" RESET << std::endl;
     else if (dynamic_cast<C*>(p))
-        std::cout << "Type C" << std::endl;
+        std::cout << BLUE "Type C" RESET << std::endl;
     else
-        std::cout << "Unknown type" << std::endl;
+        std::cout << RED "Unknown type" RESET << std::endl;
 }
 
 void identify(Base& p)
-{
-    identify(&p);
+{   
+    try
+    {
+        (void)dynamic_cast<A&>(p);
+        std::cout << YELLOW "Type A" RESET << std::endl;
+    }
+    catch(const std::exception& e) {}
+    try
+    {
+        (void)dynamic_cast<B&>(p);
+        std::cout << GREEN "Type B" RESET << std::endl;
+    }
+    catch(const std::exception& e) {}
+    try
+    {
+        (void)dynamic_cast<C&>(p);
+        std::cout << BLUE "Type C" RESET << std::endl;
+    }
+    catch(const std::exception& e) {}
 }
