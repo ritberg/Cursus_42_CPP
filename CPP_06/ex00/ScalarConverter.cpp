@@ -46,7 +46,7 @@ void    outputChar(char c)
     float f = static_cast<float>(c);
     double d = static_cast<double>(c);
 
-    if (isprint(c))
+    if (c >= 0 && c <= 127 && std::isprint(c))
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
@@ -63,7 +63,7 @@ void    outputInt(int i)
     float f = static_cast<float>(i);
     double d = static_cast<double>(i);
 
-    if (isprint(c))
+    if (c >= 0 && c <= 127 && std::isprint(c))
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
@@ -80,7 +80,7 @@ void    outputDouble(double d)
     int i = static_cast<int>(d);
     float f = static_cast<float>(d);
 
-    if (isprint(c))
+    if (c >= 0 && c <= 127 && std::isprint(c))
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl; 
@@ -97,7 +97,7 @@ void    outputFloat(float f)
     int i = static_cast<int>(f);
     double d = static_cast<double>(f);
 
-    if (isprint(c))
+    if (c >= 0 && c <= 127 && std::isprint(c))
         std::cout << "char: '" << c << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;

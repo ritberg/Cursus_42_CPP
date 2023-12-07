@@ -18,7 +18,7 @@ Base::~Base(void)
 
 Base * generate(void)
 {
-    int randomValue = rand() % 3;
+    int randomValue = rand() % 3; // generate a random number in the range [0, 2]
     switch (randomValue)
     {
         case 0:
