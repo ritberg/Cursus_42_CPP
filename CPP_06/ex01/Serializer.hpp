@@ -40,7 +40,6 @@ class Serializer
         static Data* deserialize(uintptr_t raw);
 };
 
-std::ostream &	operator<<(std::ostream &stream, const Data & obj);
-
+std::ostream &	operator<<(std::ostream &out, const Data & obj);
 
 #endif

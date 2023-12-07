@@ -16,7 +16,6 @@ Base::~Base(void)
 {
 }
 
-
 Base * generate(void)
 {
     int randomValue = rand() % 3;
@@ -36,6 +35,11 @@ Base * generate(void)
     }
 }
 
+/*
+The usage of dynamic_cast in the identify(Base* p) function
+is a common way to determine the actual type of the object
+pointed to by the Base pointer at runtime
+*/
 void identify(Base* p)
 {
     if (dynamic_cast<A*>(p))
@@ -48,6 +52,11 @@ void identify(Base* p)
         std::cout << RED "Unknown type" RESET << std::endl;
 }
 
+/*
+If/else are not ok here because `(void)dynamic_cast<A&>(p)` is not a boolean expression.
+(void) is a cast to void and discards the result of the dynamic cast.
+(void) is used to silence compiler warnings.
+*/
 void identify(Base& p)
 {   
     try
@@ -55,17 +64,23 @@ void identify(Base& p)
         (void)dynamic_cast<A&>(p);
         std::cout << YELLOW "Type A" RESET << std::endl;
     }
-    catch(const std::exception& e) {}
+    catch(const std::exception&)
+    {
+    }
     try
     {
         (void)dynamic_cast<B&>(p);
         std::cout << GREEN "Type B" RESET << std::endl;
     }
-    catch(const std::exception& e) {}
+    catch(const std::exception&)
+    {
+    }
     try
     {
         (void)dynamic_cast<C&>(p);
         std::cout << BLUE "Type C" RESET << std::endl;
     }
-    catch(const std::exception& e) {}
+    catch(const std::exception&)
+    {
+    }
 }

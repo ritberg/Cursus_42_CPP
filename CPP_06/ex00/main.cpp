@@ -12,27 +12,20 @@
 
 #include "ScalarConverter.hpp"
 
+/*
+About ex00:
+Static_cast is used for most type conversions,
+especially those not involving polymorphism.
+*/
 int main(int argc, char** argv)
 {
-    // try
-    // {
-    //     if (argc != 2)
-    //         throw ScalarConverter::InvalidInput();
-    //     ScalarConverter::convert(argv[1]);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
-    
     if (argc != 2)
     {
-        std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
+        std::cerr << "❕Usage: " << argv[0] << " <literal>" << std::endl;
         return (1);
     }
 
     ScalarConverter::convert(argv[1]);
-    
 
     return (0);
 }

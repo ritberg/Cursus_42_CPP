@@ -30,7 +30,13 @@ ScalarConverter&  ScalarConverter::operator=(ScalarConverter const & rhs)
     return (*this);
 }
 
-/*           OUTPUT            */
+std::ostream &	operator<<(std::ostream &out, const ScalarConverter & obj)
+{
+    out << obj;
+    return (out);
+}
+
+/*************  OUTPUT  ****************/
 
 void    outputChar(char c)
 {
@@ -110,7 +116,7 @@ void outputStr(const std::string &literal)
     std::cout << "double: " << literal << std::endl;
 }
 
-/*           IS SMTH           */
+/**************  IS SMTH  ***************/
 
 bool    isInt(const std::string & literal)
 {
@@ -176,7 +182,6 @@ bool    isFloat(const std::string & literal)
     return (false);
 }
 
-
 bool	isWeirdStr(const std::string &literal)
 {
 	return (literal == "nan" || literal == "nanf"
@@ -184,7 +189,7 @@ bool	isWeirdStr(const std::string &literal)
 			||  literal == "-inf" || literal == "+inf");
 }
 
-/*           CONVERT METHOD           */
+/*************    CONVERT STATIC METHOD   ************/
 
 void    ScalarConverter::convert(const std::string & literal)
 {
@@ -248,8 +253,6 @@ const char *ScalarConverter::InvalidInput::what() const throw()
 }
 
 
-
-
 /*  C++11 */
 /*
 void    ScalarConverter::convert(const std::string & literal)
@@ -276,7 +279,6 @@ void    ScalarConverter::convert(const std::string & literal)
         double doubleValue = static_cast<double>(std::stod(literal));
         // std::cout << "double: " << doubleValue << std::endl;
         std::cout << "double: " << doubleValue << (doubleValue == std::floor(doubleValue) ? ".0" : "") << std::endl;
-
         
     }
     catch (const std::out_of_range& e)

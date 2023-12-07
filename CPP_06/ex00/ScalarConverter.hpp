@@ -28,7 +28,6 @@
 # define YELLOW "\033[33m"
 # define VIOLET	"\033[35m"
 
-
 class ScalarConverter
 {
     private:
@@ -48,5 +47,6 @@ class ScalarConverter
 
 };
 
+std::ostream &	operator<<(std::ostream &out, const ScalarConverter & obj);
 
 #endif

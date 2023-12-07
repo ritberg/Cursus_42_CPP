@@ -12,13 +12,20 @@
 
 #include "Serializer.hpp"
 
-int main()
-{   
 /*
+About ex01:
+Reinterpret_cast is generally not recommended, it can be
+used for low-level casting between unrelated types, and
+it may lead to undefined behavior if not used carefully.
+*/
+int main()
+{
+/*
+Tests explanation:
 1. Create an instance of the Data structure
 2. Use serialize() on the address of the Data object
 3. Pass the return value of serialize() method to deserialize() method
-4. Ensure the return value of deserialize() compares equal to the original pointer
+4. Ensure the return value of deserialize() is equal to the original pointer
 */
 
     std::cout << std::endl << "------------- 42 --------------" << std::endl << std::endl;
@@ -95,7 +102,6 @@ int main()
     std::cout << std::endl << "------------- = operator --------------" << std::endl << std::endl;
 
     std::cout << originalData << std::endl;
-
 
     return (0);
 }

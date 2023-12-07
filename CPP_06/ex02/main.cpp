@@ -12,6 +12,11 @@
 
 #include "Base.hpp"
 
+/*
+About ex02:
+Dynamic_cast is used for safe downcasting in polymorphic class hierarchies.
+It checks the type at runtime.
+*/
 int main()
 {   
     Base *base;
@@ -21,7 +26,6 @@ int main()
     identify(*base);
 
     delete base;
-
 
     return (0);
 }
