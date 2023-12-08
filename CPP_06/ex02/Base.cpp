@@ -38,7 +38,9 @@ Base * generate(void)
 /*
 The usage of dynamic_cast in the identify(Base* p) function
 is a common way to determine the actual type of the object
-pointed to by the Base pointer at runtime
+pointed to by the Base pointer at runtime.
+
+dynamic_cast is used for downcasting a base class pointer to a child class
 */
 void identify(Base* p)
 {
@@ -56,6 +58,8 @@ void identify(Base* p)
 If/else are not ok here because `(void)dynamic_cast<A&>(p)` is not a boolean expression.
 (void) is a cast to void and discards the result of the dynamic cast.
 (void) is used to silence compiler warnings.
+
+dynamic_cast is used for upcasting a base class reference to a derived class pointer
 */
 void identify(Base& p)
 {   

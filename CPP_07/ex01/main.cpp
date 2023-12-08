@@ -5,27 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 17:56:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/12/03 17:57:15 by mmakarov         ###   ########.fr       */
+/*   Created: 2023/12/08 13:46:11 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/12/08 13:47:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include "iter.hpp"
 
-/*
-About ex02:
-Dynamic_cast is used for safe downcasting in polymorphic class hierarchies.
-It checks the type at runtime.
-*/
 int main()
-{   
-    Base *base; //base class pointer
-    
-    base = generate(); //generate an object A, B or C pointing to Base
-    identify(base);
-    identify(*base);
-
-    delete base;
-
+{
     return (0);
 }
