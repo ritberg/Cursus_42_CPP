@@ -57,5 +57,17 @@ int main(void)
     ::swap(d1, d2);
     std::cout << YELLOW "d1 after swap = " << d1 << ", d2 after swap = " << d2 << RESET<< std::endl;
 
+
+    std::cout << std::endl << VIOLET "************** nb1 = 3, nb2 = 3 *****************" RESET << std::endl << std::endl;
+
+    int nb1 = 3;
+    int nb2 = 3;
+
+    std::cout << VIOLET "nb1 = " << nb1 << ", nb2 = " << nb2 << RESET<< std::endl;
+    std::cout << VIOLET "min(nb1, nb2) = " << ::min(nb1, nb2) << RESET << std::endl;
+    std::cout << VIOLET "max(nb1, nb2) = " << ::max(nb1, nb2) << RESET << std::endl;
+    ::swap(nb1, nb2);
+    std::cout << VIOLET "nb1 after swap = " << nb1 << ", nb2 after swap = " << nb2 << RESET<< std::endl;
+
     return (0);
 }

@@ -4,11 +4,12 @@ RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
 
-INCL	= iter.hpp\
+INCL	= Array.hpp\
+		  Array.tpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= iter
+NAME	= array
 
 CC		= c++
 

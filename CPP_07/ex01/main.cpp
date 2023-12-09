@@ -12,6 +12,9 @@
 
 #include "iter.hpp"
 
+/*
+&iterPrint<int> or &iterPrint<float> - explicit instanciation 
+*/
 int main()
 {
     std::cout << std::endl << BLUE "*********** int tab[] = {0, 1, 2, 3, 4} ****************" RESET << std::endl;

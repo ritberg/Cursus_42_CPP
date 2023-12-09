@@ -28,7 +28,6 @@ all:		${NAME}
 
 clean:
 			@${RM} ${OBJS}
-			@rm -f *_shrubbery
 			@echo "${BLUE} Clean object files done ${RESET}"
 
 fclean:		clean
