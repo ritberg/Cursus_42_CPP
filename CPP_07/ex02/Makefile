@@ -5,7 +5,6 @@ RESET			:= $(shell tput sgr0)
 SRCS	= main.cpp\
 
 INCL	= Array.hpp\
-		  Array.tpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
