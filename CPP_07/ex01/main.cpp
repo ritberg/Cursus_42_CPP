@@ -15,12 +15,13 @@
 /*
 &iterPrint<int> or &iterPrint<float> - explicit instanciation 
 */
+
 int main()
 {
     std::cout << std::endl << BLUE "*********** int tab[] = {0, 1, 2, 3, 4} ****************" RESET << std::endl;
 
     int tab[] = {0, 1, 2, 3, 4};
-    std::cout << std::endl <<  BLUE "3 ways to call iter():" RESET << std::endl;
+    std::cout << std::endl <<  BLUE "2 ways to call iter():" RESET << std::endl;
 
     std::cout << std::endl << BLUE <<
             "iter(tab, 5, &iterPrint<int>) - iter function is in the current scope or namespace where it is called" RESET << std::endl;
@@ -30,8 +31,8 @@ int main()
             "::iter(tab, 5, &iterPrint<int>) - possibility to specify the scope or namespace explicitly" RESET << std::endl;
     ::iter(tab, 5, &iterPrint<int>);
 
-    std::cout << std::endl << BLUE "::iterPrint(tab, 5)" RESET << std::endl;
-    ::iterPrint(tab, 5);
+    std::cout << std::endl << GREY "::iterPrint(*tab) - no for loop, so only the first element is printed" RESET << std::endl;
+    ::iterPrint(*tab);
 
 
     std::cout << std::endl << YELLOW "*********** std::string tab2[] = {\"Hello\", \"World\", \"!\"} ****************" RESET << std::endl;
@@ -57,3 +58,29 @@ int main()
 
     return (0);
 }
+
+
+//////// MAIN FROM EVAL ////////
+/*
+class Awsome{
+
+public:
+    Awsome(void): _n(42) {return;}
+    int get(void)const {return this->_n;}
+private:
+    int _n;
+};
+
+std::ostream &operator<<(std::ostream &o, Awsome const &rhs) {o<<rhs.get(); return o;}
+
+template <typename T>
+void print(T const &x){std::cout << x << std::endl; return;}
+
+int main(){
+    int tab[] = {0,1,2,3,4};
+    Awsome tab2[5];
+
+    iter(tab, 5, print);
+    iter(tab2, 5, print);
+}
+*/

@@ -23,28 +23,23 @@
 # define YELLOW "\033[33m"
 # define VIOLET	"\033[35m"
 # define RED "\033[91m"
+# define GREY "\033[30m"
 
 
 template <typename T>
-void iterPrint(T* a, size_t len)
+void iterPrint(T const & a)
 {
-    for (size_t i = 0; i < len; ++i)
-    {
-        // if (typeid(T) == typeid(float))
-        //     std::cout << a[i] << "f" << std::endl;
-        // else
-        //     std::cout << a[i] << std::endl;
-        std::cout << a[i] << std::endl;
-    }
+    std::cout << a << std::endl;
 }
 
 /*
 Iter() takes a pointer to an array of type T, the number of elements in that array and a function pointer.
 */
 template<typename T>
-void iter(T* adr, size_t len, void (*iter)(T*, size_t))
+void iter(T* adr, size_t len, void (*iter)(T const &))
 {
-    iterPrint(adr, len);
+    for (size_t i = 0; i < len; ++i)
+        iterPrint(adr[i]);
 }
 
 #endif
