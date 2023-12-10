@@ -80,7 +80,7 @@ std::ostream &	operator<<(std::ostream &out, Array<T> & obj)
 }
 
 /*   Surcharge sur l'opérateur << pour les double values  */
-template <>
+// template <>
 std::ostream &	operator<<(std::ostream &out, Array<double>& obj)
 {
     out << "Size of the array is " << obj.size() << ", elements of the array are ";
