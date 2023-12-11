@@ -2,7 +2,7 @@ BLUE			:= $(shell tput setaf 4)
 PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
-SRCS	= ex02.cpp\
+SRCS	= main.cpp\
 
 INCL	= Array.hpp\
 

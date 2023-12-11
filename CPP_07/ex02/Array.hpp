@@ -31,19 +31,22 @@ class Array
     public:
         Array(void) : _data(NULL), _n(0) {}
         Array(unsigned int n) : _data(new T[n]), _n(n) {}
+
         Array(Array const & src) : _data(new T[src.size()]), _n(src._n)
         {   
             for (unsigned int i = 0; i < this->size(); ++i)
                 this->_data[i] = src._data[i];
         }
+        
         ~Array(void) { delete [] _data; }
-        Array&  operator=(Array const & rhs)      ///// deep copy
+        Array&  operator=(Array const & rhs)      /// deep copy
         {
             if (this != &rhs)
             {
-                delete[] _data;
-                this->_n = rhs._n;
+                if (this->_data)
+                    delete[] _data;
                 this->_data = new T[this->size()];
+                this->_n = rhs._n;
                 for (unsigned int i = 0; i < this->size(); ++i)
                     this->_data[i] = rhs._data[i];
             }
@@ -52,7 +55,7 @@ class Array
 
         unsigned int size(void) const { return (this->_n); }
 
-        T& operator[](unsigned int index)
+        T& operator[](unsigned int index)            /// subscript operator
         {
             if (index >= this->size())
                 throw std::out_of_range("Index out of bounds");
@@ -88,6 +91,18 @@ std::ostream &	operator<<(std::ostream &out, Array<double>& obj)
         out << "0, because it's empty";
     for (unsigned int i = 0; i < obj.size(); ++i)
         out << std::setprecision(6) << obj[i] << " ";
+    return (out);
+}
+
+/*   Surcharge sur l'opérateur << pour les int values  */
+// template <>
+std::ostream &	operator<<(std::ostream &out, Array<int>& obj)
+{
+    out << "Size of the array is " << obj.size() << ", elements of the array are ";
+    if (obj.size() == 0)
+        out << "0, because it's empty";
+    for (unsigned int i = 0; i < obj.size(); ++i)
+        out << obj[i] << " ";
     return (out);
 }
 

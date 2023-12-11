@@ -65,10 +65,11 @@ int main(void)
     int nb2 = 3;
 
     std::cout << VIOLET "nb1 = " << nb1 << ", nb2 = " << nb2 << RESET<< std::endl;
+    std::cout << VIOLET "&nb1 = " << &nb1 << ", &nb2 = " << &nb2 << RESET<< std::endl;
     std::cout << VIOLET "min(nb1, nb2) = " << ::min(nb1, nb2) << RESET << std::endl;
+    std::cout << VIOLET "&(min(nb1, nb2)) = " << &(::min(nb1, nb2)) << RESET << std::endl;
     std::cout << VIOLET "max(nb1, nb2) = " << ::max(nb1, nb2) << RESET << std::endl;
-    ::swap(nb1, nb2);
-    std::cout << VIOLET "nb1 after swap = " << nb1 << ", nb2 after swap = " << nb2 << RESET<< std::endl;
+    std::cout << VIOLET "&(max(nb1, nb2)) = " << &(::max(nb1, nb2)) << RESET << std::endl;
     
      return (0);
 }

@@ -29,7 +29,7 @@ int main()
     Array<float> arrNoParams2;
     std::cout << YELLOW << arrNoParams2 << RESET << std::endl;
 
-    std::cout << std::endl << YELLOW "----- Array<double> arrDbl(5) " RESET << std::endl;
+    std::cout << std::endl << YELLOW "----- Array<double> arrDbl(5), arrDbl[0] = 1.234567, arrDbl[1] = 2.345678 etc." RESET << std::endl;
 
     Array<double> arrDbl(5);
     arrDbl[0] = 1.234567;
@@ -39,9 +39,12 @@ int main()
     arrDbl[4] = 5.678901;
     std::cout << YELLOW << arrDbl << RESET << std::endl;
 
-    std::cout << std::endl << GREEN "----- Array<int> arrInt(20) " RESET << std::endl;
+    std::cout << std::endl << GREEN "----- Array<int> arrInt(4), arrInt[0] = 156, arrInt[1] = 6456, arrInt[2] = 7" RESET << std::endl;
 
-    Array<int> arrInt(20);
+    Array<int> arrInt(4);
+    arrInt[0] = 156;
+    arrInt[1] = 6456;
+    arrInt[2] = 7;
     std::cout << GREEN << arrInt << RESET << std::endl;
 
     std::cout << std::endl << GREEN "----- Array<std::string> arrStr(2), arrStr[0] = \"42\", arrStr[1] = \"Lausanne\" " RESET << std::endl;
@@ -82,11 +85,17 @@ int main()
     std::cout << "  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *" << std::endl;
     std::cout << "   *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *" << std::endl;
 
+    /*
+     This line dynamically allocates an array of integers (arrayInt1) on the heap with a size of 20.
+     This is separate from the Array<int> and is not an instance of the Array class.
+    */
 
-    std::cout << std::endl << VIOLET "----- int* arrayInt = new int[20] " RESET << std::endl;
+    std::cout << std::endl << VIOLET "----- int* arrayInt1 = new int[20], arrayInt[0] = 23, arrayInt[1] = 24 " RESET << std::endl;
 
     int* arrayInt = new int[20];
-    std::cout << VIOLET << arrInt << RESET << std::endl;
+    arrayInt[0] = 23;
+    arrayInt[1] = 24;
+    std::cout << VIOLET << *arrayInt << RESET << std::endl;
     delete [] arrayInt;
 
     std::cout << std::endl << GREY "----- int* a = new int() " RESET << std::endl;
