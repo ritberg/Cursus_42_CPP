@@ -84,3 +84,39 @@ int main(){
     iter(tab2, 5, print);
 }
 */
+
+//////// MAIN (1) FROM EVAL ////////
+/*
+class Awesome
+{
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
+
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
+}
+
+int main() {
+  int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
+
+  iter( tab, 5, print<const int> );  //  ces tests sont bizarres. pour qu'ils marchent, il faut faire 2 templates  
+  iter( tab2, 5, print<Awesome> );   //  supplémentaires (presque identiques) pour que T ne soit pas const..
+                                     //  sinon, avec 1 const et l'autre non il y aura tjs un template qui marchera pas
+
+  return 0;
+}
+*/
