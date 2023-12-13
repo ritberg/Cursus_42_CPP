@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,31 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_H
-# define EASYFIND_H
+#include "Span.hpp"
 
-# include <iostream>
-# include <limits>
-# include <vector>
-# include <string>
-# include <algorithm>
-
-# define RESET	"\e[0m"
-# define GREEN "\033[32m"
-# define RED "\033[91m"
-# define YELLOW "\033[33m"
-
-template<typename T>
-typename T::iterator easyfind(T & elems, int x)
+Span&  Span::operator=(Span const & rhs)
 {
-    std::vector<int>::iterator it = std::find(elems.begin(), elems.end(), x);
-    if (it != elems.end())
-    {
-        std::cout << *it << std::endl;
-        return (it);
-    }
-    else
-        throw std::range_error("❗️Element is out of range");
+    if (this != &rhs)
+        this->_n = rhs._n;
+    return (*this);
 }
 
-#endif
+Span& addNumber(Span & old, int new_i)
+{
+    
+}

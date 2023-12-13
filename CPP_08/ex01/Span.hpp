@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,31 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_H
-# define EASYFIND_H
+#ifndef SPAN_H
+# define SPAN_H
 
 # include <iostream>
-# include <limits>
-# include <vector>
-# include <string>
 # include <algorithm>
 
-# define RESET	"\e[0m"
-# define GREEN "\033[32m"
-# define RED "\033[91m"
-# define YELLOW "\033[33m"
-
-template<typename T>
-typename T::iterator easyfind(T & elems, int x)
+class Span
 {
-    std::vector<int>::iterator it = std::find(elems.begin(), elems.end(), x);
-    if (it != elems.end())
-    {
-        std::cout << *it << std::endl;
-        return (it);
-    }
-    else
-        throw std::range_error("❗️Element is out of range");
-}
+    public:
+        Span(void) {}
+        Span(unsigned int N) : _n(N) {}
+        ~Span(void) {}
+
+        Span&  operator=(Span const & rhs);
+
+        Span& addNumber(Span & old, int new_i);
+
+        // shortestSpan()
+        // longestSpan()
+
+    private:
+        unsigned int _n;
+
+};
 
 #endif
