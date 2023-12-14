@@ -42,5 +42,49 @@ int main()
         std::cerr << e.what() << std::endl << std::endl;
     }
 
+    std::list<int> list;
+
+    list.push_back(1);
+    list.push_back(20);
+    list.push_back(-3);
+    list.push_back(66);
+
+    std::cout << BLUE "------------ Print list elements -----" RESET << std::endl;
+    std::for_each(list.begin(), list.end(), printElems);
+
+    try
+    {
+        std::list<int>::iterator res3 = easyfind(list, 20);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl << std::endl;
+    }
+
+
+    // void printMapElem(const std::pair<const int, std::string>& element)
+    // {
+    //     std::cout << element.first << ": " << element.second << " ";
+    // }
+    
+    // std::map<int, std::string> map;
+
+    // map[1] = "one";
+    // map[2] = "two";
+    // map[3] = "three";
+
+    // std::cout << std::endl << YELLOW "------------ Print map elements -----" RESET << std::endl;
+    // std::for_each(map.begin(), map.end(), printMapElem);
+
+    // try
+    // {
+    //     std::map<int, std::string>::iterator res4 = easyfind(map, 2);
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << std::endl << std::endl;
+    // }
+    
+
     return (0);
 }
