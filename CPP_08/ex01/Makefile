@@ -9,7 +9,7 @@ INCL	= Span.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= easyfind
+NAME	= ex01
 
 CC		= c++
 

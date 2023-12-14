@@ -15,7 +15,15 @@
 
 # include <iostream>
 # include <algorithm>
+# include <limits>
 # include <vector>
+# include <fstream>
+
+# define RESET	"\e[0m"
+# define GREEN "\033[32m"
+# define RED "\033[91m"
+# define YELLOW "\033[33m"
+# define BLUE   "\033[96m"
 
 class Span
 {
@@ -33,14 +41,10 @@ class Span
         void addNumber(unsigned int newN);
         std::vector<int>& getArr(void);
 
-        void shortestSpan();
-        // Comparison function for min_element and max_element
-        template <typename T>
-        struct Less
-        {
-            bool operator()(const T& a, const T& b) const { return a < b; };
-        };
-        // longestSpan()
+        int shortestSpan(void);
+        int longestSpan(void);
+
+         void addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
 
 };
 
