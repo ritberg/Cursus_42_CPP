@@ -15,24 +15,35 @@
 
 # include <iostream>
 # include <algorithm>
+# include <vector>
 
 class Span
 {
+    private:
+        std::vector<int> _arr;
+        unsigned int _maxN;
+
     public:
-        Span(void) {}
-        Span(unsigned int N) : _n(N) {}
-        ~Span(void) {}
+        Span(void);
+        Span(unsigned int N);
+        ~Span(void);
 
         Span&  operator=(Span const & rhs);
 
-        Span& addNumber(Span & old, int new_i);
+        void addNumber(unsigned int newN);
+        std::vector<int>& getArr(void);
 
-        // shortestSpan()
+        void shortestSpan();
+        // Comparison function for min_element and max_element
+        template <typename T>
+        struct Less
+        {
+            bool operator()(const T& a, const T& b) const { return a < b; };
+        };
         // longestSpan()
 
-    private:
-        unsigned int _n;
-
 };
+
+std::ostream &	operator<<(std::ostream &out, Span & obj);
 
 #endif

@@ -15,7 +15,7 @@ CC		= c++
 
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic -g3 -fsanitize=address
 
 
 .c.o:
