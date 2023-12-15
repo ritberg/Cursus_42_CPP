@@ -29,6 +29,7 @@ all:		${NAME}
 
 clean:
 			@${RM} ${OBJS}
+			@rm -f big_array
 			@echo "${BLUE} Clean object files done ${RESET}"
 
 fclean:		clean

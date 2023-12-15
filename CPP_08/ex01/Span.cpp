@@ -87,7 +87,6 @@ int Span::longestSpan(void)
         throw std::out_of_range("Error: adding the range would exceed the maximum capacity");
 }
 
-
 std::ostream &	operator<<(std::ostream &out, Span & obj)
 {
     out << obj; //TO DO

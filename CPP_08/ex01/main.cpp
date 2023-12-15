@@ -65,7 +65,7 @@ int main()
     Span sp2 = Span(0);
     try
     {
-        std::cout << sp2.shortestSpan() << std::endl;
+        std::cout << sp2.longestSpan() << std::endl;
     }
     catch(const std::exception& e)
     {
@@ -85,6 +85,21 @@ int main()
     std::cout << bigSp.shortestSpan() << std::endl;
     std::cout << bigSp.longestSpan() << std::endl;
 
+    std::cout << std::endl << VIOLET "---array with 100 000 elements---" RESET <<  std::endl << std::endl;
+
+    Span bigSp1(100000);
+
+    std::vector<int> numbers1;
+    for (int i = 1; i <= 100000; ++i)
+    {
+        i += 10;
+        numbers1.push_back(i);
+    }
+
+    bigSp1.addRange(numbers1.begin(), numbers1.end());
+
+    std::cout << bigSp1.shortestSpan() << std::endl;
+    std::cout << bigSp1.longestSpan() << std::endl;
     
     return (0);
 }
