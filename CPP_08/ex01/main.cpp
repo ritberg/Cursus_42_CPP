@@ -31,11 +31,14 @@ int main()
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
 
+
     std::cout << std::endl << YELLOW "************** OTHER TESTS *****************" RESET <<  std::endl << std::endl;
+
 
     std::cout << std::endl << GREEN "---print array---" RESET <<  std::endl << std::endl;
 
     std::for_each(sp.getArr().begin(), sp.getArr().end(), printElems);
+
 
     std::cout << std::endl << RED "---add one more int---" RESET <<  std::endl << std::endl;
 
@@ -47,6 +50,7 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
+
 
     std::cout << std::endl << RED "---only one n in the array---" RESET <<  std::endl << std::endl;
 
@@ -60,6 +64,7 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
+
     std::cout << std::endl << RED "---empty array---" RESET <<  std::endl << std::endl;
 
     Span sp2 = Span(0);
@@ -71,6 +76,7 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
+
 
     std::cout << std::endl << GREEN "---array with 10 000 elements---" RESET <<  std::endl << std::endl;
 
@@ -85,7 +91,8 @@ int main()
     std::cout << bigSp.shortestSpan() << std::endl;
     std::cout << bigSp.longestSpan() << std::endl;
 
-    std::cout << std::endl << VIOLET "---array with 100 000 elements---" RESET <<  std::endl << std::endl;
+
+    std::cout << std::endl << RED "---array with 100 000 elements---" RESET <<  std::endl << std::endl;
 
     Span bigSp1(100000);
 
@@ -100,6 +107,24 @@ int main()
 
     std::cout << bigSp1.shortestSpan() << std::endl;
     std::cout << bigSp1.longestSpan() << std::endl;
+
+
+     std::cout << std::endl << RED "---impossible to add a range to the array---" RESET <<  std::endl << std::endl;
+
+    Span bigSpFalse(100);
+
+    std::vector<int> excessiveNumbers;
+    for (int i = 1; i <= 500; ++i)
+        excessiveNumbers.push_back(i);
+      
+    try
+    {
+        bigSpFalse.addRange(excessiveNumbers.begin(), excessiveNumbers.end());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
     
     return (0);
 }

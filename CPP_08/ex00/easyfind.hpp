@@ -31,7 +31,7 @@
 template<typename T>
 typename T::iterator easyfind(T & elems, int x)
 {
-     typename T::iterator it = std::find(elems.begin(), elems.end(), x);
+    typename T::iterator it = std::find(elems.begin(), elems.end(), x);
     if (it != elems.end())
     {
         std::cout << "Element found in list: " << *it << std::endl << std::endl;

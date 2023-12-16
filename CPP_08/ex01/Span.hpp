@@ -24,7 +24,6 @@
 # define RED "\033[91m"
 # define YELLOW "\033[33m"
 # define BLUE   "\033[96m"
-# define VIOLET	"\033[35m"
 
 class Span
 {
@@ -45,7 +44,7 @@ class Span
         int shortestSpan(void);
         int longestSpan(void);
 
-         void addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+        void addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
 
 };
 

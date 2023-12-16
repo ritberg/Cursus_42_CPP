@@ -3,19 +3,18 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
-		  Span.cpp\
 
-INCL	= Span.hpp\
+INCL	= MutantStack.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= ex01
+NAME	= ex02
 
 CC		= c++
 
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic -g3 -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 
 
 .c.o:
@@ -29,7 +28,6 @@ all:		${NAME}
 
 clean:
 			@${RM} ${OBJS}
-			@rm -f array_print
 			@echo "${BLUE} Clean object files done ${RESET}"
 
 fclean:		clean
