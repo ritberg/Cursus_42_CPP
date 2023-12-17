@@ -54,7 +54,6 @@ int main()
         ++it;
     }
 
-
     std::cout << std::endl << VIOLET "----stack of mstack----" RESET << std::endl << std::endl;
 
     std::stack<int> s(mstack);
@@ -68,10 +67,34 @@ int main()
 
 
     std::cout << std::endl << YELLOW "************ OTHER TESTS ***************" RESET << std::endl << std::endl;
-    // MutantStack<double> m;
-    // mstack.push(3.7);
-    // mstack.push(5.2);
-    // std::cout << "m top: " << mstack.top() << std::endl;
+
+    std::cout << std::endl << VIOLET "----mutantStr with strings, printing the mutantStr content----" RESET << std::endl << std::endl;
+
+    MutantStack<std::string> mutantStr;
+    mutantStr.push("hi");
+    mutantStr.push("hjkwhfke");
+    mutantStr.push("dddddd");
+    std::cout << mutantStr << std::endl;
+
+    std::cout << std::endl << VIOLET "----mutantStr - testing reverse iterators----" RESET << std::endl << std::endl;
+
+    MutantStack<std::string> mutS;
+    mutS.push("first");
+    mutS.push("second");
+    mutS.push("third");
+
+    // std::cout << std::endl << std::endl << mutS << std::endl; //seg fault here
+
+    std::cout << "Forward iteration:" << std::endl;
+    for (MutantStack<std::string>::iterator it = mutS.begin(); it != mutS.end(); ++it)
+        std::cout << *it << " ";
+
+    std::cout << std::endl << std::endl << "Reverse iteration:" << std::endl;
+    for (MutantStack<std::string>::reverse_iterator it = mutS.rbegin(); it != mutS.rend(); ++it)
+        std::cout << *it << " ";
+
+    std::cout << std::endl << std::endl << mutS << std::endl;
+
 
 
 /*

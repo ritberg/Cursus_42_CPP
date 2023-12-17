@@ -17,6 +17,7 @@
 # include <algorithm>
 # include <limits>
 # include <vector>
+# include <list>
 # include <fstream>
 
 # define RESET	"\e[0m"
@@ -39,15 +40,36 @@ class Span
         Span&  operator=(Span const & rhs);
 
         void addNumber(unsigned int newN);
-        std::vector<int>& getArr(void);
+        std::vector<int> const & getArr(void) const;
 
-        int shortestSpan(void);
-        int longestSpan(void);
+        unsigned int shortestSpan(void) const;
+        unsigned int longestSpan(void) const;
 
-        void addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+        /*
+        not & begin and &end - it's more common to pass iterators by value, they are usually small objects
 
+        addRange allows working with different container types that have iterators
+            (more precisely, iterator interface, i.e., begin() and end() functions)
+        */
+        template <typename T>
+        void addRange(typename T::const_iterator begin, typename T::const_iterator end)
+        {
+            unsigned int rangeSize = std::distance(begin, end);
+
+            if (rangeSize > (this->_maxN - this->_arr.size()))
+                throw std::out_of_range("Error: adding the range would exceed the maximum capacity");
+            else
+                this->_arr.insert(this->_arr.end(), begin, end);
+        } 
 };
 
+/*
+The same as addRange - suitable for multiple containers
+As the getArr member function returns a reference
+    to a container type that provides begin() and end()
+    member functions, I can use this operator with various
+    container types, such as std::vector, std::list, etc.
+*/
 std::ostream &	operator<<(std::ostream &out, Span & obj);
 
 #endif

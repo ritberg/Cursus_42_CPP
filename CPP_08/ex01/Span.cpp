@@ -31,7 +31,7 @@ Span&  Span::operator=(Span const & rhs)
     return (*this);
 }
 
-std::vector<int>& Span::getArr(void) 
+std::vector<int> const & Span::getArr(void) const
 {
     return (this->_arr);
 }
@@ -61,7 +61,7 @@ void debug(const std::vector<int>& arr, int & currentSpan, std::vector<int>::con
     Save this difference as minSpan
 4. Use the algo min that finds min of 2 values passed as params
 */
-int Span::shortestSpan(void)
+unsigned int Span::shortestSpan(void) const
 {
     // std::ofstream   ofs("array_print");
 
@@ -82,28 +82,21 @@ int Span::shortestSpan(void)
     return (minSpan);
 }
 
-int Span::longestSpan(void)
+unsigned int Span::longestSpan(void) const
 {
     if (this->_arr.size() < 2)
         throw std::out_of_range("Error: array is too small to find the longest span");
-    std::vector<int>::iterator min = std::min_element(this->_arr.begin(), this->_arr.end());
-    std::vector<int>::iterator max = std::max_element(this->_arr.begin(), this->_arr.end());
+    std::vector<int>::const_iterator min = std::min_element(this->_arr.begin(), this->_arr.end());
+    std::vector<int>::const_iterator max = std::max_element(this->_arr.begin(), this->_arr.end());
     return (*max - *min);
-}
-
-void   Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end)
-{
-    unsigned int rangeSize = std::distance(begin, end);
-
-    if (rangeSize > (this->_maxN - this->_arr.size()))
-        throw std::out_of_range("Error: adding the range would exceed the maximum capacity");
-    else
-        this->_arr.insert(this->_arr.end(), begin, end);
-        
 }
 
 std::ostream &	operator<<(std::ostream &out, Span & obj)
 {
-    out << obj; //TO DO
+    const std::vector<int> &arr = obj.getArr();
+
+    out << std::endl << BLUE "The current elements of the array are: ";
+    for (std::vector<int>::const_iterator it = arr.begin(); it != arr.end(); ++it)
+        out << BLUE << *it << " " << RESET;
     return (out);
 }
