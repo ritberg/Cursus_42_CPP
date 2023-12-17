@@ -83,7 +83,7 @@ int main()
     mutS.push("second");
     mutS.push("third");
 
-    // std::cout << std::endl << std::endl << mutS << std::endl; //seg fault here
+    std::cout << mutS << std::endl;
 
     std::cout << "Forward iteration:" << std::endl;
     for (MutantStack<std::string>::iterator it = mutS.begin(); it != mutS.end(); ++it)
@@ -93,9 +93,7 @@ int main()
     for (MutantStack<std::string>::reverse_iterator it = mutS.rbegin(); it != mutS.rend(); ++it)
         std::cout << *it << " ";
 
-    std::cout << std::endl << std::endl << mutS << std::endl;
-
-
+    std::cout << std::endl << std::endl;
 
 /*
     std::cout << std::endl << VIOLET "----c++11----" RESET << std::endl << std::endl;

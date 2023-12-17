@@ -55,17 +55,20 @@ class MutantStack : public std::stack<T>
 
 };
 
-template < typename T >
-std::ostream &	operator<<(std::ostream &out, MutantStack<T> & obj)
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const MutantStack<T>& obj)
 {
     out << BLUE "--Summary for the created stack--" RESET << std::endl;
     out << BLUE "Top: " << obj.top() << RESET << std::endl;
     out << BLUE "Size: " << obj.size() << RESET << std::endl;
-    std::cout << BLUE "The stack contains:" << std::endl;
-    while (!obj.empty())
+    out << BLUE "The stack contains:" << std::endl;
+
+    MutantStack<T> tempStack = obj; // Using a temporary stack to iterate over the elements without modifying the original stack
+
+    while (!tempStack.empty())
     {
-        std::cout << BLUE << obj.top() << RESET << std::endl;
-        obj.pop();
+        out << BLUE << tempStack.top() << RESET << std::endl;
+        tempStack.pop();
     }
     return (out);
 }
