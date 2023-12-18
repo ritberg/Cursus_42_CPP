@@ -93,7 +93,28 @@ int main()
     for (MutantStack<std::string>::reverse_iterator it = mutS.rbegin(); it != mutS.rend(); ++it)
         std::cout << *it << " ";
 
-    std::cout << std::endl << std::endl;
+    MutantStack<std::string>::reverse_iterator it1 = mutS.rbegin();
+
+    std::cout << std::endl << std::endl << VIOLET "current it" RESET << std::endl;
+    std::cout << *it1 << std::endl;
+    std::cout << std::endl << VIOLET "++it" RESET << std::endl;
+    ++it1;
+    std::cout << *it1 << std::endl;
+    std::cout << std::endl << VIOLET "--it" RESET << std::endl;
+    --it1;
+    std::cout << *it1 << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << std::endl << VIOLET "----MutantStack with doubles - testing copy constructor----" RESET << std::endl << std::endl;
+
+    MutantStack<double> mutD;
+    mutD.push(1.1);
+    mutD.push(2.2);
+    MutantStack<double> tmp = mutD;
+    std::cout << mutD << std::endl;
+    std::cout << tmp << std::endl;
+
 
 /*
     std::cout << std::endl << VIOLET "----c++11----" RESET << std::endl << std::endl;

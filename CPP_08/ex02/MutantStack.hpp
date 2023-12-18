@@ -30,8 +30,9 @@ template < typename T >
 class MutantStack : public std::stack<T>
 {
     public:
-        MutantStack(void) {}
-        ~MutantStack(void) {}
+        MutantStack<T>(void) {}
+        MutantStack<T>(MutantStack<T> const & src) : std::stack<T>(src) {}
+        ~MutantStack<T>(void) {}
 
         MutantStack&  operator=(MutantStack const & other) { return (*this); }
 
