@@ -55,6 +55,14 @@ class MutantStack : public std::stack<T>
         const_reverse_iterator rbegin() const { return std::stack<T>::c.rbegin(); }
         const_reverse_iterator rend() const { return std::stack<T>::c.rend(); }
 
+        void push(const T& value) { this->c.push_back(value); }  // Overloaded push for a single element
+
+        void push(const std::list<T>& list)  // Overloaded push for std::list
+        {
+            for (typename std::list<T>::const_iterator it = list.begin(); it != list.end(); ++it)
+                this->c.push_back(*it);
+        }
+
 };
 
 template <typename T>

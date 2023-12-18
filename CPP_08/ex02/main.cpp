@@ -70,45 +70,35 @@ int main()
 
 	std::cout << std::endl << VIOLET "----MutantStack with a list----" RESET << std::endl << std::endl;
 
-    MutantStack< std::list<int> > mlist;
-    // std::cout << "adding 5, 17 with push_front" << std::endl;
-	// mlist.push_front(5);
-	// mlist.push_front(17);
-	// std::cout << "top is: " << mlist.top() << std::endl;
-	// std::cout << "size is: " << mlist.size() << std::endl;
-    // std::cout << "adding 3, 4, 7, 9 with push_back" << std::endl;
-	// mlist.push_back(3);
-	// mlist.push_back(4);
-	// mlist.push_back(7);
-	// mlist.push_back(9);
-    // std::cout << "top is: " << mlist.top() << std::endl;
+    MutantStack<int> mutantStack;
 
-	// std::list<int>::iterator itl = mlist.begin();
-	// std::list<int>::iterator itle = mlist.end();
+    std::list<int> list1;
+    list1.push_back(1);
+    list1.push_back(2);
+    list1.push_back(3);
 
-    // std::cout << std::endl << VIOLET "current itl" RESET << std::endl;
-    // std::cout << *itl << std::endl;
-    // std::cout << std::endl << VIOLET "++itl" RESET << std::endl;
-	// ++itl;
-    // std::cout << *itl << std::endl;
-    // std::cout << std::endl << VIOLET "--itl" RESET << std::endl;
-	// --itl;
-    // std::cout << *itl << std::endl;
+    mutantStack.push(list1);  // cf. overloaded push to be able to add a list of values
 
-    // std::cout << std::endl << VIOLET "while (itl != itle), ++itl" RESET << std::endl;
-	// while (itl != itle)
-	// {
-	// 	std::cout << *itl << std::endl;
-	// 	++itl;
-	// }
+    MutantStack<int>::iterator ittt = mutantStack.begin();
+    MutantStack<int>::iterator iteee = mutantStack.end();
 
+    std::cout << "Elements in MutantStack are: ";
+    while (ittt != iteee)
+    {
+        std::cout << *ittt << " ";
+        ++ittt;
+    }
 
-    std::cout << std::endl << VIOLET "----mutantStr with strings, printing the mutantStr content----" RESET << std::endl << std::endl;
+    std::cout << std::endl << mutantStack << std::endl;
+    
+
+    std::cout << VIOLET "----mutantStr with strings, printing the mutantStr content----" RESET << std::endl << std::endl;
 
     MutantStack<std::string> mutantStr;
     mutantStr.push("hi");
     mutantStr.push("hjkwhfke");
     mutantStr.push("dddddd");
+    mutantStr.push("ddddfdgfddhhdhdhdhdd");
     std::cout << mutantStr << std::endl;
 
 
