@@ -151,6 +151,25 @@ int main()
     std::cout << test.longestSpan() << std::endl;
 
     std::cout << test << std::endl;
+
+    std::cout << std::endl << YELLOW "*********** assignment ioperator = test ************" RESET << std::endl;
+
+    Span sppp = Span(1);
+    sppp.addNumber(3434);
+    std::cout << sppp << std::endl;
+    sppp = test;
+    std::cout << sppp << std::endl;
+
+
+    std::cout << std::endl << YELLOW "*********** copy constructor test ************" RESET << std::endl;
+
+    Span original(1);
+    original.addNumber(-6767);
+
+    Span copy(original);
+
+    std::cout << std::endl << "Original object: " << original << std::endl << std::endl;
+    std::cout << "Copied object: " << copy << std::endl << std::endl;
     
     return (0);
 }

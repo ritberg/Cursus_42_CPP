@@ -53,6 +53,7 @@ int main()
 
     std::cout << BLUE "------------ Print list elements -----" RESET << std::endl;
     std::for_each(list.begin(), list.end(), printElems);
+    std::cout << std::endl;
 
     try
     {
@@ -62,7 +63,8 @@ int main()
     {
         std::cerr << e.what() << std::endl << std::endl;
     }
-
+    
+    std::cout << std::endl;
 
     return (0);
 }

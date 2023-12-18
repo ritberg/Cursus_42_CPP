@@ -27,8 +27,15 @@ Span::~Span(void)
 Span&  Span::operator=(Span const & rhs)
 {
     if (this != &rhs)
+    {
         this->_maxN = rhs._maxN;
+        this->_arr = rhs._arr;
+    }
     return (*this);
+}
+
+Span::Span(Span const & src) : _arr(src._arr), _maxN(src._maxN)
+{
 }
 
 std::vector<int> const & Span::getArr(void) const
@@ -41,7 +48,7 @@ void Span::addNumber(unsigned int newN)
     if (this->_arr.size() < this->_maxN)
         this->_arr.push_back(newN);
     else
-        throw std::out_of_range("Error: array is already full");
+        throw std::out_of_range("❗️Error: array is already full");
     
 }
 
@@ -66,7 +73,7 @@ unsigned int Span::shortestSpan(void) const
     // std::ofstream   ofs("array_print");
 
     if (this->_arr.size() < 2)
-        throw std::out_of_range("Error: array is too small to find the shortest span");
+        throw std::out_of_range("❗️Error: array is too small to find the shortest span");
     std::vector<int> sortedArr = this->_arr;
     std::sort(sortedArr.begin(), sortedArr.end());
 
@@ -85,7 +92,7 @@ unsigned int Span::shortestSpan(void) const
 unsigned int Span::longestSpan(void) const
 {
     if (this->_arr.size() < 2)
-        throw std::out_of_range("Error: array is too small to find the longest span");
+        throw std::out_of_range("❗️Error: array is too small to find the longest span");
     std::vector<int>::const_iterator min = std::min_element(this->_arr.begin(), this->_arr.end());
     std::vector<int>::const_iterator max = std::max_element(this->_arr.begin(), this->_arr.end());
     return (*max - *min);

@@ -35,6 +35,7 @@ class Span
     public:
         Span(void);
         Span(unsigned int N);
+        Span(Span const & src);
         ~Span(void);
 
         Span&  operator=(Span const & rhs);
@@ -57,7 +58,7 @@ class Span
             unsigned int rangeSize = std::distance(begin, end);
 
             if (rangeSize > (this->_maxN - this->_arr.size()))
-                throw std::out_of_range("Error: adding the range would exceed the maximum capacity");
+                throw std::out_of_range("❗️Error: adding the range would exceed the maximum capacity");
             else
                 this->_arr.insert(this->_arr.end(), begin, end);
         } 

@@ -26,6 +26,7 @@
 # define BLUE   "\033[96m"
 # define VIOLET	"\033[35m"
 
+/* underlying container is the std::deque by default */
 template < typename T >
 class MutantStack : public std::stack<T>
 {

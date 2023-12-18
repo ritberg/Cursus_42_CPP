@@ -68,6 +68,41 @@ int main()
 
     std::cout << std::endl << YELLOW "************ OTHER TESTS ***************" RESET << std::endl << std::endl;
 
+	std::cout << std::endl << VIOLET "----MutantStack with a list----" RESET << std::endl << std::endl;
+
+    MutantStack< std::list<int> > mlist;
+    // std::cout << "adding 5, 17 with push_front" << std::endl;
+	// mlist.push_front(5);
+	// mlist.push_front(17);
+	// std::cout << "top is: " << mlist.top() << std::endl;
+	// std::cout << "size is: " << mlist.size() << std::endl;
+    // std::cout << "adding 3, 4, 7, 9 with push_back" << std::endl;
+	// mlist.push_back(3);
+	// mlist.push_back(4);
+	// mlist.push_back(7);
+	// mlist.push_back(9);
+    // std::cout << "top is: " << mlist.top() << std::endl;
+
+	// std::list<int>::iterator itl = mlist.begin();
+	// std::list<int>::iterator itle = mlist.end();
+
+    // std::cout << std::endl << VIOLET "current itl" RESET << std::endl;
+    // std::cout << *itl << std::endl;
+    // std::cout << std::endl << VIOLET "++itl" RESET << std::endl;
+	// ++itl;
+    // std::cout << *itl << std::endl;
+    // std::cout << std::endl << VIOLET "--itl" RESET << std::endl;
+	// --itl;
+    // std::cout << *itl << std::endl;
+
+    // std::cout << std::endl << VIOLET "while (itl != itle), ++itl" RESET << std::endl;
+	// while (itl != itle)
+	// {
+	// 	std::cout << *itl << std::endl;
+	// 	++itl;
+	// }
+
+
     std::cout << std::endl << VIOLET "----mutantStr with strings, printing the mutantStr content----" RESET << std::endl << std::endl;
 
     MutantStack<std::string> mutantStr;
@@ -75,6 +110,7 @@ int main()
     mutantStr.push("hjkwhfke");
     mutantStr.push("dddddd");
     std::cout << mutantStr << std::endl;
+
 
     std::cout << std::endl << VIOLET "----mutantStr - testing reverse iterators----" RESET << std::endl << std::endl;
 
@@ -106,7 +142,8 @@ int main()
 
     std::cout << std::endl;
 
-    std::cout << std::endl << VIOLET "----MutantStack with doubles - testing copy constructor----" RESET << std::endl << std::endl;
+
+    std::cout << std::endl << YELLOW "*********** MutantStack with doubles - assignment operator = test ************" RESET << std::endl << std::endl;
 
     MutantStack<double> mutD;
     mutD.push(1.1);
@@ -114,6 +151,18 @@ int main()
     MutantStack<double> tmp = mutD;
     std::cout << mutD << std::endl;
     std::cout << tmp << std::endl;
+
+
+    std::cout << YELLOW "*********** MutantStack with doubles - copy constructor test ************" RESET << std::endl;
+
+    MutantStack<double> original;
+    original.push(-6767.7);
+
+    MutantStack<double> copy(original);
+
+    std::cout << std::endl << "Original object: " << std::endl << original << std::endl;
+    std::cout << "Copied object: " << std::endl << copy << std::endl;
+
 
 
 /*

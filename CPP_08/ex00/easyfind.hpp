@@ -17,7 +17,6 @@
 # include <limits>
 # include <vector>
 # include <list>
-# include <map>
 # include <string>
 # include <algorithm>
 
@@ -34,7 +33,7 @@ typename T::iterator easyfind(T & elems, int x)
     typename T::iterator it = std::find(elems.begin(), elems.end(), x);
     if (it != elems.end())
     {
-        std::cout << "Element found in list: " << *it << std::endl << std::endl;
+        std::cout << "Element found in list: " << *it << std::endl;
         return (it);
     }
     else
