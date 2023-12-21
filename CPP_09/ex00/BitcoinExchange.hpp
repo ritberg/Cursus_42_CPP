@@ -14,6 +14,28 @@
 # define BITCOINEXCHANGE_H
 
 # include <iostream>
+# include <sstream>
 # include <fstream>
+# include <string>
+# include <map>
+# include <stdexcept>
+
+class BitcoinExchange
+{
+    public:
+        BitcoinExchange(void);
+        BitcoinExchange(BitcoinExchange const & src);
+        ~BitcoinExchange(void);
+
+        BitcoinExchange&  operator=(BitcoinExchange const & other);
+
+        void checkInput(const std::string& input) const;
+        void loadDatabase(const std::string& file);
+        void processInput(const std::string& inputFile);
+
+    private:
+        std::map<std::string, double> _rates;
+        double _findClosestExchangeRate(const std::string& date) const;
+};
 
 #endif

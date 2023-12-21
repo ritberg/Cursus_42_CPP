@@ -21,26 +21,19 @@ void inside_check(std::ifstream   &ifs)
 
 int main(int argc, char **argv)
 {
-    if (argc == 2)
+    try
     {
-        std::ifstream   ifs;
-        if (std::string(argv[1]).empty()) /* return 1 if there are no strings */
-            return (1); //throw exception
-        
-        ifs.open(argv[1], std::ifstream::in);
-        if ((!ifs.is_open()) || ifs.fail()) /* return 1 if no file or cannot open */
-        {
-            std::cerr << "Error: no such file or permission denied." << std::endl; //throw exception
-            return (1);
-        }
-        if (ifs.peek() == EOF) /* return 1 if empty file (inside) */
-        {
-            std::cerr << "Error: empty file." << std::endl; //throw exception
-            return (1);
-        }
-        inside_check(ifs);
+        if (argc != 2)
+            throw std::invalid_argument("Usage: ./btc <filename>");
+
+        BitcoinExchange btc;
+        btc.checkInput(argv[1]);
+        btc.loadDatabase(argv[1]);
     }
-    else
-        std::cerr << "Usage: ./btc <filename>" << std::endl; //throw exception
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return (1);
+    }
     return (0);
 }
