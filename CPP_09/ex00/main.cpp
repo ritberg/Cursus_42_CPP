@@ -29,6 +29,7 @@ int main(int argc, char **argv)
         BitcoinExchange btc;
         btc.checkInput(argv[1]);
         btc.loadDatabase(argv[1]);
+        btc.processInput(argv[1]);
     }
     catch (const std::exception& e)
     {

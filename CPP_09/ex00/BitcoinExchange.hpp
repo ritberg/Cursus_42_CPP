@@ -17,7 +17,9 @@
 # include <sstream>
 # include <fstream>
 # include <string>
+# include <limits>
 # include <map>
+# include <algorithm>
 # include <stdexcept>
 
 class BitcoinExchange
@@ -31,7 +33,7 @@ class BitcoinExchange
 
         void checkInput(const std::string& input) const;
         void loadDatabase(const std::string& file);
-        void processInput(const std::string& inputFile);
+        void processInput(const std::string& file);
 
     private:
         std::map<std::string, double> _rates;
