@@ -32,12 +32,12 @@ class BitcoinExchange
         BitcoinExchange&  operator=(BitcoinExchange const & other);
 
         void checkInput(const std::string& input) const;
-        void loadDatabase(const std::string& file);
         void processInput(const std::string& file);
 
     private:
         std::map<std::string, double> _rates;
-        double _findClosestExchangeRate(const std::string& date) const;
+        double _findClosestExchangeRate(const std::string& db) const;
+        double _valueConverter(std::string valueStr) const;
 };
 
 #endif

@@ -41,12 +41,12 @@ void BitcoinExchange::checkInput(const std::string& input) const
         std::ifstream ifs;
 
         if (input.empty())
-            throw std::invalid_argument("Error: empty input.");
+            throw std::invalid_argument("empty input.");
         ifs.open (input, std::ifstream::in);
         if (!ifs.is_open() || ifs.fail())
-            throw std::runtime_error("Error: no such file or permission denied.");
+            throw std::runtime_error("no such file or permission denied.");
         if (ifs.peek() == EOF)
-            throw std::runtime_error("Error: empty file.");
+            throw std::runtime_error("empty file.");
     }
     catch (const std::exception& e)
     {
@@ -54,64 +54,15 @@ void BitcoinExchange::checkInput(const std::string& input) const
     }
 }
 
-void BitcoinExchange::loadDatabase(const std::string& file)
-// {
-//     std::ifstream ifs(file);
-//     std::string line;
-//     while (std::getline(ifs, line))
-//     {
-//         std::string date;
-//         double value = 0;
-//         std::istringstream iss(line);
 
-//         if (std::getline(iss, date, ' ') && (iss >> value))
-//             this->_rates[date] = value;
-
-//         std::cout << "Debug: " << date << " | " << value << std::endl;
-//     }
-//     ifs.close();
-// }
-
+double BitcoinExchange::_valueConverter(std::string valueStr) const
 {
-    std::ifstream ifs(file);
-    std::string line;
-    // Skip the first line
-    std::getline(ifs, line);
-
-    while (std::getline(ifs, line))
-    {
-        std::string date;
-        double value = 0;
-        std::istringstream iss(line);
-
-        // Extract the first 10 characters as a std::string
-        date = line.substr(0, 10);
-
-        // Find the position of the first occurrence of " | "
-        size_t pos = line.find(" | ");
-
-        if (pos != std::string::npos)
-        {
-            // Extract characters after " | " as a double
-            std::string valueStr = line.substr(pos + 3);
-            std::istringstream valueIss(valueStr);
-            if (valueIss >> value)
-            {
-                this->_rates[date] = value;
-                std::cout << "Debug: " << date << " | " << value << std::endl;
-            }
-            else
-                std::cerr << "Error converting value to double on line: " << line << std::endl;
-        }
-        else
-        {
-            // If " | " is not found, try extracting the value after a space
-            this->_rates[date] = 0;
-            std::cout << "Debug: " << date << " | " << value << std::endl;
-        }
-    }
-
-    ifs.close();
+	double value = std::atof(valueStr.c_str());
+	if (value < 0)
+        throw std::invalid_argument(valueStr + " not a positive value");
+	else if (value > std::numeric_limits<int>::max())
+        throw std::invalid_argument(valueStr + " too large");  
+	return (value);
 }
 
 
@@ -119,83 +70,114 @@ void BitcoinExchange::processInput(const std::string& file)
 {
     std::ifstream ifs(file);
     std::string line;
-    std::getline(ifs, line);
-    while (std::getline(ifs, line))
+    try
     {
-        std::string date;
-        double value;
-        std::istringstream iss(line);
+        std::getline(ifs, line);
+        if (line != "date | value") // Skip the first line
+            throw std::invalid_argument("Error: Bad file format");
 
-        iss >> date >> value;
-
-        try
+        while (std::getline(ifs, line))
         {
-            double exchangeRate = _findClosestExchangeRate("data.csv");
-            double result = value * exchangeRate;
+            try
+            {
+                std::string date = line.substr(0, 10);
+                if (date.empty())
+                    throw std::invalid_argument("substraction of the date failed");
 
-            // std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(2) << result << std::endl;
+                double value = _valueConverter(line.substr(13));
+                if (!value)
+                    throw std::invalid_argument("conversion failed");
+
+                size_t pos = line.find(" | ");    // Find the position of the first occurrence of " | "
+
+                if (pos != std::string::npos)
+                {
+                    std::string valueStr = line.substr(pos + 3);
+                    std::istringstream valueIss(valueStr);
+                    if (valueIss >> value)
+                        this->_rates[date] = value;
+                    else
+                        throw std::invalid_argument("converting value to double failed");
+                }
+                else
+                {
+                    std::cout << "here" << std::endl;
+                    throw std::invalid_argument("bad file format");
+                }
+
+                double exchangeRate = _findClosestExchangeRate(date);
+                if (value > 0)
+                {
+                    double result = value * exchangeRate;
+                    std::cout << date << " => " << value << " = " << std::setprecision(2) << result << std::endl;
+                }
+            }
+            catch (const std::exception& e)
+            {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+
         }
-        catch (const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error reading file: " << e.what() << std::endl;
     }
 
     ifs.close();
 }
 
-double BitcoinExchange::_findClosestExchangeRate(const std::string& date) const
-{
-    std::ifstream ifs(date);
-    if (!ifs.is_open())
-        throw std::runtime_error("Error: could not open exchange rate file.");
+void extractDataFromCSV(const std::string& filePath, std::map<std::string, double>& dataMap) {
+    std::ifstream file(filePath.c_str());
 
-    std::map<std::string, double> exchangeRates;
+    if (!file)
+    {
+        std::cerr << "Error opening file: " << filePath << std::endl;
+        return;
+    }
 
     std::string line;
-    std::string rateDate;
-    double rate;
-    std::getline(ifs, line);
-
-    while (std::getline(ifs, line))
+    while (std::getline(file, line))
     {
-        std::istringstream iss(line);
+        // Use stringstream to split the line using ',' as a delimiter
+        std::istringstream ss(line);
+        std::string key, valueStr;
 
-        // Extract the first 10 characters as a std::string
-        rateDate = line.substr(0, 10);
+        // Read the key (string before the comma)
+        if (std::getline(ss, key, ',')) {
+            // Read the value (number after the comma)
+            if (std::getline(ss, valueStr, ',')) {
+                // Attempt to convert the value to a double
+                double value;
+                std::istringstream(valueStr) >> value;
 
-        // Find the position of the first occurrence of ","
-        size_t pos = line.find(",");
-
-        if (pos != std::string::npos)
-        {
-            // Extract characters after "," as a double
-            std::string valueStr = line.substr(pos + 1);
-            std::istringstream valueIss(valueStr);
-            if (valueIss >> rate)
-            {
-                exchangeRates[rateDate] = rate;
-                std::cout << "Debug: " << rateDate << "," << rate << std::endl;
+                // Check if the conversion was successful
+                if (!ss.fail()) {
+                    // Insert into the map
+                    dataMap[key] = value;
+                } else {
+                    std::cerr << "Skipping line - Unable to convert '" << valueStr << "' to a double." << std::endl;
+                }
+            } else {
+                std::cerr << "Skipping line - No value found after ','." << std::endl;
             }
-            else
-                std::cerr << "Error converting value to double on line: " << line << std::endl;
-        }
-        else
-        {
-            // If "," is not found, try extracting the value after a space
-            exchangeRates[rateDate] = 0;
-            std::cout << "Debug: " << rateDate << "," << rate << std::endl;
         }
     }
 
-    ifs.close();
+    file.close();
+}
 
+double BitcoinExchange::_findClosestExchangeRate(const std::string& date) const
+{
+    std::map<std::string, double> rates;
+    extractDataFromCSV("data.csv", rates);
 
-    std::map<std::string, double>::const_iterator it = exchangeRates.begin();
-
-    for (std::map<std::string, double>::iterator it = exchangeRates.begin(); it != exchangeRates.end(); ++it) 
-        std::cout << it->second << std::endl;
-
-
-    return it->second;
+    std::map<std::string, double>::const_iterator it = rates.lower_bound(date);
+    if (it != rates.begin())
+    {
+        if (it->first != date)
+            --it;
+        return it->second;
+    }
+    return (it->second);
 }
