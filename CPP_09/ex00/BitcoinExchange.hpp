@@ -37,7 +37,8 @@ class BitcoinExchange
     private:
         std::map<std::string, double> _rates;
         double _findClosestExchangeRate(const std::string& db) const;
-        double _valueConverter(std::string valueStr) const;
+        double _valueConverter(const std::string& valueStr) const;
+        bool _checkDate(const std::string& date) const;
 };
 
 #endif

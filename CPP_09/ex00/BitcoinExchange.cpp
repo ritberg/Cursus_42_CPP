@@ -55,14 +55,38 @@ void BitcoinExchange::checkInput(const std::string& input) const
 }
 
 
-double BitcoinExchange::_valueConverter(std::string valueStr) const
+double BitcoinExchange::_valueConverter(const std::string& valueStr) const
 {
+    if (valueStr.empty())
+        throw std::invalid_argument("empty value");
 	double value = std::atof(valueStr.c_str());
 	if (value < 0)
-        throw std::invalid_argument(valueStr + " not a positive value");
+        throw std::invalid_argument("not a positive value");
 	else if (value > std::numeric_limits<int>::max())
-        throw std::invalid_argument(valueStr + " too large");  
+        throw std::invalid_argument("too large a number");  
 	return (value);
+}
+
+bool BitcoinExchange::_checkDate(const std::string& date) const
+{
+    // Check if the date string has the correct length
+    if (date.length() != 10)
+        return false;
+
+    // Use std::istringstream to parse the date components
+    std::istringstream iss(date);
+    char dash1, dash2;
+    int year, month, day;
+
+    // Attempt to parse the date components
+    if (!(iss >> year >> dash1 >> month >> dash2 >> day))
+        return false;
+
+    // Check for correct formatting and valid ranges
+    return (dash1 == '-' && dash2 == '-' &&
+            year >= 1900 && year <= 2023 &&
+            month >= 1 && month <= 12 &&
+            day >= 1 && day <= 31);
 }
 
 
@@ -80,36 +104,32 @@ void BitcoinExchange::processInput(const std::string& file)
         {
             try
             {
-                std::string date = line.substr(0, 10);
-                if (date.empty())
-                    throw std::invalid_argument("substraction of the date failed");
-
-                double value = _valueConverter(line.substr(13));
-                if (!value)
-                    throw std::invalid_argument("conversion failed");
-
-                size_t pos = line.find(" | ");    // Find the position of the first occurrence of " | "
-
-                if (pos != std::string::npos)
-                {
-                    std::string valueStr = line.substr(pos + 3);
-                    std::istringstream valueIss(valueStr);
-                    if (valueIss >> value)
-                        this->_rates[date] = value;
-                    else
-                        throw std::invalid_argument("converting value to double failed");
-                }
+                size_t nullPos = line.find(' ');
+                std::string date = line.substr(0, nullPos);
+                if (_checkDate(date) == false)
+                    throw std::invalid_argument("bad input => " + date);
                 else
                 {
-                    std::cout << "here" << std::endl;
-                    throw std::invalid_argument("bad file format");
-                }
+                    double value = _valueConverter(line.substr(13));
 
-                double exchangeRate = _findClosestExchangeRate(date);
-                if (value > 0)
-                {
-                    double result = value * exchangeRate;
-                    std::cout << date << " => " << value << " = " << std::setprecision(2) << result << std::endl;
+                    size_t pos = line.find(" | ");    // Find the position of the first occurrence of " | "
+            
+                    if (pos != std::string::npos)
+                    {
+                        std::string valueStr = line.substr(pos + 3);
+                        std::istringstream valueIss(valueStr);
+                        if (valueIss >> value)
+                            this->_rates[date] = value;
+                        else
+                            throw std::invalid_argument("converting value to double failed");
+                    }
+
+                    double exchangeRate = _findClosestExchangeRate(date);
+                    if (value > 0)
+                    {
+                        double result = value * exchangeRate;
+                        std::cout << date << " => " << value << " = " << std::setprecision(2) << result << std::endl;
+                    }
                 }
             }
             catch (const std::exception& e)
