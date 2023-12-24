@@ -36,22 +36,15 @@ BitcoinExchange&  BitcoinExchange::operator=(BitcoinExchange const & other)
 
 void BitcoinExchange::checkInput(const std::string& input) const
 {
-    try
-    {
-        std::ifstream ifs;
+    std::ifstream ifs;
 
-        if (input.empty())
-            throw std::invalid_argument("empty input.");
-        ifs.open (input, std::ifstream::in);
-        if (!ifs.is_open() || ifs.fail())
-            throw std::runtime_error("no such file or permission denied.");
-        if (ifs.peek() == EOF)
-            throw std::runtime_error("empty file.");
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    if (input.empty())
+        throw std::invalid_argument("Error: empty input.");
+    ifs.open (input, std::ifstream::in);
+    if (!ifs.is_open() || ifs.fail())
+        throw std::runtime_error("Error: no such file or permission denied.");
+    if (ifs.peek() == EOF)
+        throw std::runtime_error("Error: empty file.");
 }
 
 
@@ -62,28 +55,26 @@ double BitcoinExchange::_valueConverter(const std::string& valueStr) const
 	double value = std::atof(valueStr.c_str());
 	if (value < 0)
         throw std::invalid_argument("not a positive value");
-	else if (value > std::numeric_limits<int>::max())
-        throw std::invalid_argument("too large a number");  
+    else if (value > std::numeric_limits<int>::max())
+        throw std::invalid_argument("too large a number");
+    else if	(value > 1000)
+        throw std::invalid_argument("value is bigger than 1000");
 	return (value);
 }
 
 bool BitcoinExchange::_checkDate(const std::string& date) const
 {
-    // Check if the date string has the correct length
     if (date.length() != 10)
-        return false;
+        return (false);
 
-    // Use std::istringstream to parse the date components
-    std::istringstream iss(date);
+    std::istringstream iss(date);  // Use std::istringstream to parse the date components
     char dash1, dash2;
     int year, month, day;
 
-    // Attempt to parse the date components
-    if (!(iss >> year >> dash1 >> month >> dash2 >> day))
-        return false;
+    if (!(iss >> year >> dash1 >> month >> dash2 >> day)) // Attempt to parse the date components
+        return (false);
 
-    // Check for correct formatting and valid ranges
-    return (dash1 == '-' && dash2 == '-' &&
+    return (dash1 == '-' && dash2 == '-' &&  // Check for correct formatting and valid ranges
             year >= 1900 && year <= 2023 &&
             month >= 1 && month <= 12 &&
             day >= 1 && day <= 31);
@@ -110,6 +101,8 @@ void BitcoinExchange::processInput(const std::string& file)
                     throw std::invalid_argument("bad input => " + date);
                 else
                 {
+                    if (line.size() <= 13)
+                        throw std::invalid_argument("Error: Missing value in the input line");
                     double value = _valueConverter(line.substr(13));
 
                     size_t pos = line.find(" | ");    // Find the position of the first occurrence of " | "
@@ -123,31 +116,26 @@ void BitcoinExchange::processInput(const std::string& file)
                         else
                             throw std::invalid_argument("converting value to double failed");
                     }
-
                     double exchangeRate = _findClosestExchangeRate(date);
-                    if (value > 0)
-                    {
-                        double result = value * exchangeRate;
-                        std::cout << date << " => " << value << " = " << std::setprecision(2) << result << std::endl;
-                    }
+                    double result = value * exchangeRate;
+                    std::cout << date << " => " << value << " = " << std::setprecision(2) << result << std::endl;
                 }
             }
             catch (const std::exception& e)
             {
                 std::cerr << "Error: " << e.what() << std::endl;
             }
-
         }
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Error reading file: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
-
     ifs.close();
 }
 
-void extractDataFromCSV(const std::string& filePath, std::map<std::string, double>& dataMap) {
+void extractDataFromCSV(const std::string& filePath, std::map<std::string, double>& dataMap)
+{
     std::ifstream file(filePath.c_str());
 
     if (!file)
@@ -155,35 +143,28 @@ void extractDataFromCSV(const std::string& filePath, std::map<std::string, doubl
         std::cerr << "Error opening file: " << filePath << std::endl;
         return;
     }
-
     std::string line;
     while (std::getline(file, line))
     {
-        // Use stringstream to split the line using ',' as a delimiter
-        std::istringstream ss(line);
+        std::istringstream ss(line);  // Use stringstream to split the line using ',' as a delimiter
         std::string key, valueStr;
 
-        // Read the key (string before the comma)
-        if (std::getline(ss, key, ',')) {
-            // Read the value (number after the comma)
-            if (std::getline(ss, valueStr, ',')) {
-                // Attempt to convert the value to a double
-                double value;
+        if (std::getline(ss, key, ','))  // Read the key (string before the comma)
+        {
+            if (std::getline(ss, valueStr, ','))  // Read the value (number after the comma)
+            {
+                double value;                           // Attempt to convert the value to a double
                 std::istringstream(valueStr) >> value;
 
-                // Check if the conversion was successful
-                if (!ss.fail()) {
-                    // Insert into the map
-                    dataMap[key] = value;
-                } else {
+                if (!ss.fail())
+                    dataMap[key] = value;   // Insert into the map
+                else 
                     std::cerr << "Skipping line - Unable to convert '" << valueStr << "' to a double." << std::endl;
-                }
-            } else {
-                std::cerr << "Skipping line - No value found after ','." << std::endl;
             }
+            else
+                std::cerr << "Skipping line - No value found after ','." << std::endl;
         }
     }
-
     file.close();
 }
 
