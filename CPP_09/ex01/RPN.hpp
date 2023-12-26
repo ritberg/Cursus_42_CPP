@@ -27,14 +27,15 @@ class RPN
         RPN(RPN const & src);
         ~RPN(void);
 
-        RPN& operator=(RPN const & other);
+        RPN&    operator=(RPN const & other);
 
-        void processInput(const std::string & string);
+        void    processInput(const std::string & string);
 
     private:
         std::stack<int> _stack;
 
         void    _checkInput(std::string & input) const;
+        void    _additionalCheck(std::string & input) const;
         bool    _isOperator(char c);
         int     _performOperation(int operand1, int operand2, char op);
 

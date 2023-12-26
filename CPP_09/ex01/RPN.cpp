@@ -47,6 +47,18 @@ void RPN::_checkInput(std::string & input) const
     } 
 }
 
+/*  for a test like ./RPN "1+ 2 +"  or ./RPN "1**** 2 +"  */
+void RPN::_additionalCheck(std::string & input) const
+{
+    int i = 0;
+    while (input[i] != 0)
+    {
+        if (!isdigit(input[i]))
+            throw std::invalid_argument("Error");
+        i++;
+    } 
+}
+
 bool RPN::_isOperator(char c)
 {
     return (c == '+' || c == '-' || c == '*' || c == '/');
@@ -88,6 +100,15 @@ int RPN::pop(void)
         throw std::underflow_error("Stack underflow");
 }
 
+/*
+The while (iss >> token) loop reads the contents of the string stream token by token.
+The `>>` operator reads a whitespace-separated token from the stream
+and stores it in the token variable.
+
+When an operator is encountered, RPN calculator retrieves the top two values
+from the stack, performs the operation on those two values,
+and then pushes the result back to the stack. 
+*/
 void RPN::processInput(const std::string& string)
 {
     std::istringstream iss(string);
@@ -96,7 +117,10 @@ void RPN::processInput(const std::string& string)
     while (iss >> token)
     {
         if (isdigit(token[0]))
+        {
+            _additionalCheck(token);
             push(atoi(token.c_str()));
+        }
         else if (token.length() == 1 && _isOperator(token[0]))
         {
             int operand2 = pop();
@@ -107,7 +131,6 @@ void RPN::processInput(const std::string& string)
         else
             throw std::invalid_argument("Invalid token");
     }
-
     if (this->_stack.size() == 1)
         std::cout << this->_stack.top() << std::endl;
     else
