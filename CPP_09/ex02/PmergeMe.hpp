@@ -15,6 +15,21 @@
 
 
 # include <iostream>
+# include <string>
+# include <limits>
 
+
+class PmergeMe
+{
+    public:
+        PmergeMe(void);
+        PmergeMe(PmergeMe const & src);
+        ~PmergeMe(void);
+
+        // PmergeMe&  operator=(PmergeMe const & other);
+
+        void checkInput(char* input) const;
+
+};
 
 #endif
