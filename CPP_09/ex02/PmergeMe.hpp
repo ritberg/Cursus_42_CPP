@@ -44,6 +44,8 @@ class PmergeMe
         std::list<int> list;
         clock_t start, end;
         void _mergeInsertionSort2(std::vector<int>& sequence);
+        void insertionSortPairs(std::vector<std::vector<int> >& pairs, size_t index);
+
 
 };
 
