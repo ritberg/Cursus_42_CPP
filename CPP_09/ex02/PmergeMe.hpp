@@ -17,6 +17,11 @@
 # include <iostream>
 # include <string>
 # include <limits>
+# include <cstdlib> 
+# include <ctime>
+# include <vector>
+# include <list>
+# include <unordered_set>
 
 
 class PmergeMe
@@ -29,6 +34,15 @@ class PmergeMe
         // PmergeMe&  operator=(PmergeMe const & other);
 
         void checkInput(char* input) const;
+        void displayResults(void);
+        void mergeInsertionSort1(void);
+        std::vector<int>& getVector(void);
+
+    private:
+        std::vector<int> X;
+        std::list<int> list;
+        clock_t start, end;
+        void _mergeInsertionSort2(std::vector<int>& sequence);
 
 };
 

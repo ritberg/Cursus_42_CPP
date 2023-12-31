@@ -16,11 +16,16 @@ int main(int argc, char **argv)
 {
     try
     {
-        for (int i = 1; i < argc; i++)
+        if (argc < 2)
+            throw std::runtime_error("Error: please enter a positive integer sequence");
+
+        PmergeMe sorter;
+        for (int i = 1; i < argc; ++i)
         {
-            PmergeMe pmerge;
-            pmerge.checkInput(argv[i]);
+            sorter.checkInput(argv[i]);
+            sorter.getVector().push_back(std::atoi(argv[i]));
         }
+        sorter.displayResults();
     }
     catch(const std::exception& e)
     {
