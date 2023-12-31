@@ -54,6 +54,13 @@ void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
     if (X.size() <= 1)
         return;
 
+    int straggler = -1;
+    if (!X.empty() && X.size() % 2 != 0)
+    {
+        straggler = X.back();
+        X.pop_back();
+    }
+
     // Step 1: Group elements into pairs
     std::vector<int> S;
     for (size_t i = 0; i < X.size(); i += 2)
@@ -85,6 +92,11 @@ void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
                 S.insert(pos, X[i]);
         }
     }
+    if (straggler != -1)
+    {
+        std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), straggler, _compare);
+        S.insert(pos, straggler);
+    }
 
     // Copy the sorted sequence back to the original array
     X = S;
@@ -105,8 +117,8 @@ void PmergeMe::mergeInsertionSort1()
     std::cout << std::endl;
 
     // Display the time used by the algorithm with the first container (vector)
-    // std::cout << "Time to process a range of " << X.size() << " elements with std::vector: "
-    //           << (double)(end - start) / CLOCKS_PER_SEC * 1e6 << " us" << std::endl;
+    std::cout << "Time to process a range of " << X.size() << " elements with std::vector: "
+              << static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6 << " us" << std::endl;
 
 }
 
