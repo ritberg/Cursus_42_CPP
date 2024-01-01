@@ -3,9 +3,9 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
-		  test.cpp\
+		  PmergeMe.cpp\
 
-INCL	= test.hpp\
+INCL	= PmergeMe.hpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 

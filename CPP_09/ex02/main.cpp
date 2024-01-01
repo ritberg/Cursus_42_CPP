@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         if (argc < 2)
             throw std::runtime_error("Error: please enter a positive integer sequence");
 
-        PmergeMe1 sorter;
+        PmergeMe sorter;
         for (int i = 1; i < argc; ++i)
         {
             sorter.checkInput(argv[i]);
