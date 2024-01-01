@@ -54,11 +54,11 @@ void PmergeMe::checkInput(char* input) const
 
 bool PmergeMe::_checkDuplicates(void)
 {
-    std::set<int> uniqueElements;
+    std::set<int> uniqueElems;
     for (std::vector<int>::const_iterator it = _X.begin(); it != _X.end(); ++it)
     {
-        if (!uniqueElements.insert(*it).second)
-            return (true);  // Duplicate found
+        if (!uniqueElems.insert(*it).second) // if the insertion of the current digit fails 
+            return (true);                   // (meaning it's already present in the set), return true
     }
     return (false);  // No duplicates
 }
@@ -68,61 +68,63 @@ bool _compare(int a, int b)
     return a < b;
 }
 
-// Function to perform Merge-Insertion Sort
+/*
+Function to perform Merge-Insertion Sort:
+1. If the size %2 != 0, remove the last element and stock it as int straggler
+2. Group elements into pairs
+3. Determine the larger of the two elements in each pair
+4. Recursively sort the larger elements
+5. Insert the element paired with the first and smallest element of S at the start of S
+6. Insert remaining elements into S with a specially chosen insertion ordering
+7. Use binary search to find the correct position for insertion
+8. Add straggler if the sequence was odd
+9. Copy the sorted sequence back to the original array
+*/ 
 void PmergeMe::_mergeInsertionSort(std::vector<int>& X)
 {
-    // Base case: if the size of the input is 1 or less, it's already sorted
     if (X.size() <= 1)
         return;
 
     int straggler = -1;
-    if (!X.empty() && X.size() % 2 != 0)
+    if (!X.empty() && X.size() % 2 != 0) // 1
     {
         straggler = X.back();
         X.pop_back();
     }
 
-    // Step 1: Group elements into pairs
     std::vector<int> S;
-    for (size_t i = 0; i < X.size(); i += 2)
+    for (size_t i = 0; i < X.size(); i += 2) // 2
     {
-        // Step 2: Determine the larger of the two elements in each pair
-        int larger = std::max(X[i], X[i + 1]);
+        int larger = std::max(X[i], X[i + 1]);  // 3
         // std::cout << "X: " << X[i] << std::endl;
         // std::cout << "X+1: " << X[i + 1] << std::endl;
         // std::cout << "Larger: " << larger << std::endl;
-        if (std::find(S.begin(), S.end(), larger) == S.end())               //
+        if (std::find(S.begin(), S.end(), larger) == S.end())
             S.push_back(larger);
     }
 
-    // Step 3: Recursively sort the larger elements
-    _mergeInsertionSort(S);
+    _mergeInsertionSort(S);  // 4
 
-    // Step 4: Insert the element paired with the first and smallest element of S at the start of S
-    int smallestElement = *std::min_element(X.begin(), X.end());
+    int smallestElement = *std::min_element(X.begin(), X.end()); // 5
     S.insert(S.begin(), smallestElement);
 
-    // Step 5: Insert remaining elements into S with a specially chosen insertion ordering
-    for (size_t i = 0; i < X.size(); ++i)
+    for (size_t i = 0; i < X.size(); ++i) // 6
     {
         if (X[i] != smallestElement)
         {
-            // Use binary search to find the correct position for insertion
-            std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), X[i], _compare);
-            if (std::find(S.begin(), S.end(), X[i]) == S.end())                          //
+            std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), X[i], _compare); // 7
+            if (std::find(S.begin(), S.end(), X[i]) == S.end())
                 S.insert(pos, X[i]);
         }
     }
-    if (straggler != -1)
+    if (straggler != -1) // 8
     {
         std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), straggler, _compare);
         S.insert(pos, straggler);
     }
 
-    // Copy the sorted sequence back to the original array
-    X = S;
+    X = S; // 9
 }
-
 
 void PmergeMe::displayResults()
 {
