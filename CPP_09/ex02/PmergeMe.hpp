@@ -32,19 +32,18 @@ class PmergeMe
         PmergeMe(PmergeMe const & src);
         ~PmergeMe(void);
 
-        // PmergeMe&  operator=(PmergeMe const & other);
+        PmergeMe&  operator=(PmergeMe const & other);
 
         void checkInput(char* input) const;
         void displayResults(void);
-        void mergeInsertionSort1(void);
         std::vector<int>& getVector(void);
 
     private:
-        std::vector<int> X;
-        std::list<int> list;
-        clock_t start, end;
-        void _mergeInsertionSort2(std::vector<int>& sequence);
-        void insertionSortPairs(std::vector<std::vector<int> >& pairs, size_t index);
+        std::vector<int> _X;
+        std::list<int> _list;
+        clock_t _start, _end;
+        void _mergeInsertionSort(std::vector<int>& sequence);
+        bool _checkDuplicates(void);
 
 
 };

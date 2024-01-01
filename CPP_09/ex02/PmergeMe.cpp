@@ -25,30 +25,51 @@ PmergeMe::~PmergeMe(void)
 {
 }
 
+PmergeMe&  PmergeMe::operator=(PmergeMe const & other)
+{
+    if (this != &other)
+    {
+        this->_X = other._X;
+        this->_list = other._list;
+    }
+    return (*this);
+}
+
 std::vector<int>& PmergeMe::getVector(void)
 {
-    return (this->X);
+    return (this->_X);
 }
 
 void PmergeMe::checkInput(char* input) const
 {
+   if (std::atoi(input) < 0)
+        throw std::invalid_argument("Error: atoi() failed");
+
     for (size_t i = 0; i < strlen(input); ++i)
     {
         if (!isdigit(input[i]))
             throw std::invalid_argument("Error: not a positive integer");
     }
-    if (std::atoi(input) < 0)
-        throw std::invalid_argument("Error: atoi() failed");
 }
 
-// Custom comparison function for sorting
+bool PmergeMe::_checkDuplicates(void)
+{
+    std::set<int> uniqueElements;
+    for (std::vector<int>::const_iterator it = _X.begin(); it != _X.end(); ++it)
+    {
+        if (!uniqueElements.insert(*it).second)
+            return (true);  // Duplicate found
+    }
+    return (false);  // No duplicates
+}
+
 bool _compare(int a, int b)
 {
     return a < b;
 }
 
 // Function to perform Merge-Insertion Sort
-void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
+void PmergeMe::_mergeInsertionSort(std::vector<int>& X)
 {
     // Base case: if the size of the input is 1 or less, it's already sorted
     if (X.size() <= 1)
@@ -70,12 +91,12 @@ void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
         // std::cout << "X: " << X[i] << std::endl;
         // std::cout << "X+1: " << X[i + 1] << std::endl;
         // std::cout << "Larger: " << larger << std::endl;
-        if (std::find(S.begin(), S.end(), larger) == S.end())
+        if (std::find(S.begin(), S.end(), larger) == S.end())               //
             S.push_back(larger);
     }
 
     // Step 3: Recursively sort the larger elements
-    _mergeInsertionSort2(S);
+    _mergeInsertionSort(S);
 
     // Step 4: Insert the element paired with the first and smallest element of S at the start of S
     int smallestElement = *std::min_element(X.begin(), X.end());
@@ -88,7 +109,7 @@ void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
         {
             // Use binary search to find the correct position for insertion
             std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), X[i], _compare);
-            if (std::find(S.begin(), S.end(), X[i]) == S.end())
+            if (std::find(S.begin(), S.end(), X[i]) == S.end())                          //
                 S.insert(pos, X[i]);
         }
     }
@@ -102,33 +123,28 @@ void PmergeMe::_mergeInsertionSort2(std::vector<int>& X)
     X = S;
 }
 
-void PmergeMe::mergeInsertionSort1()
-{
-    // Perform Merge-Insertion Sort on vector
-    start = clock();
-    _mergeInsertionSort2(X);
-    end = clock();
-    
-    // Display the sorted sequence for the vector
-    std::cout << "After (std::vector): ";
-    for (size_t i = 0; i < X.size(); ++i)
-        std::cout << X[i] << " ";
-    
-    std::cout << std::endl;
-
-    // Display the time used by the algorithm with the first container (vector)
-    std::cout << "Time to process a range of " << X.size() << " elements with std::vector: "
-              << static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6 << " clocks" << std::endl;
-
-}
 
 void PmergeMe::displayResults()
 {
+    if (_checkDuplicates() == true)
+        throw std::invalid_argument("Error: duplicates");
+
     std::cout << "Before: ";
-    for (size_t i = 0; i < X.size(); ++i)
-        std::cout << X[i] << " ";
+    for (size_t i = 0; i < _X.size(); ++i)
+        std::cout << _X[i] << " ";
 
     std::cout << std::endl;
 
-    mergeInsertionSort1();
+    _start = clock();
+    _mergeInsertionSort(_X);
+    _end = clock();
+    
+    std::cout << "After (std::vector): ";
+    for (size_t i = 0; i < _X.size(); ++i)
+        std::cout << _X[i] << " ";
+    
+    std::cout << std::endl;
+
+    std::cout << "Time to process a range of " << _X.size() << " elements with std::vector: "
+              << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1e6 << " clocks" << std::endl;
 }
