@@ -26,12 +26,13 @@ int main(int argc, char **argv)
         {
             sorter.checkInput(argv[i]);
             sorter.getVector().push_back(std::atoi(argv[i]));
+            sorter.getList().push_back(std::atoi(argv[i]));
         }
         sorter.displayResults();
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << RED << e.what() << RESET << std::endl;
     }
 
     return (0);

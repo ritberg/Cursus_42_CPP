@@ -40,6 +40,11 @@ std::vector<int>& PmergeMe::getVector(void)
     return (this->_X);
 }
 
+std::list<int>& PmergeMe::getList(void)
+{
+    return (this->_list);
+}
+
 void PmergeMe::checkInput(char* input) const
 {
    if (std::atoi(input) < 0)
@@ -54,11 +59,17 @@ void PmergeMe::checkInput(char* input) const
 
 bool PmergeMe::_checkDuplicates(void)
 {
-    std::set<int> uniqueElems;
+    std::set<int> uniqueElemsV;
+    std::set<int> uniqueElemsL;
     for (std::vector<int>::const_iterator it = _X.begin(); it != _X.end(); ++it)
     {
-        if (!uniqueElems.insert(*it).second) // if the insertion of the current digit fails 
+        if (!uniqueElemsV.insert(*it).second) // if the insertion of the current digit fails 
             return (true);                   // (meaning it's already present in the set), return true
+    }
+    for (std::list<int>::const_iterator it = _list.begin(); it != _list.end(); ++it)
+    {
+        if (!uniqueElemsL.insert(*it).second)
+            return (true);
     }
     return (false);  // No duplicates
 }
@@ -80,7 +91,7 @@ Function to perform Merge-Insertion Sort:
 8. Add straggler if the sequence was odd
 9. Copy the sorted sequence back to the original array
 */ 
-void PmergeMe::_mergeInsertionSort(std::vector<int>& X)
+void PmergeMe::_mergeInsertionSortVector(std::vector<int>& X)
 {
     if (X.size() <= 1)
         return;
@@ -103,7 +114,7 @@ void PmergeMe::_mergeInsertionSort(std::vector<int>& X)
             S.push_back(larger);
     }
 
-    _mergeInsertionSort(S);  // 4
+    _mergeInsertionSortVector(S);  // 4
 
     int smallestElement = *std::min_element(X.begin(), X.end()); // 5
     S.insert(S.begin(), smallestElement);
@@ -126,27 +137,97 @@ void PmergeMe::_mergeInsertionSort(std::vector<int>& X)
     X = S; // 9
 }
 
+void PmergeMe::_mergeInsertionSortList(std::list<int>& list)
+{
+    if (list.size() <= 1)
+        return;
+
+    int straggler = -1;
+    if (!list.empty() && list.size() % 2 != 0)
+    {
+        straggler = list.back();
+        list.pop_back();
+    }
+
+    std::list<int> S;
+    std::list<int>::iterator it = list.begin();
+    while (it != list.end())
+    {
+        int larger = std::max(*it, *(std::next(it)));
+        if (std::find(S.begin(), S.end(), larger) == S.end())
+            S.push_back(larger);
+        std::advance(it, 2);
+    }
+
+    _mergeInsertionSortList(S);
+
+    int smallestElement = *std::min_element(list.begin(), list.end());
+    S.insert(S.begin(), smallestElement);
+
+    for (std::list<int>::iterator i = list.begin(); i != list.end(); ++i)
+    {
+        if (*i != smallestElement)
+        {
+            std::list<int>::iterator pos = std::lower_bound(S.begin(), S.end(), *i, _compare);
+            if (std::find(S.begin(), S.end(), *i) == S.end())
+                S.insert(pos, *i);
+        }
+    }
+    if (straggler != -1)
+    {
+        std::list<int>::iterator pos = std::lower_bound(S.begin(), S.end(), straggler, _compare);
+        S.insert(pos, straggler);
+    }
+
+    list = S;
+}
+
 void PmergeMe::displayResults()
 {
     if (_checkDuplicates() == true)
         throw std::invalid_argument("Error: duplicates");
 
-    std::cout << "Before: ";
+    std::cout << BLUE "--------- std::vector --------- " << std::endl;
+    std::cout << std::endl << BLUE "Before: ";
     for (size_t i = 0; i < _X.size(); ++i)
         std::cout << _X[i] << " ";
 
     std::cout << std::endl;
 
     _start = clock();
-    _mergeInsertionSort(_X);
+    _mergeInsertionSortVector(_X);
     _end = clock();
-    
-    std::cout << "After (std::vector): ";
+
+    std::cout << BLUE "After: ";
     for (size_t i = 0; i < _X.size(); ++i)
         std::cout << _X[i] << " ";
-    
+
     std::cout << std::endl;
 
-    std::cout << "Time to process a range of " << _X.size() << " elements with std::vector: "
-              << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1e6 << " clocks" << std::endl;
+    std::cout << BLUE "Time to process a range of " << _X.size() << " elements with std::vector: "
+              << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1e6 << " clocks" RESET << std::endl;
+
+    std::cout << RESET << std::endl;
+
+    std::cout << GREEN "---------- std::list ---------- " << std::endl;
+    std::cout << std::endl << GREEN "Before: ";
+    for (std::list<int>::iterator itPrint = _list.begin(); itPrint != _list.end(); ++itPrint)
+        std::cout << *itPrint << " ";
+
+    _start1 = clock();
+    _mergeInsertionSortList(_list);
+    _end1 = clock();
+
+    std::cout << std::endl;
+
+    std::cout << GREEN "After: ";
+    for (std::list<int>::iterator itOut = _list.begin(); itOut != _list.end(); ++itOut)
+        std::cout << *itOut << " ";
+
+    std::cout << std::endl;
+
+    std::cout << GREEN "Time to process a range of " << _list.size() << " elements with std::list: "
+              << static_cast<double>(_end1 - _start1) / CLOCKS_PER_SEC * 1e6 << " clocks" RESET << std::endl;
+    
+    std::cout << RESET << std::endl;
 }
