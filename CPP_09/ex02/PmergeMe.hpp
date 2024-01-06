@@ -23,6 +23,7 @@
 # include <list>
 # include <set>
 # include <unordered_set>
+# include <iterator>
 
 # define RESET	"\e[0m"
 # define BLUE   "\033[96m"
@@ -51,8 +52,6 @@ class PmergeMe
         void _mergeInsertionSortList(std::list<int>& list);
         bool _checkDuplicates(void);
 
-
 };
-
 
 #endif

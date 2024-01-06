@@ -47,14 +47,13 @@ std::list<int>& PmergeMe::getList(void)
 
 void PmergeMe::checkInput(char* input) const
 {
-   if (std::atoi(input) < 0)
-        throw std::invalid_argument("Error: atoi() failed");
-
     for (size_t i = 0; i < strlen(input); ++i)
     {
         if (!isdigit(input[i]))
             throw std::invalid_argument("Error: not a positive integer");
     }
+    if (std::atoi(input) < 0 || std::atoi(input) > std::numeric_limits<int>::max())
+        throw std::invalid_argument("Error: atoi() failed");
 }
 
 bool PmergeMe::_checkDuplicates(void)
@@ -156,7 +155,7 @@ void PmergeMe::_mergeInsertionSortList(std::list<int>& list)
         int larger = std::max(*it, *(std::next(it)));
         if (std::find(S.begin(), S.end(), larger) == S.end())
             S.push_back(larger);
-        std::advance(it, 2);
+        std::advance(it, 2); //iteration through the input list in pairs
     }
 
     _mergeInsertionSortList(S);
@@ -205,7 +204,7 @@ void PmergeMe::displayResults()
     std::cout << std::endl;
 
     std::cout << BLUE "Time to process a range of " << _X.size() << " elements with std::vector: "
-              << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1e6 << " clocks" RESET << std::endl;
+              << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1000 << " ms" RESET << std::endl;
 
     std::cout << RESET << std::endl;
 
@@ -227,7 +226,7 @@ void PmergeMe::displayResults()
     std::cout << std::endl;
 
     std::cout << GREEN "Time to process a range of " << _list.size() << " elements with std::list: "
-              << static_cast<double>(_end1 - _start1) / CLOCKS_PER_SEC * 1e6 << " clocks" RESET << std::endl;
+              << static_cast<double>(_end1 - _start1) / CLOCKS_PER_SEC * 1000 << " ms" RESET << std::endl;
     
     std::cout << RESET << std::endl;
 }

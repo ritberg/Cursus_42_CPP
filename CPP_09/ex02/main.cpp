@@ -37,3 +37,5 @@ int main(int argc, char **argv)
 
     return (0);
 }
+// Without doubles: ./PmergeMe $(jot -r 3000 1 100000 | sort -u | head -n 3000 | tr '\n' ' ')
+// With doubles: ./PmergeMe `jot -r 3000 1 100000 | tr '\n' ' '`

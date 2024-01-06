@@ -28,9 +28,7 @@ BitcoinExchange::~BitcoinExchange(void)
 BitcoinExchange&  BitcoinExchange::operator=(BitcoinExchange const & other)
 {
     if (this != &other)
-    {
         this->_rates = other._rates;
-    }
     return (*this);
 }
 
@@ -39,12 +37,12 @@ void BitcoinExchange::checkInput(const std::string& input) const
     std::ifstream ifs;
 
     if (input.empty())
-        throw std::invalid_argument("Error: empty input.");
+        throw std::invalid_argument("Error: empty input");
     ifs.open (input, std::ifstream::in);
     if (!ifs.is_open() || ifs.fail())
-        throw std::runtime_error("Error: no such file or permission denied.");
+        throw std::runtime_error("Error: no such file or permission denied");
     if (ifs.peek() == EOF)
-        throw std::runtime_error("Error: empty file.");
+        throw std::runtime_error("Error: empty file");
 }
 
 
@@ -90,6 +88,8 @@ void BitcoinExchange::processInput(const std::string& file)
         std::getline(ifs, line);
         if (line != "date | value") // Skip the first line
             throw std::invalid_argument("Error: Bad file format");
+        if (ifs.peek() == EOF)     // Error if the file has only the line "date | value "
+            throw std::runtime_error("Error: empty file");
 
         while (std::getline(ifs, line))
         {
@@ -159,10 +159,10 @@ void extractDataFromCSV(const std::string& filePath, std::map<std::string, doubl
                 if (!ss.fail())
                     dataMap[key] = value;   // Insert into the map
                 else 
-                    std::cerr << "Skipping line - Unable to convert '" << valueStr << "' to a double." << std::endl;
+                    std::cerr << "Skipping line - Unable to convert '" << valueStr << "' to a double" << std::endl;
             }
             else
-                std::cerr << "Skipping line - No value found after ','." << std::endl;
+                std::cerr << "Skipping line - No value found after ','" << std::endl;
         }
     }
     file.close();
@@ -178,7 +178,7 @@ double BitcoinExchange::_findClosestExchangeRate(const std::string& date) const
     {
         if (it->first != date)
             --it;
-        return it->second;
+        return (it->second);
     }
     return (it->second);
 }

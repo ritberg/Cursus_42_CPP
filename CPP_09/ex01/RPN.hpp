@@ -39,8 +39,8 @@ class RPN
         bool    _isOperator(char c);
         int     _performOperation(int operand1, int operand2, char op);
 
-        void    push(int value);
-        int     pop(void);
+        void    _push(int value);
+        int     _pop(void);
 
 };
 

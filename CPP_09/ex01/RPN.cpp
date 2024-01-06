@@ -18,7 +18,7 @@ RPN::RPN(void)
 
 RPN::RPN(std::string input)
 {
-    _checkInput(input);
+    // _checkInput(input);
 }
 
 RPN::RPN(RPN const & src)
@@ -37,15 +37,15 @@ RPN&  RPN::operator=(RPN const & other)
     return (*this);
 }
 
-void RPN::_checkInput(std::string & input) const
-{
-    for (size_t i = 0; i < input.length(); ++i)
-    {
-        if (!isdigit(input[i]) && input[i] != ' ' && input[i] != '+'
-            && input[i] != '-' && input[i] != '/' && input[i] != '*')
-            throw std::invalid_argument("Error");
-    } 
-}
+// void RPN::_checkInput(std::string & input) const
+// {
+//     for (size_t i = 0; i < input.length(); ++i)
+//     {
+//         if (!isdigit(input[i]) && input[i] != ' ' && input[i] != '+'
+//             && input[i] != '-' && input[i] != '/' && input[i] != '*')
+//             throw std::invalid_argument("Error");
+//     } 
+// }
 
 /*  for a test like ./RPN "1+ 2 +"  or ./RPN "1**** 2 +"  */
 void RPN::_additionalCheck(std::string & input) const
@@ -83,21 +83,21 @@ int RPN::_performOperation(int operand1, int operand2, char op)
     }
 }
 
-void RPN::push(int value)
+void RPN::_push(int value)
 {
     this->_stack.push(value);
 }
 
-int RPN::pop(void)
+int RPN::_pop(void)
 {
-    if (!_stack.empty())
+    if (!this->_stack.empty())
     {
-        int topValue = _stack.top();
-        _stack.pop();
+        int topValue = this->_stack.top();
+        this->_stack.pop();
         return (topValue);
     }
     else
-        throw std::underflow_error("Stack underflow");
+        throw std::underflow_error("Stack underflow"); // there are no elements to pop
 }
 
 /*
@@ -119,17 +119,17 @@ void RPN::processInput(const std::string& string)
         if (isdigit(token[0]))
         {
             _additionalCheck(token);
-            push(atoi(token.c_str()));
+            _push(atoi(token.c_str()));
         }
         else if (token.length() == 1 && _isOperator(token[0]))
         {
-            int operand2 = pop();
-            int operand1 = pop();
+            int operand2 = _pop();
+            int operand1 = _pop();
             int result = _performOperation(operand1, operand2, token[0]);
-            push(result);
+            _push(result);
         }
         else
-            throw std::invalid_argument("Invalid token");
+            throw std::invalid_argument("Error");
     }
     if (this->_stack.size() == 1)
         std::cout << this->_stack.top() << std::endl;
