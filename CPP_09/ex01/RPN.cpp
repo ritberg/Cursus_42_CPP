@@ -50,7 +50,9 @@ RPN&  RPN::operator=(RPN const & other)
 /*  for a test like ./RPN "1+ 2 +"  or ./RPN "1**** 2 +"  */
 void RPN::_additionalCheck(std::string & input) const
 {
-    int i = 0;
+    if (input[0] != '-' && !isdigit(input[0]))
+        throw std::invalid_argument("Error");
+    int i = 1;
     while (input[i] != 0)
     {
         if (!isdigit(input[i]))
@@ -116,7 +118,12 @@ void RPN::processInput(const std::string& string)
 
     while (iss >> token)
     {
-        if (isdigit(token[0]))
+        if (token[0] == '-' && token.length() > 1 && isdigit(token[1]))
+        {
+            _push(-atoi(token.substr(1).c_str()));
+            _additionalCheck(token);
+        }
+        else if (isdigit(token[0]))
         {
             _additionalCheck(token);
             _push(atoi(token.c_str()));
