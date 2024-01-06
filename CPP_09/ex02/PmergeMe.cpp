@@ -204,11 +204,7 @@ void PmergeMe::displayResults()
     std::cout << std::endl;
 
     std::cout << BLUE "Time to process a range of " << _X.size() << " elements with std::vector: "
-<<<<<<< HEAD
               << static_cast<double>(_end - _start) / CLOCKS_PER_SEC * 1000 << " ms" RESET << std::endl;
-=======
-              << (static_cast<double>(_end - _start) / CLOCKS_PER_SEC) * 1000 << " ms" RESET << std::endl;
->>>>>>> 173f365a66812842ee0bf06c4cb86bf5d6bd5053
 
     std::cout << RESET << std::endl;
 
@@ -230,11 +226,7 @@ void PmergeMe::displayResults()
     std::cout << std::endl;
 
     std::cout << GREEN "Time to process a range of " << _list.size() << " elements with std::list: "
-<<<<<<< HEAD
               << static_cast<double>(_end1 - _start1) / CLOCKS_PER_SEC * 1000 << " ms" RESET << std::endl;
-=======
-              << (static_cast<double>(_end1 - _start1) / CLOCKS_PER_SEC) * 1000 << " ms" RESET << std::endl;
->>>>>>> 173f365a66812842ee0bf06c4cb86bf5d6bd5053
     
     std::cout << RESET << std::endl;
 }
