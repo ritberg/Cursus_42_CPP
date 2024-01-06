@@ -120,13 +120,19 @@ void RPN::processInput(const std::string& string)
     {
         if (token[0] == '-' && token.length() > 1 && isdigit(token[1]))
         {
-            _push(-atoi(token.substr(1).c_str()));
             _additionalCheck(token);
+            long value = -std::atol(token.substr(1).c_str());
+            if (value < std::numeric_limits<int>::min())
+                throw std::invalid_argument("Error: min int exceeded");
+            _push(value);
         }
         else if (isdigit(token[0]))
         {
             _additionalCheck(token);
-            _push(atoi(token.c_str()));
+            long value = std::atol(token.c_str());
+            if (value > std::numeric_limits<int>::max())
+                throw std::invalid_argument("Error: max int exceeded");
+            _push(value);
         }
         else if (token.length() == 1 && _isOperator(token[0]))
         {

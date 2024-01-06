@@ -18,6 +18,7 @@
 # include <sstream>
 # include <cstdlib>
 # include <stdexcept>
+# include <limits>
 
 class RPN
 {
