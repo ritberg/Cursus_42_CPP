@@ -52,7 +52,7 @@ void PmergeMe::checkInput(char* input) const
         if (!isdigit(input[i]))
             throw std::invalid_argument("Error: not a positive integer");
     }
-    if (std::atoi(input) < 0 || std::atoi(input) > std::numeric_limits<int>::max())
+    if (std::atoi(input) < 0 || std::atol(input) > std::numeric_limits<int>::max())
         throw std::invalid_argument("Error: atoi() failed");
 }
 
