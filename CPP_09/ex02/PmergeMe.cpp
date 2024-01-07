@@ -75,20 +75,22 @@ bool PmergeMe::_checkDuplicates(void)
 
 bool _compare(int a, int b)
 {
-    return a < b;
+    return (a < b);
 }
 
 /*
 Function to perform Merge-Insertion Sort:
 1. If the size %2 != 0, remove the last element and stock it as int straggler
-2. Group elements into pairs
+2. Group stack X elements into pairs
 3. Determine the larger of the two elements in each pair
-4. Recursively sort the larger elements
-5. Insert the element paired with the first and smallest element of S at the start of S
-6. Insert remaining elements into S with a specially chosen insertion ordering
-7. Use binary search to find the correct position for insertion
+4. Push the larger element to the stack S
+5. Recursively sort the larger elements in the stack S
+6. Find the smallest element in the original stack X and
+    insert it at the beginning of the sorted stack S.
+7. Insert remaining elements into S (use std::lower_bound and _compare() function to find
+    the position in the sorted S where the current element should be inserted)
 8. Add straggler if the sequence was odd
-9. Copy the sorted sequence back to the original array
+9. Copy the sorted sequence S back to the original array X
 */ 
 void PmergeMe::_mergeInsertionSortVector(std::vector<int>& X)
 {
@@ -109,16 +111,16 @@ void PmergeMe::_mergeInsertionSortVector(std::vector<int>& X)
         // std::cout << "X: " << X[i] << std::endl;
         // std::cout << "X+1: " << X[i + 1] << std::endl;
         // std::cout << "Larger: " << larger << std::endl;
-        if (std::find(S.begin(), S.end(), larger) == S.end())
+        if (std::find(S.begin(), S.end(), larger) == S.end()) // if no duplicates, 4
             S.push_back(larger);
     }
 
-    _mergeInsertionSortVector(S);  // 4
+    _mergeInsertionSortVector(S);  // 5
 
-    int smallestElement = *std::min_element(X.begin(), X.end()); // 5
+    int smallestElement = *std::min_element(X.begin(), X.end()); // 6
     S.insert(S.begin(), smallestElement);
 
-    for (size_t i = 0; i < X.size(); ++i) // 6
+    for (size_t i = 0; i < X.size(); ++i)
     {
         if (X[i] != smallestElement)
         {
